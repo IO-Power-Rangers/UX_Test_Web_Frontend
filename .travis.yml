@@ -3,14 +3,13 @@ sudo: false
 
 language: node_js
 node_js:
-  - '8'
+  - '10'
 
 addons:
+  chrome: stable
   apt:
     sources:
       - google-chrome
-    packages:
-      - google-chrome-stable
 
 cache:
   directories:
