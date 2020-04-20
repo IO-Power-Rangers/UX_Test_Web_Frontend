@@ -1,0 +1,25 @@
+#website-container {
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  margin:0 auto;
+  overflow:hidden;
+  background-color: #EEEEEE
+}
+
+#website-iframe {
+  border: none;
+  height: 105%;
+  width: 110%;
+  margin-left: -4.5%;
+  -webkit-transform:scale(0.95);
+  -webkit-transform-origin: top left;
+}
+
+#import {
+  position: absolute;
+  right: 0%;
+  top: 5%;
+}
