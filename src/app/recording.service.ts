@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class RecordingService {
 
-  url = 'http://localhost:8081/recordingUpload'; 
+  url = 'https://ux-test-power-rangers.herokuapp.com//recordingUpload'; 
 
   constructor(private http: HttpClient) { }
 
