@@ -29,12 +29,12 @@ export class CreateTestsComponent implements OnInit {
       newIframe.src = this.urlToEmbed;
       newIframe.style.cssText = '  border: none;\n' +
         '  padding: 0;\n' +
-        '  -webkit-transform:scale(1);\n' +
+        '  -webkit-transform:scale(0.9);\n' +
         '  -webkit-transform-origin: top left;\n' +
-        '  margin: 0 0 0 -4.5%;\n' +
+        '  margin: 0 0 0 -3.5%;\n' +
         '  background-color: #EEEEEE;\n' +
-        '  width: 104.5%;\n' +
-        '  height: 100%;';
+        '  width: 115.1%;\n' +
+        '  height: 111.2%;';
 
       document.getElementById('websiteIframe').replaceWith(newIframe);
 

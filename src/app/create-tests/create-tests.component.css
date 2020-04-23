@@ -12,7 +12,7 @@
 
   display: flex;
   flex-direction:column;
-  flex: 5;
+  flex: 3;
   justify-content: space-between;
 
 }
@@ -20,7 +20,7 @@
 
 #sidebar {
 
-  flex: 3;
+  flex: 1;
 
 }
 
@@ -62,11 +62,11 @@
 
   border: none;
   padding: 0;
-  -webkit-transform:scale(1);
+  -webkit-transform:scale(0.9);
   -webkit-transform-origin: top left;
-  margin: 0 0 0 -4.5%;
+  margin: 0 0 0 -3.5%;
   background-color: #EEEEEE;
-  width: 104.5%;
-  height: 100%;
+  width: 115.1%;
+  height: 111.2%;
 
 }
