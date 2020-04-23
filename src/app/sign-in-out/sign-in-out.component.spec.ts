@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmbedWebsiteComponent } from './embed-website.component';
+import { SignInOutComponent } from './sign-in-out.component';
 
-describe('EmbedWebsiteComponent', () => {
-  let component: EmbedWebsiteComponent;
-  let fixture: ComponentFixture<EmbedWebsiteComponent>;
+describe('SignInOutComponent', () => {
+  let component: SignInOutComponent;
+  let fixture: ComponentFixture<SignInOutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmbedWebsiteComponent ]
+      declarations: [ SignInOutComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmbedWebsiteComponent);
+    fixture = TestBed.createComponent(SignInOutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

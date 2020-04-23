@@ -1,0 +1,39 @@
+<div id="bodyWrapper">
+
+  <div id="leftSide">
+
+    <div id="toolbar">
+
+      <div id="import">
+
+        <mat-form-field appearance="standard" [style.fontSize.px]=18>
+
+          <label>
+
+            <input matInput type="url" [(ngModel)]="urlToEmbed" id="urlInput"/>
+
+          </label>
+
+        </mat-form-field>
+
+        <a mat-flat-button color="primary" (click)="embedWebsite()"> Import a mockup </a>
+
+      </div>
+
+      <a mat-flat-button color="accent" id="saveTest"> Save this test </a>
+
+    </div>
+
+    <div id="websiteContainer">
+
+      <iframe id="websiteIframe"></iframe>
+
+    </div>
+
+  </div>
+
+  <div id="sidebar">
+
+  </div>
+
+</div>

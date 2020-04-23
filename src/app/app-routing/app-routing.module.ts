@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { EmbedWebsiteComponent } from '../embed-website/embed-website.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from '../home-page/home-page.component';
-import {LoginRegisterComponent} from '../login-register/login-register.component';
+import {CreateTestsComponent} from '../create-tests/create-tests.component';
+import {SignInOutComponent} from '../sign-in-out/sign-in-out.component';
+import {ViewTestsComponent} from '../view-tests/view-tests.component';
 
 const routes: Routes = [
   {
@@ -10,12 +11,16 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'embed',
-    component: EmbedWebsiteComponent,
+    path: 'createTests',
+    component: CreateTestsComponent,
   },
   {
-    path: 'loginRegister',
-    component: LoginRegisterComponent,
+    path: 'viewTests',
+    component: ViewTestsComponent,
+  },
+  {
+    path: 'signInUp',
+    component: SignInOutComponent,
   },
 ];
 
