@@ -31,9 +31,9 @@ export class CreateTestsComponent implements OnInit {
         '  padding: 0;\n' +
         '  -webkit-transform:scale(0.9);\n' +
         '  -webkit-transform-origin: top left;\n' +
-        '  margin: 0 0 0 -3.5%;\n' +
+        '  margin: 0 0 0 -4.5%;\n' +
         '  background-color: #EEEEEE;\n' +
-        '  width: 115.1%;\n' +
+        '  width: 116.1%;\n' +
         '  height: 111.2%;';
 
       document.getElementById('websiteIframe').replaceWith(newIframe);
