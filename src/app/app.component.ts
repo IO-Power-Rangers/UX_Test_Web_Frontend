@@ -20,23 +20,10 @@ export class AppComponent implements OnInit{
     content: '' 
   }];
 
+  public questionnaires: any
+
   constructor(private http: HttpClient) { 
     
-  }
-
-  getQuestionnaires()  {
-    
-      // this.questionnaires = this.http.get(this.URL);
-
-      // questions: [
-      //   {content: "pytanie 1"},
-      //   {content: "pytanie 2"},
-      //   {content: "pytanie 3"},
-      //   {content: "pytanie 4"},
-      //   {content: "pytanie 5"},
-      //   {content: "pytanie 6"}
-      //   ]
-
   }
 
   ngOnInit() {
@@ -72,5 +59,9 @@ export class AppComponent implements OnInit{
 
   logValue() {
     console.log(this.questions);
+  }
+
+  getAllQuestionnaires() {
+    this.questionnaires = this.http.get(this.URL)
   }
 }
