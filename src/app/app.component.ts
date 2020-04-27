@@ -4,6 +4,7 @@ import { Questionnaire } from './questionnaire';
 import { Question } from './question';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit{
   
   title = 'uxTestFrontend';
+
   host = 'http://localhost:8099';
   questionnairesEndpoint = '/api/questionnaire';
 
@@ -67,4 +69,5 @@ export class AppComponent implements OnInit{
     var url = this.host + this.questionnairesEndpoint
     this.questionnaires = this.http.get(url)
   }
+
 }
