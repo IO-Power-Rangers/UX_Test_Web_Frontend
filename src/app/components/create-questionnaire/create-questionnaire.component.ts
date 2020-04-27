@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Questionnaire } from './questionnaire';
 import { Question } from './question';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -26,7 +27,7 @@ export class CreateQuestionnaireComponent implements OnInit {
 
   public questionnaires: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
   }
 
@@ -58,7 +59,8 @@ export class CreateQuestionnaireComponent implements OnInit {
       .toPromise()
       .then(data => {
         console.log(data);
-      });
+      })
+      .finally(() => this.router.navigate(['/createTests']))
   }
 
   logValue() {

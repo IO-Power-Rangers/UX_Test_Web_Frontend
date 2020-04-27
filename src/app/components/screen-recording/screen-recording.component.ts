@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecordingService } from '../recording.service'
+import { RecordingService } from '../../recording.service'
 
 declare var MediaRecorder : any;
 
@@ -23,7 +23,7 @@ export class ScreenRecordingComponent implements OnInit {
   constructor(private recordingService : RecordingService) { }
 
   ngOnInit(): void {
-    this.startRecording(1,1);
+    
   }
 
   async startRecording(userId, testId){

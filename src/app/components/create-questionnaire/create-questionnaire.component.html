@@ -1,56 +1,37 @@
 
-<div class="row">
-  <div class="col-6">
-    <h2>Questionnaire Name</h2>
-  </div>
-</div>
 
-<div class="form-group">
-  <input type="text" class="form-control" [(ngModel)]="questionnaireName"  placeholder=""/>
-</div>
 
-<form #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
-  <div class="row justify-content-center">
-    <div class="col-6">
 
-      <section class="container border mb-4 p-3" *ngFor="let question of rawQuestions; let i = index;">
-        <div class="row">
-          <div class="col-6">
-            <h4>Question {{i + 1}}</h4>
-          </div>
 
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <input type="text" class="form-control" [(ngModel)]="question.content" name="content_{{question.id}}" placeholder=""/>
-            </div>
-          </div>
-        </div>
-      </section>
+<mat-form-field id="questionnaireName" appearance="standard" [style.fontSize.px]=18>
 
-      <br/>
+    <input matInput type="text" [(ngModel)]="questionnaireName"  placeholder="Questionnaire name"/>
 
-      <div class="text-right">
-        <button type="button" class="btn btn-primary mb-2" (click)="addQuestion()">Add Question</button>
-      </div>
+</mat-form-field>
 
-      <br/>
+<form id="questionsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">    
 
-      <div class="text-right">
-        <button type="button" class="btn btn-danger btn-sm" (click)="removeRecentlyAddedQuestion()">
-          Remove Question
-        </button>
-      </div>
+  <section *ngFor="let question of rawQuestions; let i = index;">
+    
+        <label>Question {{i + 1}}</label> 
+        
+        <mat-form-field id="inputField" appearance="standard" [style.fontSize.px]=14>
+    
+          <input matInput type="text" [(ngModel)]="question.content" name="content_{{question.id}}" placeholder=""/>
+    
+        </mat-form-field>
 
-      <br/>
+  </section>
 
-      <div class="text-right">
-        <button type="button" class="btn btn-success" (click)="submitQuestionnaire()">
-          Submit Questionnaire
-        </button>
-      </div>
+  <br/>
 
-    </div>
-  </div>
+  
+  <a id="button" mat-flat-button color="primary" (click)="addQuestion()"> Add Question </a>
+
+  <a id="button" mat-flat-button color="primary" (click)="removeRecentlyAddedQuestion()"> Remove Question </a>
+
+  <br/>
+
+  <a id="button" mat-flat-button color="accent" (click)="submitQuestionnaire()"> Submit Questionnaire </a>
+  
 </form>
