@@ -1,0 +1,31 @@
+.mat-card {
+  width: 500px;
+  height: 200px;
+  background: #ffffff;
+}
+
+.header-icon {
+  background-image: url('https://image.flaticon.com/icons/svg/660/660250.svg');
+  background-size: cover;
+}
+
+.yes-button-position{
+  position: absolute;
+  left: 50px;
+  top:175px;
+}
+.no-button-position{
+  position: absolute;
+  left: 100px;
+  top:175px;
+}
+.checkbox-position{
+  position: absolute;
+  left: 175px;
+  top:175px;
+}
+
+.content-position{
+  position: absolute;
+  top: 100px;
+}
