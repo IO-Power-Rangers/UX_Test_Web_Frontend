@@ -24,6 +24,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
+import { ScreenRecordingComponent } from './screen-recording/screen-recording.component';
 
 const config = new AuthServiceConfig([
   {
@@ -35,7 +36,6 @@ const config = new AuthServiceConfig([
 export function provideConfig() {
   return config;
 }
-
 
 @NgModule({
   declarations: [
