@@ -1,56 +1,7 @@
+<app-header>
 
-<div class="row">
-  <div class="col-6">
-      <h2>Questionnaire Name</h2>
-  </div>
-</div>
+</app-header>
 
-<div class="form-group">
-  <input type="text" class="form-control" [(ngModel)]="questionnaireName"  placeholder=""/>
-</div>
+<router-outlet id="bodyWrapper">
 
-<form #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
-  <div class="row justify-content-center">
-    <div class="col-6">
-  
-      <section class="container border mb-4 p-3" *ngFor="let question of rawQuestions; let i = index;">
-        <div class="row">
-          <div class="col-6">
-              <h4>Question {{i + 1}}</h4>
-          </div>
-          
-        </div>
-        <div class="row">
-          <div class="col-6">
-              <div class="form-group">
-                  <input type="text" class="form-control" [(ngModel)]="question.content" name="content_{{question.id}}" placeholder=""/>
-                </div>
-          </div>
-        </div>
-      </section>
-
-      <br/>
-
-      <div class="text-right">
-        <button type="button" class="btn btn-primary mb-2" (click)="addQuestion()">Add Question</button>
-      </div>
-
-      <br/>
-      
-      <div class="text-right">
-        <button type="button" class="btn btn-danger btn-sm" (click)="removeRecentlyAddedQuestion()">
-          Remove Question
-        </button>
-      </div>
-
-      <br/>
-
-      <div class="text-right">
-          <button type="button" class="btn btn-success" (click)="submitQuestionnaire()">
-            Submit Questionnaire
-          </button>
-      </div>
-      
-    </div>
-  </div>
-</form>
+</router-outlet>

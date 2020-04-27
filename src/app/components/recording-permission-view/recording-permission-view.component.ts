@@ -24,13 +24,14 @@ export class RecordingPermissionViewComponent implements OnInit {
   submitDecision() {
 
     if (this.isChecked) {
-      let user: User = { email: this.mockUser.email, firstName: this.mockUser.firstName, lastName: this.mockUser.lastName, role: this.mockUser.role, recordingAgreement: this.isChecked }
-      console.log(user)
-      this.http.put(this.URL +"/"+ this.mockUser.id, user)
+      const user: User = { email: this.mockUser.email, firstName: this.mockUser.firstName,
+        lastName: this.mockUser.lastName, role: this.mockUser.role, recordingAgreement: this.isChecked };
+      console.log(user);
+      this.http.put(this.URL + '/' + this.mockUser.id, user)
         .toPromise()
         .then(data => {
-          console.log(data)
-        })
+          console.log(data);
+        });
     }
   }
 }
