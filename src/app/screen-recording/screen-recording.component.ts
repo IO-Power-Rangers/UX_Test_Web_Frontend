@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RecordingService } from '../recording.service'
 
+declare var MediaRecorder : any;
+
 @Component({
   selector: 'app-screen-recording',
   templateUrl: './screen-recording.component.html',
@@ -21,12 +23,13 @@ export class ScreenRecordingComponent implements OnInit {
   constructor(private recordingService : RecordingService) { }
 
   ngOnInit(): void {
-    
+    this.startRecording(1,1);
   }
 
   async startRecording(userId, testId){
     
-    let stream = await navigator.mediaDevices.getDisplayMedia(this.constraintObj);
+    let mediaDevices = navigator.mediaDevices as any;
+    let stream = await mediaDevices.getDisplayMedia(this.constraintObj);
     
     this.screenRecorder = new MediaRecorder(stream);
 
