@@ -1,6 +1,6 @@
 #bodyWrapper {
 
-  height: 91.7%;
+  height: 94%;
   display: flex;
   flex-direction:row;
   justify-content: space-between;
@@ -12,7 +12,7 @@
 
   display: flex;
   flex-direction:column;
-  flex: 3;
+  flex: 7;
   justify-content: space-between;
 
 }
@@ -20,7 +20,7 @@
 
 #sidebar {
 
-  flex: 1;
+  flex: 3;
 
 }
 
@@ -51,7 +51,7 @@
 
 #websiteContainer {
 
-  flex: 9;
+  flex: 11;
   border-top: 2px solid #AAAAAA;
   border-right: 2px solid #AAAAAA;
 
@@ -64,9 +64,9 @@
   padding: 0;
   -webkit-transform:scale(0.9);
   -webkit-transform-origin: top left;
-  margin: 0 0 0 -4.5%;
+  margin: 0 0 0 -4%;
   background-color: #EEEEEE;
-  width: 116.1%;
+  width: 115.5%;
   height: 111.2%;
 
 }
