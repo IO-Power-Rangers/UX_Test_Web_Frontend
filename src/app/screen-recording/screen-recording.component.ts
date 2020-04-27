@@ -16,6 +16,7 @@ export class ScreenRecordingComponent implements OnInit {
     "height" : {min: 480, ideal: 480, max: 480}
   };
   chunks = [];
+  screenRecorder = undefined;
 
   constructor(private recordingService : RecordingService) { }
 
@@ -27,25 +28,22 @@ export class ScreenRecordingComponent implements OnInit {
     
     let stream = await navigator.mediaDevices.getDisplayMedia(this.constraintObj);
     
-    console.log(stream);
-    let screenRecorder = new MediaRecorder(stream);
+    this.screenRecorder = new MediaRecorder(stream);
 
-    screenRecorder.ondataavailable = (event) => {
+    this.screenRecorder.ondataavailable = (event) => {
       this.chunks.push(event.data);
     }
 
-    let finishRecBtn = document.getElementById("finishRecBtn");
-
-    finishRecBtn.addEventListener('click', (event) => {
-      screenRecorder.stop();
-    });
-
-    screenRecorder.onstop = (event) => {
+    this.screenRecorder.onstop = (event) => {
       let blob = new Blob(this.chunks, {'type' : 'video/mp4;'});      
       this.recordingService.postRecording(userId, testId, blob);
       }
 
-    screenRecorder.start();
+    this.screenRecorder.start();
+  }
+
+  finishRecording(){
+      this.screenRecorder.stop();
   }
 
 }

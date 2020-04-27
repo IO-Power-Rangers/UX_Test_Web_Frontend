@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecordingService {
 
-  url = 'https://ux-test-power-rangers.herokuapp.com//recordingUpload'; 
+  url = environment.apiUrl + '//recordingUpload'; 
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +17,6 @@ export class RecordingService {
       'responseType' : 'blob' as 'json'
     });
     
-    console.log(recording);
-
     let path = "/" + userId + "/" + testId;
 
     this.http.post(this.url + path, recording , {headers : headers}).subscribe(
