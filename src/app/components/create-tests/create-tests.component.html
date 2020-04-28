@@ -20,12 +20,11 @@
 
       </div>
 
-      <a mat-flat-button color="accent" id="saveTest"> Save this test </a>
+      <a mat-flat-button color="accent" id="saveTest" (click)="submitTest()"> Save this test </a>
 
     </div>
 
     <div id="websiteContainer">
-
       <iframe id="websiteIframe"></iframe>
 
     </div>
@@ -33,6 +32,55 @@
   </div>
 
   <div id="sidebar">
+    <div class="row">
+      <div class="col-6">
+        <h4>TEST TITLE</h4>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="testTitle"  placeholder=""/>
+    </div>
+
+    <form #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+      <div class="row justify-content-center">
+        <div class="col-6">
+
+          <section class="container border mb-4 p-3" *ngFor="let task of rawTasks; let i = index;">
+            <div class="row">
+              <div class="col-6">
+                <h4>Task {{i + 1}}</h4>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="task.name" name="content_{{task.name}}" placeholder=""/>
+                  <input type="text" class="form-control" [(ngModel)]="task.description" name="content_{{task.description}}" placeholder=""/>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <br/>
+
+          <div class="text-right">
+            <button type="button" class="btn btn-primary mb-2" (click)="addTask()">Add Task</button>
+          </div>
+
+          <br/>
+
+          <div class="text-right">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeRecentlyAddedTask()">
+              Remove Task
+            </button>
+          </div>
+
+          <br/>
+
+        </div>
+      </div>
+    </form>
 
   </div>
 
