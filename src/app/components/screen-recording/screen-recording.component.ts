@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecordingService } from '../recording.service'
+import { RecordingService } from '../../recording.service';
 
 @Component({
   selector: 'app-screen-recording',
