@@ -20,7 +20,7 @@
 
       </div>
 
-      <a mat-flat-button color="accent" id="saveTest"> Save this test </a>
+      <a mat-flat-button color="accent" id="saveTest" (click)="submitTest()"> Save this test </a>
 
       <a mat-flat-button color="accent" id="createQuestionnaire" routerLink="/createQuestionnaire" > 
         Create a questionnaire 
@@ -35,7 +35,6 @@
     </div>
 
     <div id="websiteContainer">
-
       <iframe id="websiteIframe"></iframe>
 
     </div>
@@ -44,6 +43,29 @@
 
 
   <div id="sidebar">
+    <mat-form-field id="testTitle" appearance="standard" [style.fontSize.px]=18>
+
+      <input matInput type="text" [(ngModel)]="testTitle"  placeholder="Test title"/>
+
+    </mat-form-field>
+
+    <form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+      <section *ngFor="let task of rawTasks; let i = index;">
+
+        <mat-form-field id="inputName" appearance="standard" [style.fontSize.px]=14>
+          <input matInput type="text" [(ngModel)]="task.name" name="content_{{task.name}}" placeholder="Task {{i + 1}} name"/>
+        </mat-form-field>
+
+        <mat-form-field id="inputDescription" appearance="standard" [style.fontSize.px]=14>
+          <input matInput type="text" [(ngModel)]="task.description" name="content_{{task.description}}" placeholder="Task {{i + 1}} description"/>
+        </mat-form-field>
+
+      </section>
+      <br/>
+      <a id="button1" mat-flat-button color="primary" (click)="addTask()"> Add Task </a>
+      <br/> <br/>
+      <a id="button2" mat-flat-button color="primary" (click)="removeRecentlyAddedTask()"> Remove Task </a>
+    </form>
 
   </div>
 

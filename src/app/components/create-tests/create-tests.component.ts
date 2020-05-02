@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Test} from "./test";
+import {UxModel} from "./uxModel";
 
 @Component({
   selector: 'app-create-tests',
@@ -10,7 +13,7 @@ export class CreateTestsComponent implements OnInit {
 
   urlToEmbed: string;
 
-  constructor(private titleService: Title) {
+  constructor(private titleService: Title, private http: HttpClient) {
     this.titleService.setTitle('Create tests');
   }
 
@@ -41,11 +44,49 @@ export class CreateTestsComponent implements OnInit {
     } else {
 
       alert('You can only import mockups from Axshare.');
-
+      this.urlToEmbed = '';
     }
-
-    this.urlToEmbed = '';
-
   }
 
+  host = 'http://localhost:9090';
+  testsEndpoint = '/api/tests';
+
+  public testTitle = '';
+
+  public rawTasks: any[] = [{
+    index: 0,
+    name: '',
+    description:''
+  }];
+
+  addTask() {
+    this.rawTasks.push({
+      index: this.rawTasks.length,
+      name: '',
+      description: ''
+    });
+  }
+
+  removeRecentlyAddedTask() {
+    this.rawTasks.pop();
+  }
+
+  submitTest() {
+
+    const body: Test = {
+      uxModel: { axLink: this.urlToEmbed, tests: []},
+      title: this.testTitle,
+      tasks: this.rawTasks
+    };
+
+    this.http.post(this.host + this.testsEndpoint, JSON.stringify(body), {headers: {'Content-Type': 'application/json'}})
+      .toPromise()
+      .then(data => {
+        console.log(data);
+      });
+  }
+
+  logValue() {
+    console.log(this.rawTasks);
+  }
 }
