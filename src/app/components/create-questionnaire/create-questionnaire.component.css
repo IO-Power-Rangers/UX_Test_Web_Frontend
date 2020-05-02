@@ -1,0 +1,41 @@
+#inputField {
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+    
+}
+
+#queston {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    
+}
+
+#questionnaireName {
+
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+}
+
+#questionsForm {
+
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#button {
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}

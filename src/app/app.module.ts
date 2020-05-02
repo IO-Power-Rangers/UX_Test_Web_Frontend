@@ -46,7 +46,8 @@ export function provideConfig() {
     SignInOutComponent,
     ViewTestsComponent,
     RecordingPermissionViewComponent,
-    CreateQuestionnaireComponent
+    CreateQuestionnaireComponent,
+    ScreenRecordingComponent
   ],
   imports: [
     BrowserModule,
