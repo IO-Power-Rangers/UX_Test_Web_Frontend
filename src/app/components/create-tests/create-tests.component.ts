@@ -44,7 +44,7 @@ export class CreateTestsComponent implements OnInit {
     } else {
 
       alert('You can only import mockups from Axshare.');
-
+      this.urlToEmbed = '';
     }
   }
 
