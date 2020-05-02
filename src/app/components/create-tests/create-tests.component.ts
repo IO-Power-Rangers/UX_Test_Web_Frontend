@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Test} from "./test";
+import {UxModel} from "./uxModel";
 
 @Component({
   selector: 'app-create-tests',
@@ -73,10 +74,10 @@ export class CreateTestsComponent implements OnInit {
   submitTest() {
 
     const body: Test = {
-      axLink: this.urlToEmbed,
+      uxModel: { axLink: this.urlToEmbed, tests: []},
       title: this.testTitle,
       tasks: this.rawTasks
-    }
+    };
 
     this.http.post(this.host + this.testsEndpoint, JSON.stringify(body), {headers: {'Content-Type': 'application/json'}})
       .toPromise()

@@ -32,54 +32,28 @@
   </div>
 
   <div id="sidebar">
-    <div class="row">
-      <div class="col-6">
-        <h4>TEST TITLE</h4>
-      </div>
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="testTitle"  placeholder=""/>
-    </div>
+    <mat-form-field id="testTitle" appearance="standard" [style.fontSize.px]=18>
 
-    <form #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
-      <div class="row justify-content-center">
-        <div class="col-6">
+      <input matInput type="text" [(ngModel)]="testTitle"  placeholder="Test title"/>
 
-          <section class="container border mb-4 p-3" *ngFor="let task of rawTasks; let i = index;">
-            <div class="row">
-              <div class="col-6">
-                <h4>Task {{i + 1}}</h4>
-              </div>
+    </mat-form-field>
 
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <input type="text" class="form-control" [(ngModel)]="task.name" name="content_{{task.name}}" placeholder=""/>
-                  <input type="text" class="form-control" [(ngModel)]="task.description" name="content_{{task.description}}" placeholder=""/>
-                </div>
-              </div>
-            </div>
-          </section>
+    <form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+      <section *ngFor="let task of rawTasks; let i = index;">
 
-          <br/>
+        <mat-form-field id="inputName" appearance="standard" [style.fontSize.px]=14>
+          <input matInput type="text" [(ngModel)]="task.name" name="content_{{task.name}}" placeholder="Task {{i + 1}} name"/>
+        </mat-form-field>
 
-          <div class="text-right">
-            <button type="button" class="btn btn-primary mb-2" (click)="addTask()">Add Task</button>
-          </div>
+        <mat-form-field id="inputDescription" appearance="standard" [style.fontSize.px]=14>
+          <input matInput type="text" [(ngModel)]="task.description" name="content_{{task.description}}" placeholder="Task {{i + 1}} description"/>
+        </mat-form-field>
 
-          <br/>
-
-          <div class="text-right">
-            <button type="button" class="btn btn-danger btn-sm" (click)="removeRecentlyAddedTask()">
-              Remove Task
-            </button>
-          </div>
-
-          <br/>
-
-        </div>
-      </div>
+      </section>
+      <br/>
+      <a id="button1" mat-flat-button color="primary" (click)="addTask()"> Add Task </a>
+      <br/> <br/>
+      <a id="button2" mat-flat-button color="primary" (click)="removeRecentlyAddedTask()"> Remove Task </a>
     </form>
 
   </div>
