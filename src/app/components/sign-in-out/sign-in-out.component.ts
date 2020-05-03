@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in-out',
@@ -8,22 +11,28 @@ import {AuthService, GoogleLoginProvider, SocialUser} from 'angularx-social-logi
 })
 export class SignInOutComponent implements OnInit {
 
-  private user: SocialUser;
+ 
   private loggedIn: boolean;
   private buttonText: string;
-
-  constructor(private authService: AuthService) { }
+  public userLogged:User;
+  constructor(private authService: AuthService,private userService:UserService,private router:Router) { }
 
   signInOut(): void {
 
     if (!this.loggedIn) {
 
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+     let user = this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+      user.then(userSocial => {
+        let userData : User = { email : userSocial.email, firstName: userSocial.firstName, lastName: userSocial.lastName, role:null
+        };
+        this.userLogged = userData;
+        this.userService.postUser(userData);
+      })      
 
     } else {
-
       this.authService.signOut();
-
+      this.router.navigate(['/']);
+      this.userService.postUser(null);
     }
 
   }
@@ -34,7 +43,6 @@ export class SignInOutComponent implements OnInit {
 
     this.authService.authState.subscribe((user) => {
 
-      this.user = user;
       this.loggedIn = (user != null);
 
       if (this.loggedIn) {
@@ -57,11 +65,7 @@ export class SignInOutComponent implements OnInit {
 
   }
 
-  get userG(): SocialUser {
 
-    return this.user;
-
-  }
 
   get buttonTextG(): string {
 

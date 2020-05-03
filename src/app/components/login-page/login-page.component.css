@@ -1,0 +1,72 @@
+.up {
+    position: absolute;
+    top: 0px; left: 0px;
+
+}
+
+.spacer {
+
+    flex: 1 1 auto
+  
+  }
+  
+  .button {
+  
+    font-size: 100%;
+  
+  }
+  
+  #logo {
+  
+    font-size: 120%;
+    font-weight: 900;
+    letter-spacing: 2px;
+  
+  }
+  
+  #icon {
+  
+    font-size: 100%;
+  
+  }
+  
+  .mat-card {
+    padding-top: 40px;
+    padding-left: 40px;
+    width: 500px;
+    height: 200px;
+    background: #ffffff;
+    position: absolute;              
+   top: 50%;  
+   left:40%;                       
+   transform: translate(0, -50%) 
+  }
+  
+  .header-icon {
+    background-image: url('https://image.flaticon.com/icons/svg/660/660250.svg');
+    background-size: cover;
+  }
+  
+  .yes-button-position{
+    position: absolute;
+    left: 50px;
+    top:175px;
+  }
+  .no-button-position{
+    position: absolute;
+    left: 100px;
+    top:175px;
+  }
+  .checkbox-position{
+    position: absolute;
+    left: 175px;
+    top:175px;
+  }
+  .text{
+    font-size: 200%;
+  }
+
+  .position{
+    margin-right: 20px;
+    margin-top: 20px;
+  }
