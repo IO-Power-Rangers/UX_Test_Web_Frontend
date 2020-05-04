@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -14,7 +15,7 @@ export class LoginPageComponent implements OnInit {
   public disabled: boolean
   public roleSelected;
   user: User;
-  private readonly URL = 'http://localhost:8099/api/users';
+  private readonly URL = environment.local + environment.users;
 
 
   public roles = [

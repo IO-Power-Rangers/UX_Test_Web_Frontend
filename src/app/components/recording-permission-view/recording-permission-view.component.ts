@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../interfaces/user'
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-recording-permission-view',
   templateUrl: './recording-permission-view.component.html',
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 
 export class RecordingPermissionViewComponent implements OnInit {
 
-  private readonly URL = 'http://localhost:8099/api/users';
+  private readonly URL = environment.local + environment.users;
   isChecked = false;
   constructor(private http: HttpClient,private userService:UserService) { }
 
