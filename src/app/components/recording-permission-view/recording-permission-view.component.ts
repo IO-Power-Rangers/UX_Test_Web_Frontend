@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../interfaces/user'
 import { HttpClient } from '@angular/common/http';
+import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-recording-permission-view',
   templateUrl: './recording-permission-view.component.html',
@@ -9,10 +11,9 @@ import { HttpClient } from '@angular/common/http';
 
 export class RecordingPermissionViewComponent implements OnInit {
 
-  private readonly mockUser: User = { id: 1, email: 'test@gmail.com', firstName: 'Test', lastName: 'Testowy', role: 'UXER' };
-  private readonly URL = 'http://localhost:8099/api/users';
+  private readonly URL = environment.local + environment.users;
   isChecked = false;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -24,10 +25,9 @@ export class RecordingPermissionViewComponent implements OnInit {
   submitDecision() {
 
     if (this.isChecked) {
-      const user: User = { email: this.mockUser.email, firstName: this.mockUser.firstName,
-        lastName: this.mockUser.lastName, role: this.mockUser.role, recordingAgreement: this.isChecked };
-      console.log(user);
-      this.http.put(this.URL + '/' + this.mockUser.id, user)
+      let user = this.userService.user;
+      user.recordingAgreement = this.isChecked;
+      this.http.put(this.URL + '/' + user.id, user)
         .toPromise()
         .then(data => {
           console.log(data);

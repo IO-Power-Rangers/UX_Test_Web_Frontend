@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl : "https://ux-test-power-rangers.herokuapp.com"
+  apiUrl : "https://ux-test-power-rangers.herokuapp.com",
+  local : "http://localhost:8099",
+  users : "/api/users",
 };
 
 /*
