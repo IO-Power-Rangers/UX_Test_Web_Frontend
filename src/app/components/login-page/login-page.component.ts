@@ -25,11 +25,13 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private userService: UserService, private http: HttpClient,private router: Router) {
     this.disabled == true;
-    this.userService.postUser$.subscribe(userData => { this.user = userData; })
+    this.userService.postUser$.subscribe(userData => { this.user = userData;})
   }
 
   ngOnInit(): void {
-
+    if(this.userService.user != null && this.userService.user.role != null){
+      this.roleSelected = this.user.role;
+    }
   }
 
 
@@ -39,13 +41,13 @@ export class LoginPageComponent implements OnInit {
       .toPromise()
       .then((id:number) => {
         this.user.id = id;
-        this.userService.user = this.user;
+        this.userService.postUser(this.user);
       }).catch(err => {
         this.http.post(this.URL, this.user)
         .toPromise()
         .then((id:number) => {
           this.user.id = id;
-          this.userService.user = this.user;})
+          this.userService.postUser(this.user);})
       }).finally( ()=> {
         if (this.user.role == 'UXER'){
           this.router.navigate(['/home']);

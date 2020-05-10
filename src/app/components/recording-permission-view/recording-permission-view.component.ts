@@ -18,20 +18,12 @@ export class RecordingPermissionViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkValue(event: any) {
-    console.log(event);
-  }
-
   submitDecision() {
 
     if (this.isChecked) {
       let user = this.userService.user;
       user.recordingAgreement = this.isChecked;
-      this.http.put(this.URL + '/' + user.id, user)
-        .toPromise()
-        .then(data => {
-          console.log(data);
-        });
+      this.http.put(this.URL + '/' + user.id, user);
     }
   }
 }
