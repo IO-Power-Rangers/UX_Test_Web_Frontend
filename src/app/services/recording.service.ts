@@ -14,9 +14,7 @@ export class RecordingService {
 
   postRecording(recording: Recording){
   
-    this.http.post(this.url, recording).subscribe(
-      data => {console.log(data);}
-    );
+    this.http.post(this.url, recording).subscribe();
   }
 
   getVideo(id: Number){
