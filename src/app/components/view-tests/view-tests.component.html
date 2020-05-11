@@ -1,5 +1,9 @@
 <p>
-  <label for="testChoice">Choose a test: </label>
+  Select test from the list below:
+</p>
+
+<p>
+  <label for="testChoice"></label>
   <select id="testChoice">
     <option value="" disabled selected>Choose a test</option>
     <option *ngFor="let test of tests">{{test.title}}</option>

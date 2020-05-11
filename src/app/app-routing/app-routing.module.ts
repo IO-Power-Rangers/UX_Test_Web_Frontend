@@ -8,6 +8,7 @@ import {CreateQuestionnaireComponent} from '../components/create-questionnaire/c
 import {ScreenRecordingComponent} from '../components/screen-recording/screen-recording.component';
 import {RecordingPermissionViewComponent} from '../components/recording-permission-view/recording-permission-view.component';
 import { LoginPageComponent } from '../components/login-page/login-page.component';
+import {DoTestComponent} from '../components/doTest/do-test.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
     path: 'screenRecording',
     component: RecordingPermissionViewComponent, // since ScreenRecordingComponent is not finished yet
     // component: ScreenRecordingComponent,
+  },
+  {
+    path: 'doTest',
+    component: DoTestComponent,
   },
 ];
 
