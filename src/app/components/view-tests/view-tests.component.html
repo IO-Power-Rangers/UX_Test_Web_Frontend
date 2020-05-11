@@ -1,3 +1,11 @@
 <p>
-  Nothing here for now.
+  <label for="testChoice">Choose a test: </label>
+  <select id="testChoice">
+    <option value="" disabled selected>Choose a test</option>
+    <option *ngFor="let test of tests">{{test.title}}</option>
+  </select>
+</p>
+
+<p>
+  <button id="startButton" (click)="startTest()">Start test</button>
 </p>

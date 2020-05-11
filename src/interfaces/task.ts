@@ -1,5 +1,5 @@
 export interface Task {
-  index : bigint
+  id : bigint
   name : string
   description : string
 }
