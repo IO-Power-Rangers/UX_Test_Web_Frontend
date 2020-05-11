@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RecordingService } from '../../recording.service';
+import { RecordingService } from '../../services/recording.service';
+import { Recording } from 'src/interfaces/recording';
 
 declare var MediaRecorder : any;
 
@@ -29,7 +30,7 @@ export class ScreenRecordingComponent implements OnInit {
     
   }
 
-  async startRecording(userId, testId){
+  async startRecording(user, test){
     
     let mediaDevices = navigator.mediaDevices as any;
     let stream = await mediaDevices.getDisplayMedia(this.constraintObj);
@@ -44,8 +45,17 @@ export class ScreenRecordingComponent implements OnInit {
     this.screenRecorder.onstop = (event) => {
 
       let blob = new Blob(this.chunks, {'type' : 'video/mp4;'});      
+      
+      var reader = new FileReader();
+      reader.onloadend = () => {
 
-      this.recordingService.postRecording(userId, testId, blob);
+        var video :String = (<String>reader.result).substr((<String>reader.result).indexOf(',') + 1);
+        const recording: Recording = {user: user, test: test, video: video};
+        this.recordingService.postRecording(recording);
+
+      }
+
+      reader.readAsDataURL(blob);
       }
 
     this.screenRecorder.start();
