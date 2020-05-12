@@ -26,7 +26,6 @@ export class DoTestComponent implements OnInit {
   }
 
   nextTask() {
-    console.log(this.currTask);
     const index = this.message.indexOf(this.currTask);
     this.currTask = this.message[index + 1];
 

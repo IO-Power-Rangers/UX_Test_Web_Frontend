@@ -36,7 +36,6 @@ export class ViewTestsComponent implements OnInit {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
         this.tests = data;
-        console.log(this.tests);
       });
   }
 
@@ -47,7 +46,6 @@ export class ViewTestsComponent implements OnInit {
     if ( selected !== 'Choose a test') {
       const test = this.tests.find(i => i.title === selected);
       this.message = test.tasks;
-      console.log(this.message);
       this.viewTestsService.nextMessage(this.message);
       this.router.navigate(['/screenRecording']);
     }
