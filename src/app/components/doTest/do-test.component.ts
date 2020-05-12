@@ -12,6 +12,8 @@ import {ViewTestsService} from '../../services/view-tests.service';
 export class DoTestComponent implements OnInit {
 
   message: Task[];
+  currTask: Task;
+  nextButton: HTMLButtonElement;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService) {
     this.titleService.setTitle('Do the test');
@@ -19,5 +21,18 @@ export class DoTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewTestsService.sharedMessage.subscribe(message => this.message = message);
+    this.currTask = this.message[0];
+    this.nextButton = document.getElementById('nextTaskButton') as HTMLButtonElement;
+  }
+
+  nextTask() {
+    console.log(this.currTask);
+    const index = this.message.indexOf(this.currTask);
+    this.currTask = this.message[index + 1];
+
+    if (!this.currTask) {
+      this.nextButton.disabled = true;
+    }
+
   }
 }
