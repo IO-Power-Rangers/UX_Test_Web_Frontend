@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewTestsComponent } from './view-tests.component';
+import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
 describe('ViewTestsComponent', () => {
   let component: ViewTestsComponent;
@@ -8,6 +9,7 @@ describe('ViewTestsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [CommonTestModule],
       declarations: [ ViewTestsComponent ]
     })
     .compileComponents();
