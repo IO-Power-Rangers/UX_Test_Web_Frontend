@@ -8,7 +8,7 @@ import {CreateQuestionnaireComponent} from '../components/create-questionnaire/c
 import {ScreenRecordingComponent} from '../components/screen-recording/screen-recording.component';
 import {RecordingPermissionViewComponent} from '../components/recording-permission-view/recording-permission-view.component';
 import { LoginPageComponent } from '../components/login-page/login-page.component';
-
+import { CreateCardSortingTestComponent } from "../components/create-card-sorting-test/create-card-sorting-test.component";
 
 const routes: Routes = [
   {path:'',
@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'createQuestionnaire',
     component: CreateQuestionnaireComponent,
+  },
+  {
+    path: 'cardsorting/createTest',
+    component: CreateCardSortingTestComponent
   },
   {
     path: 'screenRecording',

@@ -27,7 +27,8 @@ import { CreateQuestionnaireComponent } from './components/create-questionnaire/
 import { ScreenRecordingComponent } from './components/screen-recording/screen-recording.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import {MatSelectModule} from '@angular/material/select'
-import {ReactiveFormsModule} from '@angular/forms'
+import {ReactiveFormsModule} from '@angular/forms';
+import {CreateCardSortingTestComponent} from "./components/create-card-sorting-test/create-card-sorting-test.component";
 
 const config = new AuthServiceConfig([
   {
@@ -51,7 +52,8 @@ export function provideConfig() {
     RecordingPermissionViewComponent,
     CreateQuestionnaireComponent,
     ScreenRecordingComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    CreateCardSortingTestComponent
   ],
   imports: [
     BrowserModule,
