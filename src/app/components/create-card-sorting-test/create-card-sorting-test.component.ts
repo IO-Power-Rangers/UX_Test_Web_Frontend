@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CardSortingTest} from "./cardSortingTest";
-import {any} from "codelyzer/util/function";
 
 @Component({
   selector: 'app-create-card-sorting-test',
@@ -21,19 +20,17 @@ export class CreateCardSortingTestComponent implements OnInit {
   host = 'http://localhost:8099';
   testsEndpoint = '/api/cardsorting/tests';
 
-  public rawCategories = [{
-    name: '',
-    categoriesWithSubjects : []
+  public rawCategories : any[] = [{
+    name: ''
   }];
 
-  public rawSubjects = [{
+  public rawSubjects : any[] = [{
     name: ''
   }];
 
   addCategory() {
     this.rawCategories.push({
-      name : '',
-      categoriesWithSubjects : []
+      name : ''
     })
   }
 

@@ -29,6 +29,9 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import {MatSelectModule} from '@angular/material/select'
 import {ReactiveFormsModule} from '@angular/forms';
 import {CreateCardSortingTestComponent} from "./components/create-card-sorting-test/create-card-sorting-test.component";
+import { PerformCardSortingTestComponent } from './components/perform-card-sorting-test/perform-card-sorting-test.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import {MatListModule} from "@angular/material/list";
 
 const config = new AuthServiceConfig([
   {
@@ -53,7 +56,8 @@ export function provideConfig() {
     CreateQuestionnaireComponent,
     ScreenRecordingComponent,
     LoginPageComponent,
-    CreateCardSortingTestComponent
+    CreateCardSortingTestComponent,
+    PerformCardSortingTestComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,9 @@ export function provideConfig() {
     MatCheckboxModule,
     HttpClientModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule,
+    MatListModule
   ],
   providers: [
     {

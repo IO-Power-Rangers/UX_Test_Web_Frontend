@@ -1,6 +1,6 @@
 import {Category} from './category'
 import {Subject} from "./subject";
-import {CardSortingResult} from "./cardSortingResult";
+import {CardSortingResult} from "../perform-card-sorting-test/cardSortingResult";
 
 export interface CardSortingTest {
   categories : Category[]
