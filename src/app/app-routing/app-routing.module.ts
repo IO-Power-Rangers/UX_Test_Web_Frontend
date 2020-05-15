@@ -10,7 +10,7 @@ import {RecordingPermissionViewComponent} from '../components/recording-permissi
 import { LoginPageComponent } from '../components/login-page/login-page.component';
 import { CreateCardSortingTestComponent } from "../components/create-card-sorting-test/create-card-sorting-test.component";
 import { PerformCardSortingTestComponent} from "../components/perform-card-sorting-test/perform-card-sorting-test.component";
-
+import { ViewResultsOfTestComponent } from "../components/view-results-of-test/view-results-of-test.component";
 
 const routes: Routes = [
   {path:'',
@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'cardsorting/performTest',
     component: PerformCardSortingTestComponent
+  },
+  {
+    path: 'cardsorting/viewResults',
+    component: ViewResultsOfTestComponent
   },
   {
     path: 'screenRecording',
