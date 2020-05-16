@@ -26,14 +26,14 @@ export class ScreenRecordingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+
   }
 
   async startRecording(userId, testId){
-    
+
     let mediaDevices = navigator.mediaDevices as any;
     let stream = await mediaDevices.getDisplayMedia(this.constraintObj);
-    
+
 
     this.screenRecorder = new MediaRecorder(stream);
 
@@ -43,7 +43,7 @@ export class ScreenRecordingComponent implements OnInit {
 
     this.screenRecorder.onstop = (event) => {
 
-      let blob = new Blob(this.chunks, {'type' : 'video/mp4;'});      
+      let blob = new Blob(this.chunks, {'type' : 'video/mp4;'});
 
       this.recordingService.postRecording(userId, testId, blob);
       }

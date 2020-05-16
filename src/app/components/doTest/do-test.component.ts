@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Task} from '../../../interfaces/task';
 import {ViewTestsService} from '../../services/view-tests.service';
+import {ScreenRecordingComponent} from '../screen-recording/screen-recording.component';
 
 @Component({
   selector: 'app-do-test',
   templateUrl: './do-test.component.html',
+  providers: [ScreenRecordingComponent],
   styleUrls: ['./do-test.component.css']
 })
 
@@ -16,7 +18,8 @@ export class DoTestComponent implements OnInit {
   currTask: Task;
   nextButton: HTMLButtonElement;
 
-  constructor(private titleService: Title, private viewTestsService: ViewTestsService) {
+  constructor(private titleService: Title, private viewTestsService: ViewTestsService,
+              private screenRecordingComponent: ScreenRecordingComponent) {
     this.titleService.setTitle('Do the test');
   }
 
@@ -50,5 +53,9 @@ export class DoTestComponent implements OnInit {
       '  height: 111.2%;';
 
     document.getElementById('websiteIframe').replaceWith(newIframe);
+  }
+
+  finishRecording() {
+    this.screenRecordingComponent.finishRecording();
   }
 }
