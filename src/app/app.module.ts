@@ -17,8 +17,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
 import { ScreenRecordingComponent } from './components/screen-recording/screen-recording.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-
-import {ReactiveFormsModule} from '@angular/forms'
+import {MatSelectModule} from '@angular/material/select'
+import {ReactiveFormsModule} from '@angular/forms';
+import {CreateCardSortingTestComponent} from "./components/create-card-sorting-test/create-card-sorting-test.component";
+import { PerformCardSortingTestComponent } from './components/perform-card-sorting-test/perform-card-sorting-test.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import {MatListModule} from "@angular/material/list";
 import { MaterialModule } from './material/material.module';
 
 const config = new AuthServiceConfig([
@@ -43,7 +47,9 @@ export function provideConfig() {
     RecordingPermissionViewComponent,
     CreateQuestionnaireComponent,
     ScreenRecordingComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    CreateCardSortingTestComponent,
+    PerformCardSortingTestComponent
   ],
   imports: [
     MaterialModule,
@@ -55,6 +61,10 @@ export function provideConfig() {
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    MatListModule,
     ReactiveFormsModule
   ],
   providers: [
