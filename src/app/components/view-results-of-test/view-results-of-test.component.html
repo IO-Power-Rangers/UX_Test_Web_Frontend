@@ -10,13 +10,9 @@
 </div>
 <div id="results-view">
   <table>
-    <thead>
-    <tr>
-      <th *ngFor="let curResult of processedResults" scope="col">{{curResult[0]}} </th>
-    </tr>
-    </thead>
     <tbody>
     <tr *ngFor="let curResult of processedResults">
+      <th>{{curResult[0]}}</th>
       <td *ngFor="let subject of curResult[1]">
         {{subject[0]}} (<b>{{subject[1]}}</b>)
       </td>
