@@ -4,7 +4,7 @@ import { MultipleAnswerQuestion } from './question/multiple-answer-question';
 import { LikertScaleQuestion } from './question/likert-scale-question';
 
 export interface Questionnaire {
-    id: number
+    id?: number
     name: string
     textQuestions: TextQuestion[]
     multipleChoiceQuestions: MultipleChoiceQuestion[]

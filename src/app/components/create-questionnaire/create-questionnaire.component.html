@@ -9,29 +9,100 @@
 
 </mat-form-field>
 
-<form id="questionsForm" class="container mt-3" (ngSubmit)="logValue()">    
-
-  <section *ngFor="let question of rawQuestions; let i = index;">
+<section *ngFor="let rawQuestion of rawQuestions; let i = index;">
     
-        <label>Question {{i + 1}}</label> 
-        
-        <mat-form-field id="inputField" appearance="standard" [style.fontSize.px]=14>
-    
-          <input matInput type="text" [(ngModel)]="question.content" name="content_{{question.id}}" placeholder=""/>
-    
-        </mat-form-field>
+  <label id="questionNo">Question {{i + 1}}</label>
 
-  </section>
-
-  <br/>
-
+  <div style="display: inline" *ngIf="rawQuestion.type === 'text'">
   
-  <a id="button" mat-flat-button color="primary" (click)="addQuestion()"> Add Question </a>
+    <mat-form-field id="inputField" appearance="standard" [style.fontSize.px]=14>
 
-  <a id="button" mat-flat-button color="primary" (click)="removeRecentlyAddedQuestion()"> Remove Question </a>
+      <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="content"/>
 
-  <br/>
+    </mat-form-field>
 
-  <a id="button" mat-flat-button color="accent" (click)="submitQuestionnaire()"> Submit Questionnaire </a>
+  </div>
 
-</form>
+  <div style="display: inline" *ngIf="rawQuestion.type === 'likert'">
+  
+    <mat-form-field id="inputField" appearance="standard" [style.fontSize.px]=14>
+      <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="content" id="input"/>
+      
+    </mat-form-field>
+
+    <mat-form-field id="inputField" appearance="standard" [style.fontSize.px]=14>
+
+      <input matInput type="number" [(ngModel)]="rawQuestion.question.possibleStepsNo" placeholder="number of possible steps" id="input"/>
+      
+    </mat-form-field>
+
+  </div>
+
+  <div style="display: inline" *ngIf="rawQuestion.type === 'multipleChoice'">
+
+    <mat-form-field  id="inputField" appearance="standard" [style.fontSize.px]=14>
+
+      <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="content" id="input"/>
+
+    </mat-form-field>
+      
+    <section *ngFor="let option of rawQuestion.question.options">
+  
+      <mat-form-field  id="option" appearance="standard" [style.fontSize.px]=11>
+
+        <input matInput type="text" [(ngModel)]="option.content" placeholder="option"/>
+  
+      </mat-form-field>
+
+    </section> 
+
+    <a id="button" mat-flat-button color="primary" (click)="addOptionToMultipleChoiceQuestion(i)"> Add Option </a>
+
+    <a id="button" mat-flat-button color="primary" (click)="removeOptionFromMultipleChoiceQuestion(i)"> Remove Option </a>
+
+  </div>
+
+  <div style="display: inline" *ngIf="rawQuestion.type === 'multipleAnswer'">
+
+
+    <mat-form-field  id="inputField" appearance="standard" [style.fontSize.px]=14>
+
+      <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="content" id="input"/>
+
+    </mat-form-field>
+      
+    <section *ngFor="let option of rawQuestion.question.options">
+  
+      <mat-form-field  id="option" appearance="standard" [style.fontSize.px]=11>
+
+        <input matInput type="text" [(ngModel)]="option.content" placeholder="option"/>
+  
+      </mat-form-field>
+
+    </section> 
+
+    <a id="button" mat-flat-button color="primary" (click)="addOptionToMultipleAnswerQuestion(i)"> Add Option </a>
+
+    <a id="button" mat-flat-button color="primary" (click)="removeOptionFromMultipleAnswerQuestion(i)"> Remove Option </a>
+
+  </div>
+
+</section>
+
+
+<br/>
+
+<a id="button" mat-flat-button color="primary" (click)="addTextQuestion()"> Add Text Question </a>
+
+<a id="button" mat-flat-button color="primary" (click)="addLikertScaleQuestion()"> Add Likert Scale Question </a>
+
+<a id="button" mat-flat-button color="primary" (click)="addMultipleChoiceQuestion()"> Add Multiple Choice Question </a>
+
+<a id="button" mat-flat-button color="primary" (click)="addMultipleAnswerQuestion()"> Add Multiple Answer Question </a>
+
+<a id="button" mat-flat-button color="primary" (click)="removeRecentlyAddedQuestion()"> Remove Question </a>
+
+<br/>
+
+<a id="button" mat-flat-button color="accent" (click)="submitQuestionnaire()"> Submit Questionnaire </a>
+

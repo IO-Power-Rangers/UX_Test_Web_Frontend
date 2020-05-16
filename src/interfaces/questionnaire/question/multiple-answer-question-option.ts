@@ -1,4 +1,4 @@
 export interface MultipleAnswerQuestionOption {
-    id: number
+    id?: number
     content: string
 }
