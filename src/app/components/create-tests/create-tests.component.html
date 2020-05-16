@@ -49,7 +49,7 @@
 
     </mat-form-field>
 
-    <form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+    <form id="testsForm" class="container mt-3" (ngSubmit)="logValue()">
       <section *ngFor="let task of rawTasks; let i = index;">
 
         <mat-form-field id="inputName" appearance="standard" [style.fontSize.px]=14>
