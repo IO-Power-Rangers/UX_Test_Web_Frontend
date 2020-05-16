@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Questionnaire } from './questionnaire';
-import { Question } from './question';
+import { TextQuestion } from './text-question';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MultipleChoiceQuestion } from './multiple-choice-question';
+import { MultipleChoiceQuestionOption } from './multiple-choice-question-option';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -50,10 +52,13 @@ export class CreateQuestionnaireComponent implements OnInit {
 
     const body: Questionnaire = {
       name: this.questionnaireName,
-      questions: this.rawQuestions.map(question => question.content)
+      textQuestions: this.rawQuestions.map(question => question.content),
+      multipleChoiceQuestions: [{ options: [ { content: "bla bla bla" } ] }]
     }
 
     const url = this.host + this.questionnairesEndpoint;
+
+    console.log(body);
 
     this.http.post(url, body)
       .toPromise()
