@@ -12,6 +12,7 @@ import {ViewTestsService} from '../../services/view-tests.service';
 export class DoTestComponent implements OnInit {
 
   message: Task[];
+  modelMessage: string;
   currTask: Task;
   nextButton: HTMLButtonElement;
 
@@ -21,6 +22,7 @@ export class DoTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewTestsService.sharedMessage.subscribe(message => this.message = message);
+    this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
     this.currTask = this.message[0];
     this.nextButton = document.getElementById('nextTaskButton') as HTMLButtonElement;
   }
@@ -32,6 +34,21 @@ export class DoTestComponent implements OnInit {
     if (!this.currTask) {
       this.nextButton.disabled = true;
     }
+  }
 
+  embedWebsite() {
+    const newIframe = document.createElement('iframe');
+    newIframe.id = 'websiteIframe';
+    newIframe.src = this.modelMessage;
+    newIframe.style.cssText = '  border: none;\n' +
+      '  padding: 0;\n' +
+      '  -webkit-transform:scale(0.9);\n' +
+      '  -webkit-transform-origin: top left;\n' +
+      '  margin: 0 0 0 -4%;\n' +
+      '  background-color: #EEEEEE;\n' +
+      '  width: 115.5%;\n' +
+      '  height: 111.2%;';
+
+    document.getElementById('websiteIframe').replaceWith(newIframe);
   }
 }

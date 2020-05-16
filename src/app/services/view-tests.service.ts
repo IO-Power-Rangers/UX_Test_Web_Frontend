@@ -15,10 +15,13 @@ export class ViewTestsService {
   private readonly URL =  environment.local + environment.tests;
 
   private message = new BehaviorSubject([]);
+  private modelMessage = new BehaviorSubject('');
   sharedMessage = this.message.asObservable();
+  sharedModelMessage = this.modelMessage.asObservable();
 
-  nextMessage(message: Task[]) {
+  nextMessage(message: Task[], modelMessage: string) {
     this.message.next(message);
+    this.modelMessage.next(modelMessage);
   }
 
   getTest() {

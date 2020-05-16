@@ -21,6 +21,7 @@ export class ViewTestsComponent implements OnInit {
   tests: Test[];
   select: HTMLSelectElement;
   message: Task[];
+  modelMessage: string;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router) {
     this.titleService.setTitle('View your tests');
@@ -29,6 +30,7 @@ export class ViewTestsComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewTestsService.sharedMessage.subscribe(message => this.message = message);
+    this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
   }
 
 
@@ -36,6 +38,7 @@ export class ViewTestsComponent implements OnInit {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
         this.tests = data;
+        console.log(data);
       });
   }
 
@@ -46,7 +49,8 @@ export class ViewTestsComponent implements OnInit {
     if ( selected !== 'Choose a test') {
       const test = this.tests.find(i => i.title === selected);
       this.message = test.tasks;
-      this.viewTestsService.nextMessage(this.message);
+      this.modelMessage = test.uxModel.axLink;
+      this.viewTestsService.nextMessage(this.message, this.modelMessage);
       this.router.navigate(['/screenRecording']);
     }
   }
