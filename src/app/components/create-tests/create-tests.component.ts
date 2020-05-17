@@ -32,12 +32,12 @@ export class CreateTestsComponent implements OnInit {
       newIframe.src = this.urlToEmbed;
       newIframe.style.cssText = '  border: none;\n' +
         '  padding: 0;\n' +
-        '  -webkit-transform:scale(0.9);\n' +
+        '  -webkit-transform:scale(1);\n' +
         '  -webkit-transform-origin: top left;\n' +
         '  margin: 0 0 0 -4%;\n' +
         '  background-color: #EEEEEE;\n' +
-        '  width: 115.5%;\n' +
-        '  height: 111.2%;';
+        '  width: 104%;\n' +
+        '  height: 100%;';
 
       document.getElementById('websiteIframe').replaceWith(newIframe);
 
@@ -56,7 +56,7 @@ export class CreateTestsComponent implements OnInit {
   public rawTasks: any[] = [{
     index: 0,
     name: '',
-    description:''
+    description: ''
   }];
 
   addTask() {
@@ -67,8 +67,8 @@ export class CreateTestsComponent implements OnInit {
     });
   }
 
-  removeRecentlyAddedTask() {
-    this.rawTasks.pop();
+  removeTask(i) {
+    this.rawTasks.splice(i, 1);
   }
 
   submitTest() {

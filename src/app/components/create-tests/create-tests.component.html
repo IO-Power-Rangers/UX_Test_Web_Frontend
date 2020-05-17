@@ -6,31 +6,40 @@
 
       <div id="import">
 
-        <mat-form-field appearance="standard" [style.fontSize.px]=18>
+        <mat-form-field id="inputUrl" appearance="standard" [style.fontSize.px]=18>
 
           <label>
 
-            <input matInput type="url" [(ngModel)]="urlToEmbed" id="urlInput"/>
+            <input matInput type="url" id="urlInput" [(ngModel)]="urlToEmbed" placeholder="Axshare url" />
 
           </label>
 
         </mat-form-field>
 
-        <a mat-flat-button color="primary" (click)="embedWebsite()"> Import a mockup </a>
+        <a id="buttonUrl" mat-flat-button color="primary" (click)="embedWebsite()"> Import a mockup </a>
 
       </div>
 
-      <a mat-flat-button color="accent" id="saveTest" (click)="submitTest()"> Save this test </a>
+      <mat-form-field id="testTitle" appearance="standard" [style.fontSize.px]=18>
 
-      <a mat-flat-button color="accent" id="createQuestionnaire" routerLink="/createQuestionnaire" > 
-        Create a questionnaire 
-      </a>
+        <input matInput type="text" [(ngModel)]="testTitle"  placeholder="Test name"/>
 
-      <a mat-flat-button color="accent" id="createTest"> Create a test </a>
+      </mat-form-field>
 
-      <a mat-flat-button color="accent" id="startScreenRecording" routerLink="/screenRecording"> 
-        Start screen recording 
-      </a>
+      <div id="saveTestWrapper">
+        <a mat-flat-button color="accent" id="saveTest" (click)="submitTest()"> Save this test </a>
+      </div>
+
+
+      <!--      <a mat-flat-button color="accent" id="createQuestionnaire" routerLink="/createQuestionnaire" >-->
+      <!--        Create a questionnaire-->
+      <!--      </a>-->
+
+      <!--      <a mat-flat-button color="accent" id="createTest"> Create a test </a>-->
+
+      <!--      <a mat-flat-button color="accent" id="startScreenRecording" routerLink="/screenRecording"> -->
+      <!--        Start screen recording -->
+      <!--      </a>-->
 
     </div>
 
@@ -42,30 +51,51 @@
   </div>
 
 
-  <div id="sidebar">
-    <mat-form-field id="testTitle" appearance="standard" [style.fontSize.px]=18>
+  <div id="rightSide">
 
-      <input matInput type="text" [(ngModel)]="testTitle"  placeholder="Test title"/>
+    <mat-tab-group id="tabGroup" animationDuration="0ms" mat-stretch-tabs>
+      <mat-tab label="Tasks">
 
-    </mat-form-field>
+        <form class="container mt-3" (ngSubmit)="logValue()">
+          <section *ngFor="let task of rawTasks; let i = index;" fxLayout="column">
+            <div id="task">
+              <div id="taskText">
+                <mat-form-field id="inputName" appearance="standard" [style.fontSize.px]=14>
+                  <label>
+                    <input matInput type="text" [(ngModel)]="task.name" [name]="task.name + '_' + i" placeholder="Task name"/>
+                  </label>
+                </mat-form-field>
 
-    <form id="testsForm" class="container mt-3" (ngSubmit)="logValue()">
-      <section *ngFor="let task of rawTasks; let i = index;">
+                <mat-form-field id="inputDescription" appearance="standard" [style.fontSize.px]=14>
+                  <label>
+                    <textarea matInput type="text" [(ngModel)]="task.description" [name]="task.description + '_' + i" placeholder="Task description"></textarea>
+                  </label>
+                </mat-form-field>
 
-        <mat-form-field id="inputName" appearance="standard" [style.fontSize.px]=14>
-          <input matInput type="text" [(ngModel)]="task.name" name="content_{{task.name}}" placeholder="Task {{i + 1}} name"/>
-        </mat-form-field>
+              </div>
 
-        <mat-form-field id="inputDescription" appearance="standard" [style.fontSize.px]=14>
-          <input matInput type="text" [(ngModel)]="task.description" name="content_{{task.description}}" placeholder="Task {{i + 1}} description"/>
-        </mat-form-field>
+              <div id="removeTaskWrapper">
+                <a id="removeTaskButton" mat-mini-fab color="warn" (click)="removeTask(i)">
+                  <mat-icon>clear</mat-icon>
+                </a>
+              </div>
 
-      </section>
-      <br/>
-      <a id="button1" mat-flat-button color="primary" (click)="addTask()"> Add Task </a>
-      <br/> <br/>
-      <a id="button2" mat-flat-button color="primary" (click)="removeRecentlyAddedTask()"> Remove Task </a>
-    </form>
+            </div>
+
+          </section>
+
+          <a id="addTaskButton" mat-mini-fab color="primary" (click)="addTask()">
+            <mat-icon>add</mat-icon>
+          </a>
+
+        </form>
+      </mat-tab>
+      <mat-tab label="Questionnaire">
+        <app-create-questionnaire></app-create-questionnaire>
+      </mat-tab>
+    </mat-tab-group>
+
+
 
   </div>
 

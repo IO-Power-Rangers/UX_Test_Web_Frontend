@@ -24,6 +24,7 @@ import { PerformCardSortingTestComponent } from './components/perform-card-sorti
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatListModule} from "@angular/material/list";
 import { MaterialModule } from './material/material.module';
+import {MatTabsModule} from "@angular/material/tabs";
 
 const config = new AuthServiceConfig([
   {
@@ -65,7 +66,8 @@ export function provideConfig() {
     ReactiveFormsModule,
     DragDropModule,
     MatListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ],
   providers: [
     {
