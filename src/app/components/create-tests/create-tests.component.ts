@@ -12,9 +12,11 @@ import {UxModel} from "./uxModel";
 export class CreateTestsComponent implements OnInit {
 
   urlToEmbed: string;
+  savedChanges: boolean;
 
   constructor(private titleService: Title, private http: HttpClient) {
     this.titleService.setTitle('Create tests');
+    this.savedChanges = false;
   }
 
   ngOnInit(): void {

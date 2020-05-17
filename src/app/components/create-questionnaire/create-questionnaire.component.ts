@@ -40,55 +40,55 @@ export class CreateQuestionnaireComponent implements OnInit {
 
   addTextQuestion() {
 
-    var question: TextQuestion = {
+    const question: TextQuestion = {
       content: null
-    }
+    };
 
-    var rawQuestion = {
-      type: "text",
-      question: question
-    }
+    const rawQuestion = {
+      type: 'text',
+      question
+    };
 
     this.rawQuestions.push(rawQuestion);
   }
 
   addLikertScaleQuestion() {
 
-    var question: LikertScaleQuestion = {
+    const question: LikertScaleQuestion = {
       content: null,
       possibleStepsNo: null
-    }
+    };
 
-    var rawQuestion = {
-      type: "likert",
-      question: question
-    }
+    const rawQuestion = {
+      type: 'likert',
+      question
+    };
 
     this.rawQuestions.push(rawQuestion);
   }
 
   addMultipleChoiceQuestion() {
 
-    var options: MultipleChoiceQuestionOption[] = []
+    const options: MultipleChoiceQuestionOption[] = [];
 
-    var question: MultipleChoiceQuestion = {
+    const question: MultipleChoiceQuestion = {
       content: null,
-      options: options
-    }
+      options
+    };
 
-    var rawQuestion = {
-      type: "multipleChoice",
-      question: question
-    }
+    const rawQuestion = {
+      type: 'multipleChoice',
+      question
+    };
 
     this.rawQuestions.push(rawQuestion);
   }
 
   addOptionToMultipleChoiceQuestion(index: number) {
 
-    var newOption: MultipleChoiceQuestionOption = {
+    const newOption: MultipleChoiceQuestionOption = {
       content: null
-    }
+    };
 
     this.rawQuestions[index].question.options.push(newOption);
   }
@@ -100,26 +100,26 @@ export class CreateQuestionnaireComponent implements OnInit {
 
   addMultipleAnswerQuestion() {
 
-    var options: MultipleAnswerQuestionOption[] = []
+    const options: MultipleAnswerQuestionOption[] = [];
 
-    var question: MultipleAnswerQuestion = {
+    const question: MultipleAnswerQuestion = {
       content: null,
-      options: options
-    }
+      options
+    };
 
-    var rawQuestion = {
-      type: "multipleAnswer",
-      question: question
-    }
+    const rawQuestion = {
+      type: 'multipleAnswer',
+      question
+    };
 
     this.rawQuestions.push(rawQuestion);
   }
 
   addOptionToMultipleAnswerQuestion(index: number) {
 
-    var newOption: MultipleAnswerQuestionOption = {
+    const newOption: MultipleAnswerQuestionOption = {
       content: null
-    }
+    };
 
     this.rawQuestions[index].question.options.push(newOption);
   }
@@ -129,27 +129,27 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.rawQuestions[index].question.options.pop();
   }
 
-  removeRecentlyAddedQuestion() {
-    this.rawQuestions.pop();
+  removeQuestion(i) {
+    this.rawQuestions.splice(i, 1);
   }
 
   submitQuestionnaire() {
 
-    var questionnaire: Questionnaire = {
+    const questionnaire: Questionnaire = {
       name: this.questionnaireName,
       textQuestions: this.rawQuestions
-        .filter(raw => raw.type == "text")
+        .filter(raw => raw.type === 'text')
         .map(raw => raw.question),
       multipleChoiceQuestions: this.rawQuestions
-        .filter(raw => raw.type == "multipleChoice")
+        .filter(raw => raw.type === 'multipleChoice')
         .map(raw => raw.question),
       multipleAnswerQuestions: this.rawQuestions
-        .filter(raw => raw.type == "multipleAnswer")
+        .filter(raw => raw.type === 'multipleAnswer')
         .map(raw => raw.question),
       likertScaleQuestions: this.rawQuestions
-      .filter(raw => raw.type == "likert")
+      .filter(raw => raw.type === 'likert')
       .map(raw => raw.question)
-    }
+    };
 
     const url = this.host + this.questionnairesEndpoint;
 
@@ -158,7 +158,7 @@ export class CreateQuestionnaireComponent implements OnInit {
       .then(data => {
         console.log(data);
       })
-      .finally(() => this.router.navigate(['/createTests']))
+      .finally(() => this.router.navigate(['/createTests']));
   }
 
   getAllQuestionnaires() {
