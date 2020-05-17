@@ -7,12 +7,26 @@
     
 }
 
-#queston {
+#input {
+
+    margin-top: 2px;
+    margin-bottom: 2px;
+    
+}
+
+#option {
+
+    margin-left: 140px;
+    
+}
+
+#questionNo {
 
     margin-top: 10px;
     margin-bottom: 10px;
-    
-    
+    margin-right: 20px;
+    margin-left: 20px;
+      
 }
 
 #questionnaireName {
