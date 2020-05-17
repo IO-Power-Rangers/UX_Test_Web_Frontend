@@ -10,9 +10,13 @@
 </div>
 <div id="results-view">
   <table>
+    <thead>
+      <th>Category Name</th>
+      <th [attr.colspan]="processedResults.length">Subjects</th>
+    </thead>
     <tbody>
     <tr *ngFor="let curResult of processedResults">
-      <th>{{curResult[0]}}</th>
+      <th><i>{{curResult[0]}}</i></th>
       <td *ngFor="let subject of curResult[1]">
         {{subject[0]}} (<b>{{subject[1]}}</b>)
       </td>

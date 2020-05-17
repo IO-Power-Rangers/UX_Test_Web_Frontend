@@ -14,6 +14,7 @@ export class ViewResultsOfTestComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.getElementById("results-view").style.visibility="hidden";
   }
 
   testID : bigint;
@@ -60,6 +61,7 @@ export class ViewResultsOfTestComponent implements OnInit {
       });
       this.processedResults.push([categoryName, sortedOccurrenceCounter]);
     }
+    document.getElementById("results-view").style.visibility="visible";
   }
 
 }
