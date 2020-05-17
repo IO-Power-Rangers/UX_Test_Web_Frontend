@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CardSortingTest} from "./cardSortingTest";
+import {CardSortingService} from "../../services/cardsorting.service";
 
 @Component({
   selector: 'app-create-card-sorting-test',
@@ -10,15 +10,12 @@ import {CardSortingTest} from "./cardSortingTest";
 })
 export class CreateCardSortingTestComponent implements OnInit {
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private cardSortingService: CardSortingService) {
     this.titleService.setTitle('Create Card Sorting Tests');
   }
 
   ngOnInit(): void {
   }
-
-  host = 'http://localhost:8099';
-  testsEndpoint = '/api/cardsorting/tests';
 
   public rawCategories : any[] = [{
     name: ''
@@ -50,17 +47,13 @@ export class CreateCardSortingTestComponent implements OnInit {
 
   submitTest() {
 
-    const body: CardSortingTest = {
+    const test: CardSortingTest = {
       categories : this.rawCategories,
       subjects: this.rawSubjects,
       results: []
     };
 
-    this.http.post(this.host + this.testsEndpoint, JSON.stringify(body), {headers: {'Content-Type': 'application/json'}})
-      .toPromise()
-      .then(data => {
-        console.log(data);
-      });
+    this.cardSortingService.postTest(test)
   }
 
   logValue() {

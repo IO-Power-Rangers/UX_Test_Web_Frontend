@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
-import {CardSortingTest} from "../create-card-sorting-test/cardSortingTest";
-import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {CategoryWithSubjects} from "./categoryWithSubjects";
 import {Subject} from "../create-card-sorting-test/subject";
-import {Test} from "../create-tests/test";
 import {CardSortingResult} from "./cardSortingResult";
+import {CardSortingService} from "../../services/cardsorting.service";
 
 @Component({
   selector: 'app-perform-card-sorting-test',
@@ -15,7 +14,7 @@ import {CardSortingResult} from "./cardSortingResult";
 })
 export class PerformCardSortingTestComponent implements OnInit {
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private cardSortingService: CardSortingService) {
     this.titleService.setTitle('Perform Card Sorting Test');
   }
 
@@ -23,9 +22,6 @@ export class PerformCardSortingTestComponent implements OnInit {
     document.getElementById("test").style.visibility="hidden";
   }
 
-  host = 'http://localhost:8099';
-  testsEndpoint = '/api/cardsorting/tests/';
-  resultsEndpoint = '/api/cardsorting/results/';
   testID : bigint;
   test : Object;
   subjects = [];
@@ -35,18 +31,17 @@ export class PerformCardSortingTestComponent implements OnInit {
 
 
   getTest() {
-    this.http.get(this.host + this.testsEndpoint + this.testID)
-      .toPromise()
-      .then(data => {
+    this.cardSortingService.getTest(this.testID)
+      .subscribe(data => {
         this.test = data;
         this.subjects = JSON.parse(JSON.stringify(data['subjects']));
         const categories = data['categories'];
         for(let i = 0; i < categories.length; i++){
           let current = categories[i];
           this.categoriesWithSubjects.push({
-             subjects: [],
-             category : {id : current['id'], name : current['name']}
-           });
+            subjects: [],
+            category : {id : current['id'], name : current['name']}
+          });
           this.categoriesIdList.push("categoryList"+current['id'])
         }
         this.testLoaded = true;
@@ -56,16 +51,11 @@ export class PerformCardSortingTestComponent implements OnInit {
   }
 
   submit(){
-    const body: CardSortingResult = {
+    const result: CardSortingResult = {
       test: this.test,
       categoriesWithSubjects: this.categoriesWithSubjects
     };
-
-    this.http.post(this.host + this.resultsEndpoint, JSON.stringify(body), {headers: {'Content-Type': 'application/json'}})
-      .toPromise()
-      .then(data => {
-        console.log(data);
-      });
+    this.cardSortingService.postResult(result)
   }
 
   drop(event: CdkDragDrop<Subject[], any>) {

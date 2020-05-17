@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from "@angular/platform-browser";
-import {HttpClient} from "@angular/common/http";
-import {CardSortingResult} from "../perform-card-sorting-test/cardSortingResult";
+import {CardSortingService} from "../../services/cardsorting.service";
 
 @Component({
   selector: 'app-view-results-of-test',
@@ -10,25 +9,20 @@ import {CardSortingResult} from "../perform-card-sorting-test/cardSortingResult"
 })
 export class ViewResultsOfTestComponent implements OnInit {
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private cardSortingService: CardSortingService) {
     this.titleService.setTitle('View Results of Card Sorting Test');
   }
 
   ngOnInit(): void {
   }
 
-  host = 'http://localhost:8099';
-  testsEndpoint = '/api/cardsorting/tests/';
   testID : bigint;
   processedResults = [];
 
   getResults(){
-    this.http.get(this.host + this.testsEndpoint + this.testID + "/results")
-      .toPromise()
-      .then(data => {
-        this.processResults(data);
-        console.log(data);
-      });
+    this.cardSortingService.getResultsOfTest(this.testID)
+      .subscribe(results => {
+        this.processResults(results)})
   }
 
   processResults(results){
