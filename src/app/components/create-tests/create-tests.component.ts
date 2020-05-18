@@ -1,25 +1,35 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Test} from "./test";
-import {UxModel} from "./uxModel";
+import { Test } from '../../../interfaces/test';
+import {Observable} from 'rxjs';
+import {ComponentCanDeactivate} from '../../pending-changes';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-create-tests',
   templateUrl: './create-tests.component.html',
   styleUrls: ['./create-tests.component.css']
 })
-export class CreateTestsComponent implements OnInit {
+export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   urlToEmbed: string;
-  savedChanges: boolean;
+  isSaved: boolean;
+  private readonly URL = environment.local + environment.tests;
 
   constructor(private titleService: Title, private http: HttpClient) {
     this.titleService.setTitle('Create tests');
-    this.savedChanges = false;
+    this.isSaved = false;
   }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+
+    return this.isSaved;
+
   }
 
 
@@ -27,7 +37,7 @@ export class CreateTestsComponent implements OnInit {
 
     if (this.urlToEmbed.includes('.axshare.com')) {
 
-      // hack job, for now
+      // hack job, forever
 
       const newIframe = document.createElement('iframe');
       newIframe.id = 'websiteIframe';
@@ -67,6 +77,7 @@ export class CreateTestsComponent implements OnInit {
       name: '',
       description: ''
     });
+
   }
 
   removeTask(i) {
@@ -75,17 +86,19 @@ export class CreateTestsComponent implements OnInit {
 
   submitTest() {
 
-    const body: Test = {
-      uxModel: { axLink: this.urlToEmbed, tests: []},
+    const test: Test = {
       title: this.testTitle,
-      tasks: this.rawTasks
+      axLink: this.urlToEmbed,
+      tasks: this.rawTasks,
     };
 
-    this.http.post(this.host + this.testsEndpoint, JSON.stringify(body), {headers: {'Content-Type': 'application/json'}})
-      .toPromise()
-      .then(data => {
-        console.log(data);
-      });
+    // this.http.post(this.host + this.testsEndpoint, JSON.stringify(test), {headers: {'Content-Type': 'application/json'}})
+    //   .toPromise()
+    //   .then(data => {
+    //     console.log(data);
+    // });
+
+    this.isSaved = true;
   }
 
   logValue() {

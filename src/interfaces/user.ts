@@ -1,9 +1,9 @@
 export interface User {
-    id? : number;
+    id?: number;
     email : string;
     password? : string;
     firstName : string;
     lastName : string;
-    role :string
-    recordingAgreement? : boolean
+    role :string;
+    recordingAgreement? : boolean;
 }

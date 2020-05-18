@@ -61,7 +61,7 @@
 
       <a class="button" mat-flat-button color="primary" (click)="addOptionToMultipleChoiceQuestion(i)"> Add an Option </a>
 
-      <a class="button" mat-flat-button color="primary" (click)="removeOptionFromMultipleChoiceQuestion(i)"> Remove an Option </a>
+      <a class="button" mat-flat-button color="primary" *ngIf="rawQuestion.question.options.length != 0" (click)="removeOptionFromMultipleChoiceQuestion(i)"> Remove an Option </a>
 
     </div>
 
@@ -86,7 +86,7 @@
 
       <a class="button" mat-flat-button color="primary" (click)="addOptionToMultipleAnswerQuestion(i)"> Add an Option </a>
 
-      <a class="button" mat-flat-button color="primary" (click)="removeOptionFromMultipleAnswerQuestion(i)"> Remove an Option </a>
+      <a class="button" mat-flat-button color="primary" *ngIf="rawQuestion.question.options.length != 0" (click)="removeOptionFromMultipleAnswerQuestion(i)"> Remove an Option </a>
 
     </div>
 

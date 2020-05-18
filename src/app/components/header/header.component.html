@@ -12,17 +12,24 @@
 
   </a>
 
-  <a class="button" mat-button routerLink="createTests">
+  <a class="button" mat-button routerLink="createTests" *ngIf="user.role == 'UXER'">
 
     Create tests
 
   </a>
 
-  <a class="button" mat-button routerLink="viewTests">
+  <a class="button" mat-button routerLink="viewTests" *ngIf="user.role == 'UXER'">
 
     View your tests
 
   </a>
+
+  <a class="button" mat-button routerLink="loadTests" *ngIf="user.role == 'TESTER'">
+
+    Load a test
+
+  </a>
+
 
   <div class="spacer">
 

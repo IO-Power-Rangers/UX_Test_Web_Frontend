@@ -10,12 +10,15 @@ import {RecordingPermissionViewComponent} from '../components/recording-permissi
 import { LoginPageComponent } from '../components/login-page/login-page.component';
 import { CreateCardSortingTestComponent } from "../components/create-card-sorting-test/create-card-sorting-test.component";
 import { PerformCardSortingTestComponent} from "../components/perform-card-sorting-test/perform-card-sorting-test.component";
+import {PendingChangesGuard} from '../pending-changes';
+import {LoadTestsComponent} from "../components/load-tests/load-tests.component";
 
 
 const routes: Routes = [
-  {path:'',
-  redirectTo: '/login',
-  pathMatch: 'full'
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -28,6 +31,7 @@ const routes: Routes = [
   {
     path: 'createTests',
     component: CreateTestsComponent,
+    canDeactivate: [PendingChangesGuard],
   },
   {
     path: 'viewTests',
@@ -36,6 +40,10 @@ const routes: Routes = [
   {
     path: 'signInUp',
     component: SignInOutComponent,
+  },
+  {
+    path: 'loadTests',
+    component: LoadTestsComponent,
   },
   {
     path: 'createQuestionnaire',

@@ -11,22 +11,22 @@ import { Router } from '@angular/router';
 })
 export class SignInOutComponent implements OnInit {
 
- 
+
   private loggedIn: boolean;
-  private  buttonText : string;
-  public userLogged:User;
-  constructor(private authService: AuthService,private userService:UserService,private router:Router) { }
+  private  buttonText: string;
+  public userLogged: User;
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
 
   signInOut(): void {
 
     if (!this.loggedIn) {
 
-     let user = this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-      user.then(userSocial => {
-        let userData = this.parseUser(userSocial);
+     const user = this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+     user.then(userSocial => {
+        const userData = this.parseUser(userSocial);
         this.userLogged = userData;
         this.userService.postUser(userData);
-      })      
+      });
 
     } else {
       this.authService.signOut();
@@ -36,9 +36,10 @@ export class SignInOutComponent implements OnInit {
 
   }
 
-  parseUser(userSocial) : User{
-    let userData : User = { email : userSocial.email, firstName: userSocial.firstName, lastName: userSocial.lastName, role:null
+  parseUser(userSocial): User {
+    const userData: User = { email : userSocial.email, firstName: userSocial.firstName, lastName: userSocial.lastName, role: null
     };
+    console.log('UWAGA: ', userData.email);
     return userData;
   }
 
