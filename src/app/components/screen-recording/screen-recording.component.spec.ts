@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScreenRecordingComponent } from './screen-recording.component';
+import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
 describe('ScreenRecordingComponent', () => {
   let component: ScreenRecordingComponent;
@@ -8,6 +9,7 @@ describe('ScreenRecordingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [CommonTestModule],
       declarations: [ ScreenRecordingComponent ]
     })
     .compileComponents();
