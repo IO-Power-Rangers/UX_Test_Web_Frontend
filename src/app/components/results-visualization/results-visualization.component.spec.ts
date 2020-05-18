@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoTestComponent } from './do-test.component';
+import { ResultsVisualizationComponent } from './results-visualization.component';
 import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
-describe('DoTestComponent', () => {
-  let component: DoTestComponent;
-  let fixture: ComponentFixture<DoTestComponent>;
+describe('ResultsVisualizationComponent', () => {
+  let component: ResultsVisualizationComponent;
+  let fixture: ComponentFixture<ResultsVisualizationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonTestModule],
-      declarations: [ DoTestComponent ]
+      declarations: [ ResultsVisualizationComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DoTestComponent);
+    fixture = TestBed.createComponent(ResultsVisualizationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

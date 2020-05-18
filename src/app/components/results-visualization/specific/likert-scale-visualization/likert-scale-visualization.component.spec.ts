@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoTestComponent } from './do-test.component';
+import { LikertScaleVisualizationComponent } from './likert-scale-visualization.component';
 import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
-describe('DoTestComponent', () => {
-  let component: DoTestComponent;
-  let fixture: ComponentFixture<DoTestComponent>;
+describe('LikertScaleVisualizationComponent', () => {
+  let component: LikertScaleVisualizationComponent;
+  let fixture: ComponentFixture<LikertScaleVisualizationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonTestModule],
-      declarations: [ DoTestComponent ]
+      declarations: [ LikertScaleVisualizationComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DoTestComponent);
+    fixture = TestBed.createComponent(LikertScaleVisualizationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

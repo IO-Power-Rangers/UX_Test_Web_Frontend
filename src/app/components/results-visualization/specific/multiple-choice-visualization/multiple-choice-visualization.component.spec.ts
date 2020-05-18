@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewResultsOfTestComponent } from './view-results-of-test.component';
+import { MultipleChoiceVisualizationComponent } from './multiple-choice-visualization.component';
 import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
-describe('ViewResultsOfTestComponent', () => {
-  let component: ViewResultsOfTestComponent;
-  let fixture: ComponentFixture<ViewResultsOfTestComponent>;
+describe('MultipleChoiceVisualizationComponent', () => {
+  let component: MultipleChoiceVisualizationComponent;
+  let fixture: ComponentFixture<MultipleChoiceVisualizationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonTestModule],
-      declarations: [ ViewResultsOfTestComponent ]
+      declarations: [ MultipleChoiceVisualizationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewResultsOfTestComponent);
+    fixture = TestBed.createComponent(MultipleChoiceVisualizationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
