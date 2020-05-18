@@ -12,21 +12,33 @@
 
   </a>
 
-  <a class="button" mat-button routerLink="createTests" *ngIf="user.role == 'UXER'">
+  <a class="button" mat-button routerLink="createTests" *ngIf="user && user.role == 'UXER'">
 
-    Create tests
+    Create a test
 
   </a>
 
-  <a class="button" mat-button routerLink="viewTests" *ngIf="user.role == 'UXER'">
+  <a class="button" mat-button routerLink="viewTests" *ngIf="user && user.role == 'UXER'">
 
     View your tests
 
   </a>
 
-  <a class="button" mat-button routerLink="loadTests" *ngIf="user.role == 'TESTER'">
+  <a class="button" mat-button routerLink="cardsorting/createTest" *ngIf="user && user.role == 'UXER'">
+
+   Create a card sorting test
+
+  </a>
+
+  <a class="button" mat-button routerLink="loadTests" *ngIf="user && user.role == 'TESTER'">
 
     Load a test
+
+  </a>
+
+  <a class="button" mat-button routerLink="cardsorting/performTest" *ngIf="user && user.role == 'TESTER'">
+
+    Load a card sorting test
 
   </a>
 

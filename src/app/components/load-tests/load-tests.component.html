@@ -10,7 +10,7 @@
 
           <label>
 
-            <input matInput type="url" id="urlInput" [(ngModel)]="urlToEmbed" placeholder="Test id" />
+            <input matInput type="url" id="urlInput" [(ngModel)]="testId" placeholder="Test id" />
 
           </label>
 
@@ -22,12 +22,12 @@
 
       <mat-form-field id="testTitle" appearance="standard" [style.fontSize.px]=18>
 
-        {{testTitle}}
+        <input matInput type="text" [(ngModel)]="testTitle" readonly/>
 
       </mat-form-field>
 
       <div id="saveTestWrapper">
-        <a mat-flat-button color="accent" id="saveTest" (click)="submitTest()"> Save this test </a>
+        <a mat-flat-button color="accent" id="saveTest" *ngIf="isLoaded" (click)="saveResults()"> Save your results </a>
       </div>
 
 
@@ -58,44 +58,102 @@
 
         <form class="container mt-3" (ngSubmit)="logValue()" >
           <section *ngFor="let task of rawTasks; let i = index;" fxLayout="column">
-            <div id="task">
-              <div id="taskText">
-                <mat-form-field id="inputName" appearance="standard" [style.fontSize.px]=14>
-                  <label>
-                    <input matInput type="text" [(ngModel)]="task.name" [name]="task.name + '_' + i" placeholder="Task name"/>
-                  </label>
-                </mat-form-field>
+            <div class="task">
+              <div class="taskText">
+                <label class="taskName">
+                  {{'Task ' + (i+1) + ': ' + task.name}}
+                </label>
 
-                <mat-form-field id="inputDescription" appearance="standard" [style.fontSize.px]=14>
-                  <label>
-                    <textarea matInput type="text" [(ngModel)]="task.description" [name]="task.description + '_' + i" placeholder="Task description"></textarea>
-                  </label>
-                </mat-form-field>
+                <label class="taskDescription">
+                  {{task.description}}
+                </label>
 
               </div>
 
-              <div id="removeTaskWrapper">
-                <a id="removeTaskButton" mat-mini-fab color="warn" (click)="removeTask(i)">
-                  <mat-icon>clear</mat-icon>
-                </a>
+              <div class="doneCheckWrapper">
+                <mat-checkbox class="doneCheck">Done</mat-checkbox>
               </div>
+
+
+
+
+            </div>
+            <mat-divider *ngIf="i != rawTasks.length - 1"></mat-divider>
+          </section>
+
+        </form>
+      </mat-tab>
+      <mat-tab label="Questionnaire" class="tab">
+        <form class="container mt-3" (ngSubmit)="logValue()" >
+          <section *ngFor="let q of rawQuestionsT; let i = index;" fxLayout="column">
+            <div class="question">
+              <div class="questionContent">
+                <label>
+                  {{q.content}}
+                </label>
+              </div>
+
+              <mat-form-field class="answerT" appearance="standard">
+
+                <input matInput type="text" [name]="'questionT_' + i"  placeholder="Your answer"/>
+
+              </mat-form-field>
+            </div>
+
+          </section>
+
+          <section *ngFor="let q of rawQuestionsMA; let i = index;" fxLayout="column">
+            <div class="question">
+              <div class="questionContent">
+                <label>
+                  {{q.content}}
+                </label>
+              </div>
+
+              <section *ngFor="let o of q.options; let i = index;" fxLayout="column">
+                  <mat-checkbox >{{o.content}}</mat-checkbox>
+              </section>
+            </div>
+
+          </section>
+
+<!--          temporary "workaround"   -->
+
+<!--          <section *ngFor="let q of rawQuestionsMC; let i = index;" fxLayout="column">-->
+<!--            <div class="question">-->
+<!--              <div class="questionContent">-->
+<!--                <label>-->
+<!--                  {{q.content}}-->
+<!--                </label>-->
+<!--              </div>-->
+<!--              -->
+<!--              <section *ngFor="let o of q.options; let i = index;" fxLayout="column">-->
+<!--                <mat-radio-button class="answerMC">{{o.content}}</mat-radio-button>-->
+<!--              </section>-->
+<!--  -->
+<!--  -->
+<!--            </div>-->
+<!--          </section>-->
+
+          <section *ngFor="let q of rawQuestionsLS; let i = index;" fxLayout="column">
+            <div class="question">
+              <div class="questionContent">
+                <label>
+                  {{q.content}}
+                </label>
+              </div>
+
+              <section *ngFor="let o of likertScaleArray(q.possibleStepsNo); let i = index;" fxLayout="column">
+                <mat-radio-button class="answerMC">{{(i+1)}}</mat-radio-button>
+              </section>
 
             </div>
 
           </section>
 
-          <a id="addTaskButton" mat-mini-fab color="primary" (click)="addTask()">
-            <mat-icon>add</mat-icon>
-          </a>
-
         </form>
       </mat-tab>
-      <mat-tab label="Questionnaire" class="tab">
-        <app-create-questionnaire></app-create-questionnaire>
-      </mat-tab>
     </mat-tab-group>
-
-
 
   </div>
 

@@ -27,6 +27,8 @@ import { MaterialModule } from './material/material.module';
 import {MatTabsModule} from '@angular/material/tabs';
 import { PendingChangesGuard } from './pending-changes';
 import { LoadTestsComponent } from './components/load-tests/load-tests.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatRadioModule} from "@angular/material/radio";
 
 const config = new AuthServiceConfig([
   {
@@ -70,7 +72,9 @@ export function provideConfig() {
     DragDropModule,
     MatListModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatStepperModule,
+    MatRadioModule
   ],
   providers: [
     PendingChangesGuard,

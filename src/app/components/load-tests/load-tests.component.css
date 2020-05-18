@@ -24,7 +24,6 @@
 
   flex: 3;
   margin-top: 0.7%;
-  margin-left: 1%;
 
 }
 
@@ -36,23 +35,39 @@
 
 }
 
-#task {
+.task {
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  margin-left: 2%;
 }
 
-#taskText {
+.taskText {
   flex: 4;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  font-size: 16px;
 }
 
-#removeTaskWrapper {
+.question {
+  flex: 4;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  margin-left: 2%;
+
+}
+
+.doneCheckWrapper {
 
   flex: 1;
   text-align: center;
@@ -62,7 +77,7 @@
 
 }
 
-#removeTaskButton {
+.doneCheck {
 
   position: absolute;
   top: 50%;
@@ -73,17 +88,48 @@
 }
 
 
-#inputName {
+.taskName {
 
-  margin-bottom: -7%;
+  /*margin-bottom: -7%;*/
   flex: 1;
 
 }
 
-#inputDescription {
+.taskDescription {
 
   /*margin-bottom: -2%;*/
+  margin-top: 2%;
   flex: 1;
+
+}
+
+.questionContent {
+
+  margin-bottom: 1%;
+  flex: 1;
+  font-size: 18px;
+
+}
+
+.answerT {
+
+  flex: 1;
+  font-size: 14px;
+
+}
+
+
+.answerMCG {
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.answerMC {
+
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
 
 }
 

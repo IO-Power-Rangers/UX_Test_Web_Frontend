@@ -136,7 +136,6 @@ export class CreateQuestionnaireComponent implements OnInit {
   submitQuestionnaire() {
 
     const questionnaire: Questionnaire = {
-      name: this.questionnaireName,
       textQuestions: this.rawQuestions
         .filter(raw => raw.type === 'text')
         .map(raw => raw.question),
