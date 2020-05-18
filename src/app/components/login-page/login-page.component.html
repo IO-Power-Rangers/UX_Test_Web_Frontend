@@ -32,7 +32,7 @@
             </mat-form-field>
             <br>
             <app-sign-in-out class="position"></app-sign-in-out>
-            <mat-label *ngIf="user">Logged as : {{user.firstName}} {{user.lastName}}</mat-label>
+            <mat-label *ngIf="user">Logged in as : {{user.firstName}} {{user.lastName}}</mat-label>
             <br>
             <button class="submit-btn position" color="primary" mat-raised-button type="submit" (click) = "login()" [disabled] = "!roleSelected || !user"
             ><mat-icon>forward</mat-icon></button>
