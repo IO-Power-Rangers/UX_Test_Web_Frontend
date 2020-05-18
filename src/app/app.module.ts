@@ -23,6 +23,7 @@ import {CreateCardSortingTestComponent} from "./components/create-card-sorting-t
 import { PerformCardSortingTestComponent } from './components/perform-card-sorting-test/perform-card-sorting-test.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatListModule} from "@angular/material/list";
+import { ViewResultsOfTestComponent } from './components/view-results-of-test/view-results-of-test.component';
 import { MaterialModule } from './material/material.module';
 
 const config = new AuthServiceConfig([
@@ -49,7 +50,8 @@ export function provideConfig() {
     ScreenRecordingComponent,
     LoginPageComponent,
     CreateCardSortingTestComponent,
-    PerformCardSortingTestComponent
+    PerformCardSortingTestComponent,
+    ViewResultsOfTestComponent
   ],
   imports: [
     MaterialModule,
