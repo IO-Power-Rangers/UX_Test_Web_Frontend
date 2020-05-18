@@ -7,6 +7,7 @@ export const environment = {
   apiUrl : "https://ux-test-power-rangers.herokuapp.com",
   local : "http://localhost:8099",
   users : "/api/users",
+  tests : "/api/tests"
 };
 
 /*

@@ -8,6 +8,7 @@ import {CreateQuestionnaireComponent} from '../components/create-questionnaire/c
 import {ScreenRecordingComponent} from '../components/screen-recording/screen-recording.component';
 import {RecordingPermissionViewComponent} from '../components/recording-permission-view/recording-permission-view.component';
 import { LoginPageComponent } from '../components/login-page/login-page.component';
+import { ViewRecordingsComponent } from '../components/view-recordings/view-recordings.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
     component: RecordingPermissionViewComponent, // since ScreenRecordingComponent is not finished yet
     // component: ScreenRecordingComponent,
   },
+  {
+    path: 'recordingsView',
+    component: ViewRecordingsComponent,
+  }
 ];
 
 @NgModule({

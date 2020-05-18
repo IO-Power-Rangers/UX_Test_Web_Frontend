@@ -1,0 +1,22 @@
+<div id="leftside">
+ <div id="videoList"> 
+    <mat-form-field id="matform">
+          <mat-label>Select test</mat-label>
+          <mat-select [formControl]="testsFormControl">
+            <mat-option *ngFor="let test of tests" [value]="test" (click) = "onSelectTest(test)">{{test.title}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+    
+    <mat-action-list>
+      <button mat-list-item *ngFor="let video of videos" [value]="video" (click) = "onSelectVideo(video)"> {{video.user.firstName + " " + video.user.lastName}}</button>
+    </mat-action-list>
+
+  </div>
+</div>
+
+<div id="rightside">
+  
+    <video id="videoView" controls></video>
+
+</div>
+<div style="clear: both;"></div>
