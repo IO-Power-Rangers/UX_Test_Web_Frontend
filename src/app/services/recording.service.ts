@@ -8,16 +8,19 @@ import { Recording } from 'src/interfaces/recording';
 })
 export class RecordingService {
 
-  url = environment.apiUrl + '//recordingUpload'; 
+  url = environment.local + '//api/recordings'; 
 
   constructor(private http: HttpClient) { }
 
   postRecording(recording: Recording){
-  
     this.http.post(this.url, recording).subscribe();
   }
 
   getVideo(id: Number){
     return this.http.get(this.url + "//" + id);
+  }
+
+  getVideosInfoByTest(testId: Number){
+    return this.http.get(this.url + "/byTest/" + testId);
   }
 }

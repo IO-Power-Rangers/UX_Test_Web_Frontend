@@ -1,5 +1,5 @@
 export interface Task {
-  id?: number;
+  id?: bigint;
   name: string;
   description: string;
 }

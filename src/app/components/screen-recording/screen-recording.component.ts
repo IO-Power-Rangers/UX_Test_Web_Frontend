@@ -27,14 +27,14 @@ export class ScreenRecordingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+
   }
 
   async startRecording(user, test){
-    
+
     let mediaDevices = navigator.mediaDevices as any;
     let stream = await mediaDevices.getDisplayMedia(this.constraintObj);
-    
+
 
     this.screenRecorder = new MediaRecorder(stream);
 
