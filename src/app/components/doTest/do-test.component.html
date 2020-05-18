@@ -1,0 +1,42 @@
+<p>
+  Task:
+  <br>
+  {{currTask.name}}
+</p>
+
+<p>
+  Description:
+  <br>
+  {{currTask.description}}
+</p>
+
+<p>
+  <button #nextBtn id="nextTaskButton" (click)="nextTask()">Next task</button>
+</p>
+
+<p>
+  <button id="finishRecBtn" (click) = "finishRecording()">Finish recording</button>
+</p>>
+
+<div id="toolbar">
+  <div id="import">
+
+    <mat-form-field appearance="standard" [style.fontSize.px]=18>
+
+      <label>
+
+        <input matInput type="url" [(ngModel)]="modelMessage" id="urlInput"/>
+
+      </label>
+
+    </mat-form-field>
+
+    <a mat-flat-button color="primary" (click)="embedWebsite()"> Import a mockup </a>
+
+  </div>
+
+  <div id="websiteContainer">
+    <iframe id="websiteIframe"></iframe>
+
+  </div>
+</div>

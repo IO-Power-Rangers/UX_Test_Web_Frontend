@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Test} from "./test";
-import {UxModel} from "./uxModel";
+import {Test} from "../../../interfaces/test";
+import {UxModel} from "../../../interfaces/uxModel";
 
 @Component({
   selector: 'app-create-tests',

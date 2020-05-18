@@ -12,6 +12,7 @@ import {SocialLoginModule, AuthServiceConfig} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ViewTestsComponent} from './components/view-tests/view-tests.component';
+import {DoTestComponent} from './components/doTest/do-test.component';
 import { RecordingPermissionViewComponent } from './components/recording-permission-view/recording-permission-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
@@ -45,6 +46,7 @@ export function provideConfig() {
     CreateTestsComponent,
     SignInOutComponent,
     ViewTestsComponent,
+    DoTestComponent,
     RecordingPermissionViewComponent,
     CreateQuestionnaireComponent,
     ScreenRecordingComponent,

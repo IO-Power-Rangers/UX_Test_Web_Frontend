@@ -8,6 +8,7 @@ import {CreateQuestionnaireComponent} from '../components/create-questionnaire/c
 import {ScreenRecordingComponent} from '../components/screen-recording/screen-recording.component';
 import {RecordingPermissionViewComponent} from '../components/recording-permission-view/recording-permission-view.component';
 import { LoginPageComponent } from '../components/login-page/login-page.component';
+import {DoTestComponent} from '../components/doTest/do-test.component';
 import { ViewRecordingsComponent } from '../components/view-recordings/view-recordings.component';
 import { CreateCardSortingTestComponent } from "../components/create-card-sorting-test/create-card-sorting-test.component";
 import { PerformCardSortingTestComponent} from "../components/perform-card-sorting-test/perform-card-sorting-test.component";
@@ -60,9 +61,14 @@ const routes: Routes = [
     // component: ScreenRecordingComponent,
   },
   {
+    path: 'doTest',
+    component: DoTestComponent,
+  },
+  {
     path: 'recordingsView',
     component: ViewRecordingsComponent,
   }
+
 ];
 
 @NgModule({
