@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignInOutComponent } from './sign-in-out.component';
+import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
 describe('SignInOutComponent', () => {
   let component: SignInOutComponent;
@@ -8,6 +9,7 @@ describe('SignInOutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [CommonTestModule],
       declarations: [ SignInOutComponent ]
     })
     .compileComponents();

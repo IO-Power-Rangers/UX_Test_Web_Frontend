@@ -13,7 +13,7 @@ export class SignInOutComponent implements OnInit {
 
  
   private loggedIn: boolean;
-  private buttonText: string;
+  private  buttonText : string;
   public userLogged:User;
   constructor(private authService: AuthService,private userService:UserService,private router:Router) { }
 
@@ -23,8 +23,7 @@ export class SignInOutComponent implements OnInit {
 
      let user = this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
       user.then(userSocial => {
-        let userData : User = { email : userSocial.email, firstName: userSocial.firstName, lastName: userSocial.lastName, role:null
-        };
+        let userData = this.parseUser(userSocial);
         this.userLogged = userData;
         this.userService.postUser(userData);
       })      
@@ -37,6 +36,12 @@ export class SignInOutComponent implements OnInit {
 
   }
 
+  parseUser(userSocial) : User{
+    let userData : User = { email : userSocial.email, firstName: userSocial.firstName, lastName: userSocial.lastName, role:null
+    };
+    return userData;
+  }
+
   ngOnInit() {
 
     this.buttonText = 'Sign in';
@@ -46,11 +51,11 @@ export class SignInOutComponent implements OnInit {
       this.loggedIn = (user != null);
 
       if (this.loggedIn) {
-
+        this.userService.postUser(this.parseUser(user));
         this.buttonText = 'Sign out';
 
       } else {
-
+        this.userService.postUser(null);
         this.buttonText = 'Sign in';
 
       }
