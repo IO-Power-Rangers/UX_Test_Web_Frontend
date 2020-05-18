@@ -100,13 +100,21 @@
 
 <br/>
 
-<a class="button" mat-flat-button color="primary" (click)="addTextQuestion()"> Add a Text Question </a>
+<div id="buttonWrapper">
+  <div class="buttonRow">
+    <a class="button" mat-flat-button color="primary" (click)="addTextQuestion()"> Add a Text Question </a>
 
-<a class="button" mat-flat-button color="primary" (click)="addLikertScaleQuestion()"> Add a Likert Scale Question </a>
+    <a class="button" mat-flat-button color="primary" (click)="addLikertScaleQuestion()"> Add a Likert Scale Question </a>
+  </div>
 
-<a class="button" mat-flat-button color="primary" (click)="addMultipleChoiceQuestion()"> Add a Multiple Choice Question </a>
+  <div class="buttonRow">
+    <a class="button" mat-flat-button color="primary" (click)="addMultipleChoiceQuestion()"> Add a Multiple Choice Question </a>
 
-<a class="button" mat-flat-button color="primary" (click)="addMultipleAnswerQuestion()"> Add a Multiple Answer Question </a>
+    <a class="button" mat-flat-button color="primary" (click)="addMultipleAnswerQuestion()"> Add a Multiple Answer Question </a>
+  </div>
+</div>
+
+
 
 <!--<a class="button" mat-flat-button color="primary" (click)="removeRecentlyAddedQuestion()"> Remove Question </a>-->
 
