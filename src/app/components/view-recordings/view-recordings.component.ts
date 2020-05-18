@@ -12,7 +12,7 @@ import { Test } from '../create-tests/test';
   templateUrl: './view-recordings.component.html',
   styleUrls: ['./view-recordings.component.css']
 })
-export class ViewRecordingsComponent implements OnInit {
+export class ViewRecordingsComponent {
 
   testsFormControl = new FormControl();
   tests = [];
@@ -20,10 +20,8 @@ export class ViewRecordingsComponent implements OnInit {
   videos = [];
 
   constructor(private recordingService: RecordingService, private testsService:TestService) { 
-    //pobrać testy należace do usera i dodać do testList ich nazwy (id, name etc.)
-    testsService.getTests().subscribe((data:[Test]) => {
-      this.tests = data;
-      console.log(data);
+    testsService.getTests().subscribe((data) => {
+      this.tests = <Test[]>data;
     })  
   }
 
@@ -31,14 +29,12 @@ export class ViewRecordingsComponent implements OnInit {
 
     this.recordingService.getVideosInfoByTest(test.id).subscribe((data) =>{
       this.videos = <[]>data;
-      console.log(data);
     });
     
   }
 
   onSelectVideo(video){
-    //pobrać kokretne nagranie
-    
+
     this.recordingService.getVideo(video.id).subscribe((data) => {
       const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
         const byteCharacters = atob(b64Data);
@@ -67,9 +63,4 @@ export class ViewRecordingsComponent implements OnInit {
       vid.setAttribute("src", blobURL);
     })
   }
-
-  ngOnInit(): void {
-    
-  }
-
 }
