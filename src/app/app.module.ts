@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CreateCardSortingTestComponent} from './components/create-card-sorting-test/create-card-sorting-test.component';
 import { PerformCardSortingTestComponent } from './components/perform-card-sorting-test/perform-card-sorting-test.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ViewResultsOfTestComponent } from './components/view-results-of-test/view-results-of-test.component';
 import { MaterialModule } from './material/material.module';
 import { PendingChangesGuard } from './pending-changes';
 import { LoadTestsComponent } from './components/load-tests/load-tests.component';
@@ -51,7 +52,8 @@ export function provideConfig() {
     LoginPageComponent,
     CreateCardSortingTestComponent,
     PerformCardSortingTestComponent,
-    LoadTestsComponent
+    LoadTestsComponent,
+    ViewResultsOfTestComponent,
   ],
   imports: [
     MaterialModule,

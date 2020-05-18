@@ -12,7 +12,7 @@ import { CreateCardSortingTestComponent } from '../components/create-card-sortin
 import { PerformCardSortingTestComponent} from '../components/perform-card-sorting-test/perform-card-sorting-test.component';
 import {PendingChangesGuard} from '../pending-changes';
 import {LoadTestsComponent} from '../components/load-tests/load-tests.component';
-
+import { ViewResultsOfTestComponent } from '../components/view-results-of-test/view-results-of-test.component';
 
 const routes: Routes = [
   {
@@ -56,6 +56,10 @@ const routes: Routes = [
   {
     path: 'cardsorting/performTest',
     component: PerformCardSortingTestComponent
+  },
+  {
+    path: 'cardsorting/viewResults',
+    component: ViewResultsOfTestComponent
   },
   {
     path: 'screenRecording',
