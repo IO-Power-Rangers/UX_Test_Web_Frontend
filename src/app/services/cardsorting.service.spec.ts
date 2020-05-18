@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserService } from './user.service';
+import { CardSortingService } from './cardsorting.service';
 import { CommonTestModule } from '../common-test/common-test.module';
 
-describe('UserService', () => {
-  let service: UserService;
+describe('CardSortingService', () => {
+  let service: CardSortingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CommonTestModule],
     });
-    service = TestBed.inject(UserService);
+    service = TestBed.inject(CardSortingService);
   });
 
   it('should be created', () => {
