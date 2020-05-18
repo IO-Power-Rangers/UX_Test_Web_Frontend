@@ -19,10 +19,10 @@ import { ScreenRecordingComponent } from './components/screen-recording/screen-r
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import {MatSelectModule} from '@angular/material/select'
 import {ReactiveFormsModule} from '@angular/forms';
+import { ViewRecordingsComponent } from './components/view-recordings/view-recordings.component'
 import {CreateCardSortingTestComponent} from "./components/create-card-sorting-test/create-card-sorting-test.component";
 import { PerformCardSortingTestComponent } from './components/perform-card-sorting-test/perform-card-sorting-test.component';
 import {DragDropModule} from "@angular/cdk/drag-drop";
-import {MatListModule} from "@angular/material/list";
 import { ViewResultsOfTestComponent } from './components/view-results-of-test/view-results-of-test.component';
 import { MaterialModule } from './material/material.module';
 
@@ -49,6 +49,7 @@ export function provideConfig() {
     CreateQuestionnaireComponent,
     ScreenRecordingComponent,
     LoginPageComponent,
+    ViewRecordingsComponent,
     CreateCardSortingTestComponent,
     PerformCardSortingTestComponent,
     ViewResultsOfTestComponent
@@ -66,7 +67,6 @@ export function provideConfig() {
     MatSelectModule,
     ReactiveFormsModule,
     DragDropModule,
-    MatListModule,
     ReactiveFormsModule
   ],
   providers: [
