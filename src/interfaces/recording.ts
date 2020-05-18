@@ -1,5 +1,5 @@
 import { User } from "./user" 
-import { Test } from 'src/app/components/create-tests/test';
+import { Test } from './test';
 
 export interface Recording{
     user : User;
