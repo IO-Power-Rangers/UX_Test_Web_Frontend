@@ -66,6 +66,10 @@ const routes: Routes = [
     component: RecordingPermissionViewComponent, // since ScreenRecordingComponent is not finished yet
     // component: ScreenRecordingComponent,
   },
+  {
+    path: 'viewResultsOfTest',
+    component: ViewResultsOfTestComponent,
+  }
 ];
 
 @NgModule({

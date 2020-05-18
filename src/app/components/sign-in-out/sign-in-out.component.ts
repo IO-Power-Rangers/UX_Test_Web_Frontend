@@ -39,7 +39,6 @@ export class SignInOutComponent implements OnInit {
   parseUser(userSocial): User {
     const userData: User = { email : userSocial.email, firstName: userSocial.firstName, lastName: userSocial.lastName, role: null
     };
-    console.log('UWAGA: ', userData.email);
     return userData;
   }
 
