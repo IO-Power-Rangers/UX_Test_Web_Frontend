@@ -13,14 +13,25 @@ import {environment} from '../../../environments/environment';
 })
 export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
-  urlToEmbed: string;
-  isSaved: boolean;
-  private readonly URL = environment.local + environment.tests;
-
   constructor(private titleService: Title, private http: HttpClient) {
     this.titleService.setTitle('Create tests');
     this.isSaved = false;
   }
+
+  urlToEmbed: string;
+  isSaved: boolean;
+  private readonly URL = environment.local + environment.tests;
+
+  host = 'http://localhost:9090';
+  testsEndpoint = '/api/tests';
+
+  public testTitle = '';
+
+  public rawTasks: any[] = [{
+    index: 0,
+    name: '',
+    description: ''
+  }];
 
   ngOnInit(): void {
   }
@@ -59,17 +70,6 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
       this.urlToEmbed = '';
     }
   }
-
-  host = 'http://localhost:9090';
-  testsEndpoint = '/api/tests';
-
-  public testTitle = '';
-
-  public rawTasks: any[] = [{
-    index: 0,
-    name: '',
-    description: ''
-  }];
 
   addTask() {
     this.rawTasks.push({

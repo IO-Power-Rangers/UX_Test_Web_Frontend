@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {UserService} from "../../services/user.service";
-import {User} from "../../../interfaces/user";
+import {UserService} from '../../services/user.service';
+import {User} from '../../../interfaces/user';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +12,11 @@ export class HeaderComponent implements OnInit {
 
   user: User;
 
-  constructor(private userService: UserService, private router:Router) {
-    this.userService.postUser$.subscribe(userData => { this.user = userData;})
+  constructor(private userService: UserService, private router: Router) {
+    this.userService.postUser$.subscribe(userData => { this.user = userData; });
   }
 
   ngOnInit(): void {
-  }
-
-  em(): void {
-    console.log("LALALA: ", this.user.email);
   }
 
 }

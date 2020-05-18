@@ -5,7 +5,6 @@ import { Test } from '../../../interfaces/test';
 import {Observable} from 'rxjs';
 import {ComponentCanDeactivate} from '../../pending-changes';
 import {environment} from '../../../environments/environment';
-import {element} from "protractor";
 
 @Component({
   selector: 'app-load-tests',
@@ -137,19 +136,6 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       alert('You can only import mockups from Axshare.');
       this.testId = '';
     }
-  }
-
-  addTask() {
-    this.rawTasks.push({
-      index: this.rawTasks.length,
-      name: '',
-      description: ''
-    });
-
-  }
-
-  removeTask(i) {
-    this.rawTasks.splice(i, 1);
   }
 
   saveResults() {
