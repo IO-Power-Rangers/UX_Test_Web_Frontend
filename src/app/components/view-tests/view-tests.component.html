@@ -4,7 +4,7 @@
 
 <p>
   <label for="testChoice"></label>
-  <select id="testChoice">
+  <select #select id="testChoice">
     <option value="" disabled selected>Choose a test</option>
     <option *ngFor="let test of tests">{{test.title}}</option>
   </select>

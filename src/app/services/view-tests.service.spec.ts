@@ -1,13 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ViewTestsService } from './view-tests.service';
-
+import {CommonTestModule} from '../common-test/common-test.module';
 
 describe('ViewTestsService', () => {
   let service: ViewTestsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [CommonTestModule],
+    });
     service = TestBed.inject(ViewTestsService);
   });
 

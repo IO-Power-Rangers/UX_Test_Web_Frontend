@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ViewTestsService} from '../../services/view-tests.service';
 import {Test} from '../../../interfaces/test';
@@ -13,14 +13,14 @@ const routes: Routes = [
 @Component({
   selector: 'app-view-tests',
   templateUrl: './view-tests.component.html',
-  styleUrls: ['./view-tests.component.css']
+  styleUrls: ['./view-tests.component.css'],
 })
 
-export class ViewTestsComponent implements OnInit {
+export class ViewTestsComponent implements OnInit, AfterViewInit {
 
   tests: Test[];
-  select: HTMLSelectElement;
   message: Task[];
+  @ViewChild('select') select: ElementRef;
   modelMessage: string;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router) {
@@ -33,20 +33,28 @@ export class ViewTestsComponent implements OnInit {
     this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
   }
 
+  ngAfterViewInit() {
+    this.select.nativeElement.focus();
+  }
+
 
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
         this.tests = data;
-        console.log(data);
       });
   }
 
   startTest() {
-    this.select = document.getElementById('testChoice') as HTMLSelectElement;
-    const selected = this.select.options[this.select.selectedIndex].text;
+    const selected = this.select.nativeElement.options[this.select.nativeElement.selectedIndex].text;
 
-    if ( selected !== 'Choose a test') {
+    const titleArr = [];
+    const iterator = this.tests.values();
+    for (const test of iterator) {
+      titleArr.push(test.title);
+    }
+
+    if (selected in titleArr) {
       const test = this.tests.find(i => i.title === selected);
       this.message = test.tasks;
       this.modelMessage = test.uxModel.axLink;

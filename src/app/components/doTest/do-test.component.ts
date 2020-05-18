@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Task} from '../../../interfaces/task';
 import {ViewTestsService} from '../../services/view-tests.service';
@@ -11,12 +11,12 @@ import {ScreenRecordingComponent} from '../screen-recording/screen-recording.com
   styleUrls: ['./do-test.component.css']
 })
 
-export class DoTestComponent implements OnInit {
+export class DoTestComponent implements OnInit, AfterViewInit {
 
   message: Task[];
   modelMessage: string;
   currTask: Task;
-  nextButton: HTMLButtonElement;
+  @ViewChild('nextBtn') nextButton: ElementRef;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService,
               private screenRecordingComponent: ScreenRecordingComponent) {
@@ -27,7 +27,10 @@ export class DoTestComponent implements OnInit {
     this.viewTestsService.sharedMessage.subscribe(message => this.message = message);
     this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
     this.currTask = this.message[0];
-    this.nextButton = document.getElementById('nextTaskButton') as HTMLButtonElement;
+  }
+
+  ngAfterViewInit() {
+    this.nextButton.nativeElement.focus();
   }
 
   nextTask() {
@@ -35,7 +38,7 @@ export class DoTestComponent implements OnInit {
     this.currTask = this.message[index + 1];
 
     if (!this.currTask) {
-      this.nextButton.disabled = true;
+      this.nextButton.nativeElement.disabled = true;
     }
   }
 
@@ -43,14 +46,6 @@ export class DoTestComponent implements OnInit {
     const newIframe = document.createElement('iframe');
     newIframe.id = 'websiteIframe';
     newIframe.src = this.modelMessage;
-    newIframe.style.cssText = '  border: none;\n' +
-      '  padding: 0;\n' +
-      '  -webkit-transform:scale(0.9);\n' +
-      '  -webkit-transform-origin: top left;\n' +
-      '  margin: 0 0 0 -4%;\n' +
-      '  background-color: #EEEEEE;\n' +
-      '  width: 115.5%;\n' +
-      '  height: 111.2%;';
 
     document.getElementById('websiteIframe').replaceWith(newIframe);
   }
