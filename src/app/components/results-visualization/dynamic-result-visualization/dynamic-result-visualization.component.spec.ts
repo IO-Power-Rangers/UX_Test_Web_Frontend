@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoTestComponent } from './do-test.component';
+import { DynamicResultVisualizationComponent } from './dynamic-result-visualization.component';
 import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
-describe('DoTestComponent', () => {
-  let component: DoTestComponent;
-  let fixture: ComponentFixture<DoTestComponent>;
+describe('DynamicResultVisualizationComponent', () => {
+  let component: DynamicResultVisualizationComponent;
+  let fixture: ComponentFixture<DynamicResultVisualizationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonTestModule],
-      declarations: [ DoTestComponent ]
+      declarations: [ DynamicResultVisualizationComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DoTestComponent);
+    fixture = TestBed.createComponent(DynamicResultVisualizationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

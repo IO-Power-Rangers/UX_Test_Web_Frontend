@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateCardSortingTestComponent } from './create-card-sorting-test.component';
+import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
 describe('CreateTestsComponent', () => {
   let component: CreateCardSortingTestComponent;
@@ -7,6 +8,7 @@ describe('CreateTestsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [CommonTestModule],
       declarations: [ CreateCardSortingTestComponent ]
     })
       .compileComponents();

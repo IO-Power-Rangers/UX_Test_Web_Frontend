@@ -1,0 +1,9 @@
+<div class="result-wrapper">
+    <mat-card *ngFor="let result of results">
+        <mat-card-title>{{ result.question }}</mat-card-title>
+        <mat-card-content>
+            <app-dynamic-result-visualization [result]="result" ></app-dynamic-result-visualization>
+        </mat-card-content>
+    </mat-card>
+</div>
+
