@@ -15,7 +15,7 @@ export class DoTestComponent implements OnInit, AfterViewInit {
 
   message: Task[];
   modelMessage: string;
-  currTask: Task;
+  currTask: Task = {id: -1, name: "test", description:"test"};
   @ViewChild('nextBtn') nextButton: ElementRef;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService,
@@ -24,9 +24,9 @@ export class DoTestComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.viewTestsService.sharedMessage.subscribe(message => this.message = message);
+    this.viewTestsService.sharedMessage.subscribe(message => this.message = message,null, () => this.currTask = this.message[0]);
     this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
-    this.currTask = this.message[0];
+    //this.currTask = this.message[0];
   }
 
   ngAfterViewInit() {

@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoTestComponent } from './do-test.component';
+import { TextVisualizationComponent } from './text-visualization.component';
 import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
-describe('DoTestComponent', () => {
-  let component: DoTestComponent;
-  let fixture: ComponentFixture<DoTestComponent>;
+describe('TextVisualizationComponent', () => {
+  let component: TextVisualizationComponent;
+  let fixture: ComponentFixture<TextVisualizationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonTestModule],
-      declarations: [ DoTestComponent ]
+      declarations: [ TextVisualizationComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DoTestComponent);
+    fixture = TestBed.createComponent(TextVisualizationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,6 +13,7 @@ import { ViewRecordingsComponent } from '../components/view-recordings/view-reco
 import { CreateCardSortingTestComponent } from "../components/create-card-sorting-test/create-card-sorting-test.component";
 import { PerformCardSortingTestComponent} from "../components/perform-card-sorting-test/perform-card-sorting-test.component";
 import { ViewResultsOfTestComponent } from "../components/view-results-of-test/view-results-of-test.component";
+import { ResultsVisualizationComponent } from '../components/results-visualization/results-visualization.component';
 
 const routes: Routes = [
   {path:'',
@@ -67,8 +68,12 @@ const routes: Routes = [
   {
     path: 'recordingsView',
     component: ViewRecordingsComponent,
-  }
+  },
+  {
 
+    path: 'results',
+    component: ResultsVisualizationComponent
+  }
 ];
 
 @NgModule({

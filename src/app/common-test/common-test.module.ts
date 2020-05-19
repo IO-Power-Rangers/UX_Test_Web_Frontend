@@ -51,7 +51,10 @@ export function provideConfig() {
   ],
   exports: [
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientTestingModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

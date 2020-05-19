@@ -26,6 +26,13 @@ import { PerformCardSortingTestComponent } from './components/perform-card-sorti
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { ViewResultsOfTestComponent } from './components/view-results-of-test/view-results-of-test.component';
 import { MaterialModule } from './material/material.module';
+import { ResultsVisualizationComponent } from './components/results-visualization/results-visualization.component';
+import { DynamicResultVisualizationComponent } from './components/results-visualization/dynamic-result-visualization/dynamic-result-visualization.component';
+import { LikertScaleVisualizationComponent } from './components/results-visualization/specific/likert-scale-visualization/likert-scale-visualization.component';
+import { MultipleChoiceVisualizationComponent } from './components/results-visualization/specific/multiple-choice-visualization/multiple-choice-visualization.component';
+import { MultipleAnswerVisualizationComponent } from './components/results-visualization/specific/multiple-answer-visualization/multiple-answer-visualization.component';
+import { TextVisualizationComponent } from './components/results-visualization/specific/text-visualization/text-visualization.component';
+import { ChartsModule } from 'ng2-charts';
 
 const config = new AuthServiceConfig([
   {
@@ -54,9 +61,16 @@ export function provideConfig() {
     ViewRecordingsComponent,
     CreateCardSortingTestComponent,
     PerformCardSortingTestComponent,
-    ViewResultsOfTestComponent
+    ViewResultsOfTestComponent,
+    ResultsVisualizationComponent,
+    DynamicResultVisualizationComponent,
+    LikertScaleVisualizationComponent,
+    MultipleChoiceVisualizationComponent,
+    MultipleAnswerVisualizationComponent,
+    TextVisualizationComponent,
   ],
   imports: [
+    ChartsModule,
     MaterialModule,
     BrowserModule,
     FormsModule,

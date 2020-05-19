@@ -4,7 +4,7 @@ import { RecordingService } from 'src/app/services/recording.service';
 import { UserService } from 'src/app/services/user.service';
 import { TestService } from 'src/app/services/test.service';
 import { Recording } from 'src/interfaces/recording';
-import { Test } from '../create-tests/test';
+import { Test } from 'src/interfaces/test';
 
 
 @Component({
