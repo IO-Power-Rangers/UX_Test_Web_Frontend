@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExportButtonComponent } from './export-button.component';
+import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
 describe('ExportButtonComponent', () => {
   let component: ExportButtonComponent;
@@ -8,6 +9,7 @@ describe('ExportButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [CommonTestModule],
       declarations: [ ExportButtonComponent ]
     })
     .compileComponents();
