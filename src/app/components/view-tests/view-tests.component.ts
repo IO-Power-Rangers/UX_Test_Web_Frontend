@@ -5,6 +5,7 @@ import {Test} from '../../../interfaces/test';
 import {Task} from '../../../interfaces/task';
 import {Router, Routes} from '@angular/router';
 import {RecordingPermissionViewComponent} from '../recording-permission-view/recording-permission-view.component';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   {path: 'screenRecording', component: RecordingPermissionViewComponent},
@@ -16,12 +17,18 @@ const routes: Routes = [
   styleUrls: ['./view-tests.component.css'],
 })
 
-export class ViewTestsComponent implements OnInit, AfterViewInit {
+export class ViewTestsComponent implements OnInit {
 
-  tests: Test[];
+  // tests: Test[];
   message: Task[];
-  @ViewChild('select') select: ElementRef;
   modelMessage: string;
+  tests = [
+    'Test I',
+    'Test II',
+    'School test',
+    'Medicare test',
+    'Mockup',
+  ];
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router) {
     this.titleService.setTitle('View your tests');
@@ -33,31 +40,32 @@ export class ViewTestsComponent implements OnInit, AfterViewInit {
     this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
   }
 
-  ngAfterViewInit() {
-    this.select.nativeElement.focus();
-  }
-
 
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data;
+        // this.tests = data;
       });
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.tests, event.previousIndex, event.currentIndex);
+  }
+
+
   startTest() {
-    const selected = this.select.nativeElement.options[this.select.nativeElement.selectedIndex].text;
+    const selected = 'MOCK!!!!!!';
 
     const titleArr = [];
     const iterator = this.tests.values();
-    for (const test of iterator) {
-      titleArr.push(test.title);
-    }
+    // for (const test of iterator) {
+    //  titleArr.push(test.title);
+   // }
 
     if (selected in titleArr) {
-      const test = this.tests.find(i => i.title === selected);
-      this.message = test.tasks;
-      this.modelMessage = test.uxModel.axLink;
+      // const test = this.tests.find(i => i.title === selected);
+      // this.message = test.tasks;
+      // this.modelMessage = test.uxModel.axLink;
       this.viewTestsService.nextMessage(this.message, this.modelMessage);
       this.router.navigate(['/screenRecording']);
     }

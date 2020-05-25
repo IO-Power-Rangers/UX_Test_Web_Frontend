@@ -2,13 +2,12 @@
   Select test from the list below:
 </p>
 
-<p>
-  <label for="testChoice"></label>
-  <select #select id="testChoice">
-    <option value="" disabled selected>Choose a test</option>
-    <option *ngFor="let test of tests">{{test.title}}</option>
-  </select>
-</p>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of tests" cdkDrag>
+    <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+    {{test}} <!--{{test.title}} -->
+  </div>
+</div>
 
 <p>
   <button id="startButton" (click)="startTest()">Start test</button>
