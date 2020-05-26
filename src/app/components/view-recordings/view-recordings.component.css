@@ -1,35 +1,30 @@
-#leftside{
+.leftside{
     float: left;
-    width: 30%;
-    height: 100%;
-    margin: 20px;
-    align-items: center;
+    width: 26%;
+    height: 80%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
-#rightside{
-
+.rightside{
     float: left;
-    height: 100%;
     width: 60%;
-    margin: 30px;
-    align-items: center;
+    padding: 5%;
+}
+
+.rightside:after{
+    content: "";
+    display: table;
+    clear: both;
 }
 
 #videoList{
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
+    padding-left: 15%;
 }
 
-#matform{
-    width: 80%;
-    align-self: center;
-}
-
-#videoView{
-    padding-top: 100px;
-    width: 100%;
-    height: 360px;
+.mat-list-item:focus{
+    background-color: #FF4081;
+    color: white;
 }

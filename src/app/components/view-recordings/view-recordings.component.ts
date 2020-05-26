@@ -5,6 +5,9 @@ import { UserService } from 'src/app/services/user.service';
 import { TestService } from 'src/app/services/test.service';
 import { Recording } from 'src/interfaces/recording';
 import { Test } from 'src/interfaces/test';
+import { ActivatedRoute } from '@angular/router';
+import { MaterialModule } from 'src/app/material/material.module';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -12,25 +15,28 @@ import { Test } from 'src/interfaces/test';
   templateUrl: './view-recordings.component.html',
   styleUrls: ['./view-recordings.component.css']
 })
-export class ViewRecordingsComponent {
+export class ViewRecordingsComponent implements OnInit {
 
   testsFormControl = new FormControl();
-  tests = [];
+  test;
 
   videos = [];
+  allVideos = [];
 
-  constructor(private recordingService: RecordingService, private testsService:TestService) { 
-    testsService.getTests().subscribe((data) => {
-      this.tests = <Test[]>data;
-    })  
+  ngOnInit(){
+    var testId = parseInt(this.router.snapshot.paramMap.get('testId'));
+
+    this.recordingService.getVideosInfoByTest(testId).subscribe((data) =>{
+      this.allVideos = <[]>data;
+      this.videos = this.allVideos.slice(0,10);
+    });
+
+    this.testsService.getTest(testId).subscribe((data) =>{
+      this.test = <Test>data;
+    });
   }
 
-  onSelectTest(test){
-
-    this.recordingService.getVideosInfoByTest(test.id).subscribe((data) =>{
-      this.videos = <[]>data;
-    });
-    
+  constructor(private recordingService: RecordingService, private testsService:TestService, private router: ActivatedRoute) {   
   }
 
   onSelectVideo(video){
@@ -62,5 +68,9 @@ export class ViewRecordingsComponent {
       var blobURL = URL.createObjectURL(blob);
       vid.setAttribute("src", blobURL);
     })
+  }
+
+  OnPageChanged(event : PageEvent){
+    this.videos = this.allVideos.slice(event.pageIndex * event.pageSize, event.pageIndex * event.pageSize + event.pageSize); 
   }
 }

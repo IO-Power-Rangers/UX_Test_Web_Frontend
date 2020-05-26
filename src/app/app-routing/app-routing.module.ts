@@ -66,7 +66,7 @@ const routes: Routes = [
     component: DoTestComponent,
   },
   {
-    path: 'recordingsView',
+    path: 'recordingsView/:testId',
     component: ViewRecordingsComponent,
   },
   {
