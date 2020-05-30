@@ -1,7 +1,4 @@
-// DO WYJASNIENIA
-//
-//
-//
+// na razie exclude'owany w tsconfig.app.json
 
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';

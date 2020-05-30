@@ -4,7 +4,7 @@
 
     <div id="toolbar">
 
-      <div id="import">
+      <div id="import" *ngIf="! isLoaded">
 
         <mat-form-field id="inputUrl" appearance="standard" [style.fontSize.px]=18>
 
@@ -16,28 +16,21 @@
 
         </mat-form-field>
 
-        <a id="buttonUrl" mat-flat-button color="primary" (click)="embedWebsite()"> Load a test </a>
+        <a id="buttonUrl" mat-flat-button color="primary" (click)="loadTest()"> Load a test and start screen recording </a>
 
       </div>
 
-      <mat-form-field id="testTitle" appearance="standard" [style.fontSize.px]=18>
+      <mat-form-field id="testTitle" appearance="standard" *ngIf="isLoaded" [style.fontSize.px]=18>
 
         <input matInput type="text" [(ngModel)]="testTitle" readonly/>
 
       </mat-form-field>
 
-<!--      <a mat-flat-button color="accent" id="startScreenRecording" routerLink="/screenRecording">-->
-<!--        Start screen recording-->
-<!--      </a>-->
-
-      <div id="saveTestWrapper">
-        <a mat-flat-button color="accent" id="saveTest" *ngIf="isLoaded" (click)="saveResults()"> Save your results </a>
-      </div>
-
-
     </div>
 
     <div id="websiteContainer">
+
+      <app-recording-permission-view *ngIf="showRecordingPermissionView"></app-recording-permission-view>
       <iframe id="websiteIframe"></iframe>
 
     </div>
@@ -48,9 +41,9 @@
   <div id="rightSide">
 
     <mat-tab-group id="tabGroup" animationDuration="0ms" mat-stretch-tabs>
-      <mat-tab class="tab" label="Tasks" >
+      <mat-tab class="tab" *ngIf="! isTasksDone" label="Tasks">
 
-        <form class="container mt-3" (ngSubmit)="logValue()" >
+        <form class="container mt-3" >
           <section *ngFor="let task of rawTasks; let i = index;" fxLayout="column">
             <div class="task">
               <div class="taskText">
@@ -65,11 +58,10 @@
               </div>
 
               <div class="doneCheckWrapper">
-                <mat-checkbox class="doneCheck">Done</mat-checkbox>
+                <mat-checkbox class="doneCheck">
+                  Done
+                </mat-checkbox>
               </div>
-
-
-
 
             </div>
             <mat-divider *ngIf="i != rawTasks.length - 1"></mat-divider>
@@ -77,8 +69,12 @@
 
         </form>
       </mat-tab>
-      <mat-tab label="Questionnaire" class="tab">
-        <form class="container mt-3" (ngSubmit)="logValue()" >
+
+      <mat-tab *ngIf="isTasksDone" label="Questionnaire" class="tab">
+        <form class="container mt-3">
+
+<!--          text questions -->
+
           <section *ngFor="let q of rawQuestionsT; let i = index;" fxLayout="column">
             <div class="question">
               <div class="questionContent">
@@ -89,12 +85,14 @@
 
               <mat-form-field class="answerT" appearance="standard">
 
-                <input matInput type="text" [name]="'questionT_' + i"  placeholder="Your answer"/>
+                <input matInput type="text"  placeholder="Your answer"/>
 
               </mat-form-field>
             </div>
 
           </section>
+
+<!--          multiple answer questions -->
 
           <section *ngFor="let q of rawQuestionsMA; let i = index;" fxLayout="column">
             <div class="question">
@@ -104,30 +102,32 @@
                 </label>
               </div>
 
-              <section *ngFor="let o of q.options; let i = index;" fxLayout="column">
-                  <mat-checkbox >{{o.content}}</mat-checkbox>
+              <section *ngFor="let o of q.options;" fxLayout="column">
+                  <mat-checkbox>{{o.content}}</mat-checkbox>
               </section>
             </div>
 
           </section>
 
-<!--          temporary "workaround"   -->
+<!--          multiplce choice questions -->
 
-<!--          <section *ngFor="let q of rawQuestionsMC; let i = index;" fxLayout="column">-->
-<!--            <div class="question">-->
-<!--              <div class="questionContent">-->
-<!--                <label>-->
-<!--                  {{q.content}}-->
-<!--                </label>-->
-<!--              </div>-->
-<!--              -->
-<!--              <section *ngFor="let o of q.options; let i = index;" fxLayout="column">-->
-<!--                <mat-radio-button class="answerMC">{{o.content}}</mat-radio-button>-->
-<!--              </section>-->
-<!--  -->
-<!--  -->
-<!--            </div>-->
-<!--          </section>-->
+          <section *ngFor="let q of rawQuestionsMC; let i = index;" fxLayout="column">
+            <div class="question">
+              <div class="questionContent">
+                <label>
+                  {{q.content}}
+                </label>
+              </div>
+
+              <section *ngFor="let o of q.options;" fxLayout="column">
+                <mat-radio-button class="answerMC" name="MC_{{i}}">{{o.content}}</mat-radio-button>
+              </section>
+
+
+            </div>
+          </section>
+
+<!--          likert scale questions -->
 
           <section *ngFor="let q of rawQuestionsLS; let i = index;" fxLayout="column">
             <div class="question">
@@ -137,8 +137,8 @@
                 </label>
               </div>
 
-              <section *ngFor="let o of likertScaleArray(q.possibleStepsNo); let i = index;" fxLayout="column">
-                <mat-radio-button class="answerMC">{{(i+1)}}</mat-radio-button>
+              <section *ngFor="let o of likertScaleArray(q.possibleStepsNo); let a = index;" fxLayout="column">
+                <mat-radio-button class="answerMC" name="LS_{{i}}">{{(a+1)}}</mat-radio-button>
               </section>
 
             </div>
@@ -148,6 +148,16 @@
         </form>
       </mat-tab>
     </mat-tab-group>
+
+    <div id="proceedSaveWrapper" *ngIf="isLoaded">
+      <a mat-flat-button color="accent" *ngIf="! isTasksDone" (click)="checkTasksAndProceed()">
+        Proceed to the questionnaire and save the screen recording
+      </a>
+
+      <a mat-flat-button color="accent" *ngIf="isTasksDone" (click)="saveResults()">
+        Save your results
+      </a>
+    </div>
 
   </div>
 

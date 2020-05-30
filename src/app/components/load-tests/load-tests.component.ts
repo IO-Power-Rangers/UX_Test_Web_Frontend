@@ -5,18 +5,27 @@ import { Test } from '../../../interfaces/test';
 import {Observable} from 'rxjs';
 import {ComponentCanDeactivate} from '../../pending-changes';
 import {environment} from '../../../environments/environment';
+import {RecordingPermittedService} from '../../services/recording-permitted.service';
+import {ScreenRecordingComponent} from '../screen-recording/screen-recording.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
+  providers: [ScreenRecordingComponent],
   selector: 'app-load-tests',
   templateUrl: './load-tests.component.html',
   styleUrls: ['./load-tests.component.css']
 })
 export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private recordingPermittedService: RecordingPermittedService,
+              private userService: UserService, private http: HttpClient,
+              private screenRecordingComponent: ScreenRecordingComponent) {
+
     this.titleService.setTitle('Create tests');
     this.isSaved = false;
     this.isLoaded = false;
+    this.isTasksDone = false;
+    this.showRecordingPermissionView = false;
 
 
     // example data
@@ -25,10 +34,12 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       axLink: 'https://8bx5e9.axshare.com/#g=1&p=strona_glowna',
       tasks: [
         {
+          id: 1,
           name: 'Lektorzy',
           description: 'Przejdź do podstrony z lektorami.'
         },
         {
+          id: 2,
           name: 'Kontakt',
           description: 'Przejdź do podstrony z kontaktem.'
         }
@@ -63,7 +74,74 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
                 content: 'źle'
               }
             ]
-          }
+          },
+          {
+            content: 'Hej?',
+            options: [
+              {
+                content: 'halo'
+              },
+              {
+                content: 'siemka'
+              }
+            ]
+          },
+          {
+            content: 'Hej?',
+            options: [
+              {
+                content: 'halo'
+              },
+              {
+                content: 'siemka'
+              }
+            ]
+          },
+          {
+            content: 'Hej?',
+            options: [
+              {
+                content: 'halo'
+              },
+              {
+                content: 'siemka'
+              }
+            ]
+          },
+          {
+            content: 'Hej?',
+            options: [
+              {
+                content: 'halo'
+              },
+              {
+                content: 'siemka'
+              }
+            ]
+          },
+          {
+            content: 'Hej?',
+            options: [
+              {
+                content: 'halo'
+              },
+              {
+                content: 'siemka'
+              }
+            ]
+          },
+          {
+            content: 'Hej?',
+            options: [
+              {
+                content: 'halo'
+              },
+              {
+                content: 'siemka'
+              }
+            ]
+          },
+
         ],
         likertScaleQuestions: [
           {
@@ -78,6 +156,8 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
   testId: string;
   isSaved: boolean;
   isLoaded: boolean;
+  isTasksDone: boolean;
+  showRecordingPermissionView: boolean;
   private readonly URL = environment.local + environment.tests;
   test: Test;
 
@@ -100,6 +180,19 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
     return this.isSaved;
 
+  }
+
+  loadTest() {
+    this.showRecordingPermissionView = true;
+
+    this.recordingPermittedService.permitted$.subscribe(() => {
+        this.showRecordingPermissionView = false;
+        this.embedWebsite();
+        this.isLoaded = true;
+        // example test
+        this.screenRecordingComponent.startRecording(this.userService.getUser(), this.test);
+      }
+    );
   }
 
 
@@ -133,12 +226,21 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
     } else {
 
-      alert('You can only import mockups from Axshare.');
+      alert('There\' no test with this id.');
       this.testId = '';
     }
   }
 
+  checkTasksAndProceed() {
+    // TODO MAYBE check if all checkboxes are selected
+    this.screenRecordingComponent.finishRecording();
+    this.isTasksDone = true;
+  }
+
+
   saveResults() {
+    // should save to the database here
+    // TODO MAYBE check if all questions are answered
     this.isSaved = true;
   }
 
@@ -149,5 +251,6 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
   likertScaleArray(possibleStepsNo) {
     return new Array(possibleStepsNo);
   }
+
 }
 

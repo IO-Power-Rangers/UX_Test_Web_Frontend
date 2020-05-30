@@ -4,7 +4,6 @@
   display: flex;
   flex-direction:row;
   justify-content: space-between;
-  overflow: hidden
 
 }
 
@@ -19,8 +18,12 @@
 
 #rightSide {
 
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
   flex: 3;
   margin-top: 0.7%;
+  overflow: auto;
 
 }
 
@@ -30,6 +33,14 @@
 
 #tabGroup {
 
+  overflow: hidden;
+
+}
+
+#proceedSaveWrapper {
+  flex: auto;
+  text-align: center;
+  position: relative;
 }
 
 .task {
@@ -140,7 +151,7 @@
 
 
 #import {
-  flex: 10;
+  flex: auto;
 
 }
 
@@ -164,7 +175,7 @@
 
 #testTitle {
 
-  flex: 3;
+  /*flex: 3;*/
 
 }
 
