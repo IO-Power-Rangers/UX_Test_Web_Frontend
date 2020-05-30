@@ -38,9 +38,11 @@
 }
 
 #proceedSaveWrapper {
+
   flex: auto;
   text-align: center;
   position: relative;
+
 }
 
 .task {
@@ -49,29 +51,28 @@
   flex-direction: row;
   justify-content: space-between;
   margin-left: 2%;
+
 }
 
 .taskText {
-  flex: 4;
 
+  flex: 4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-top: 2%;
   margin-bottom: 2%;
   font-size: 16px;
+
 }
 
 .question {
-  flex: 4;
 
+  flex: 4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  margin-right: 2%;
-  margin-left: 2%;
+  margin: 2%;
 
 }
 
@@ -151,6 +152,7 @@
 
 
 #import {
+
   flex: auto;
 
 }
@@ -174,8 +176,6 @@
 }
 
 #testTitle {
-
-  /*flex: 3;*/
 
 }
 
@@ -211,4 +211,5 @@
   background-color: #EEEEEE;
   width: 122.1%;
   height: 100%;
+
 }

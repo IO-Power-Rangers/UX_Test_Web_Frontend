@@ -42,11 +42,12 @@
 }
 
 #taskText {
-  flex: 4;
 
+  flex: 4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
 }
 
 #removeTaskWrapper {
@@ -66,7 +67,6 @@
   box-shadow: none !important;
 
 }
-
 
 #inputName {
 
@@ -95,6 +95,7 @@
 
 
 #import {
+
   flex: 10;
 
 }
@@ -156,4 +157,5 @@
   background-color: #EEEEEE;
   width: 104%;
   height: 100%;
+
 }

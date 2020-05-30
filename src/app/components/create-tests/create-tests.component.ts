@@ -93,7 +93,7 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
     //   axLink: this.urlToEmbed,
     //   tasks: this.rawTasks,
     // };
-
+    //
     // this.http.post(this.host + this.testsEndpoint, JSON.stringify(test), {headers: {'Content-Type': 'application/json'}})
     //   .toPromise()
     //   .then(data => {
@@ -103,7 +103,4 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
     this.isSaved = true;
   }
 
-  logValue() {
-    console.log(this.rawTasks);
-  }
 }
