@@ -11,19 +11,17 @@ import {SignInOutComponent} from './components/sign-in-out/sign-in-out.component
 import {SocialLoginModule, AuthServiceConfig} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {ViewTestsComponent} from './components/view-tests/view-tests.component';
 import {DoTestComponent} from './components/doTest/do-test.component';
 import { RecordingPermissionViewComponent } from './components/recording-permission-view/recording-permission-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
 import { ScreenRecordingComponent } from './components/screen-recording/screen-recording.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import {MatSelectModule} from '@angular/material/select'
 import {ReactiveFormsModule} from '@angular/forms';
-import { ViewRecordingsComponent } from './components/view-recordings/view-recordings.component'
-import {CreateCardSortingTestComponent} from "./components/create-card-sorting-test/create-card-sorting-test.component";
+import { ViewRecordingsComponent } from './components/view-recordings/view-recordings.component';
+import {CreateCardSortingTestComponent} from './components/create-card-sorting-test/create-card-sorting-test.component';
 import { PerformCardSortingTestComponent } from './components/perform-card-sorting-test/perform-card-sorting-test.component';
-import {DragDropModule} from "@angular/cdk/drag-drop";
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ViewResultsOfTestComponent } from './components/view-results-of-test/view-results-of-test.component';
 import { MaterialModule } from './material/material.module';
 import { ResultsVisualizationComponent } from './components/results-visualization/results-visualization.component';
@@ -33,6 +31,8 @@ import { MultipleChoiceVisualizationComponent } from './components/results-visua
 import { MultipleAnswerVisualizationComponent } from './components/results-visualization/specific/multiple-answer-visualization/multiple-answer-visualization.component';
 import { TextVisualizationComponent } from './components/results-visualization/specific/text-visualization/text-visualization.component';
 import { ChartsModule } from 'ng2-charts';
+import { PendingChangesGuard } from './pending-changes';
+import { LoadTestsComponent } from './components/load-tests/load-tests.component';
 import { ExportButtonComponent } from './components/export-button/export-button.component';
 
 const config = new AuthServiceConfig([
@@ -53,7 +53,6 @@ export function provideConfig() {
     HomePageComponent,
     CreateTestsComponent,
     SignInOutComponent,
-    ViewTestsComponent,
     DoTestComponent,
     RecordingPermissionViewComponent,
     CreateQuestionnaireComponent,
@@ -69,6 +68,8 @@ export function provideConfig() {
     MultipleChoiceVisualizationComponent,
     MultipleAnswerVisualizationComponent,
     TextVisualizationComponent,
+    LoadTestsComponent,
+    ViewResultsOfTestComponent,
     ExportButtonComponent,
   ],
   imports: [
@@ -82,12 +83,12 @@ export function provideConfig() {
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
-    MatSelectModule,
     ReactiveFormsModule,
     DragDropModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
+    PendingChangesGuard,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

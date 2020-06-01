@@ -1,55 +1,93 @@
-#inputField {
+.inputField {
 
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-right: 20px;
-    margin-left: 20px;
-    
+  margin: 5px 20px;
+
 }
 
-#input {
+.input {
 
     margin-top: 2px;
     margin-bottom: 2px;
-    
+
 }
 
-#option {
+.option {
 
     margin-left: 140px;
-    
+
+}
+
+#question {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.questionText {
+
+  flex: 6;
+
+}
+
+#removeQuestionWrapper {
+
+  flex: 1;
+  text-align: center;
+  position: relative;
+
+}
+
+#removeQuestionButton {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: none !important;
+
 }
 
 #questionNo {
 
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 20px;
-    margin-left: 20px;
-      
+  margin: 10px 20px;
+
 }
 
 #questionnaireName {
 
-    margin-top: 10px;
-    margin-bottom: 0px;
-    margin-right: 20px;
-    margin-left: 20px;
+  margin: 10px 20px 0px;
 
 }
 
 #questionsForm {
 
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-right: 20px;
-    margin-left: 20px;
+  margin: 0px 20px 5px;
 }
 
-#button {
 
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    margin-left: 5px;
+#buttonWrapper {
+
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+
+}
+
+.buttonRow {
+
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+
+.button {
+
+  flex: 1;
+  margin: 5px;
+
 }

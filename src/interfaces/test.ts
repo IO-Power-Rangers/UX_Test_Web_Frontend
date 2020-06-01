@@ -1,8 +1,10 @@
-import { Task } from "./task"
-import { UxModel } from "./uxModel";
+import { Task } from './task';
+import {Questionnaire} from './questionnaire/questionnaire';
 
 export interface Test {
-  uxModel : UxModel
-  title : string
-  tasks : Task[]
+  id?: number;
+  title: string;
+  axLink: string;
+  tasks: Task[];
+  questionnaire: Questionnaire;
 }
