@@ -30,8 +30,9 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
     // example data
     this.test = {
+      creator: undefined,
       title: 'Szkoła językowa',
-      axLink: 'https://8bx5e9.axshare.com/#g=1&p=strona_glowna',
+      uxModel: {axLink: 'https://8bx5e9.axshare.com/#g=1&p=strona_glowna', tests:[]},
       tasks: [
         {
           id: 1,
