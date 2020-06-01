@@ -9,7 +9,8 @@ export const environment = {
   users : '/api/users',
   tests : '/api/tests',
   results: '/api/results',
-  export: '/api/export'
+  export: '/api/export',
+  questionnaire: 'api/questionnaire'
 };
 
 /*

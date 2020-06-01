@@ -159,3 +159,98 @@
   height: 100%;
 
 }
+
+.inputField {
+
+  margin: 5px 20px;
+
+}
+
+.input {
+
+    margin-top: 2px;
+    margin-bottom: 2px;
+
+}
+
+.option {
+
+    margin-left: 140px;
+
+}
+
+#question {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.questionText {
+
+  flex: 6;
+
+}
+
+#removeQuestionWrapper {
+
+  flex: 1;
+  text-align: center;
+  position: relative;
+
+}
+
+#removeQuestionButton {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: none !important;
+
+}
+
+#questionNo {
+
+  margin: 10px 20px;
+
+}
+
+#questionnaireName {
+
+  margin: 10px 20px 0px;
+
+}
+
+#questionsForm {
+
+  margin: 0px 20px 5px;
+}
+
+
+#buttonWrapper {
+
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+
+}
+
+.buttonRow {
+
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+
+.button {
+
+  flex: 1;
+  margin: 5px;
+
+}
+

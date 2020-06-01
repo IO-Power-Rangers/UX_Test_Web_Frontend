@@ -9,23 +9,31 @@ import {Test} from "../../interfaces/test";
 })
 export class TestService {
 
-  url = environment.local + environment.tests;
+  urlTest = environment.local + environment.tests;
+  urlQuestionnaire = environment.local + environment.questionnaire;
 
-  constructor(private http :HttpClient) {}
+  constructor(private http : HttpClient) {}
 
   getTest(id){
-    return this.http.get(this.url + "\\" + id);
+    return this.http.get(this.urlTest + "\\" + id);
   }
 
   getTests(){
-    return this.http.get(this.url);
+    return this.http.get(this.urlTest);
   }
 
-  postTest(test:Test){
-    this.http.post(this.url, test)
+  postTest(test : Test) {
+
+    // need to separate test and questionnaire since 
+    // there are 2 separate REST endpoints created at backend 
+    var questionnaire = test.questionnaire
+    test.questionnaire = undefined;
+
+    this.http.post(this.urlTest, test)
       .toPromise()
       .then(data => {
         console.log(data);
-      });
+      })
+      .then(() => this.http.post(this.urlQuestionnaire, questionnaire).toPromise);
   }
 }
