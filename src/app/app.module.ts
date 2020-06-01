@@ -34,7 +34,7 @@ import { TextVisualizationComponent } from './components/results-visualization/s
 import { ChartsModule } from 'ng2-charts';
 import { PendingChangesGuard } from './pending-changes';
 import { LoadTestsComponent } from './components/load-tests/load-tests.component';
-
+import { ExportButtonComponent } from './components/export-button/export-button.component';
 
 const config = new AuthServiceConfig([
   {
@@ -72,6 +72,7 @@ export function provideConfig() {
     TextVisualizationComponent,
     LoadTestsComponent,
     ViewResultsOfTestComponent,
+    ExportButtonComponent,
   ],
   imports: [
     ChartsModule,

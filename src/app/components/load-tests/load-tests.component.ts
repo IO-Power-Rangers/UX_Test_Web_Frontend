@@ -86,62 +86,6 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
               }
             ]
           },
-          {
-            content: 'Hej?',
-            options: [
-              {
-                content: 'halo'
-              },
-              {
-                content: 'siemka'
-              }
-            ]
-          },
-          {
-            content: 'Hej?',
-            options: [
-              {
-                content: 'halo'
-              },
-              {
-                content: 'siemka'
-              }
-            ]
-          },
-          {
-            content: 'Hej?',
-            options: [
-              {
-                content: 'halo'
-              },
-              {
-                content: 'siemka'
-              }
-            ]
-          },
-          {
-            content: 'Hej?',
-            options: [
-              {
-                content: 'halo'
-              },
-              {
-                content: 'siemka'
-              }
-            ]
-          },
-          {
-            content: 'Hej?',
-            options: [
-              {
-                content: 'halo'
-              },
-              {
-                content: 'siemka'
-              }
-            ]
-          },
-
         ],
         likertScaleQuestions: [
           {

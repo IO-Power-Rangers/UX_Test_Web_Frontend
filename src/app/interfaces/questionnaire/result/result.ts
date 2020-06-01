@@ -22,3 +22,8 @@ export interface TextResult extends Result {
 export enum QuestionType {
     LIKERT_SCALE, MULTIPLE_CHOICE, MULTIPLE_ANSWER, TEXT
 }
+
+export interface ExcelExport {
+    base64StringFile: string
+    fileName: string
+}
