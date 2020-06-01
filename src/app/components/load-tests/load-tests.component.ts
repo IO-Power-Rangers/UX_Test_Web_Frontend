@@ -149,7 +149,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
       const newIframe = document.createElement('iframe');
       newIframe.id = 'websiteIframe';
-      newIframe.src = this.test.axLink;
+      newIframe.src = this.test.uxModel.axLink;
       newIframe.style.cssText = '  border: none;\n' +
         '  padding: 0;\n' +
         '  -webkit-transform:scale(1);\n' +
