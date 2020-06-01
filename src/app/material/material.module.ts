@@ -9,6 +9,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatPaginatorModule } from '@angular/material/paginator'
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -29,6 +30,7 @@ import {MatListModule} from '@angular/material/list';
     MatStepperModule,
     MatRadioModule,
     MatListModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatToolbarModule,
@@ -44,6 +46,7 @@ import {MatListModule} from '@angular/material/list';
     MatStepperModule,
     MatRadioModule,
     MatListModule,
+    MatPaginatorModule,
   ]
 })
 export class MaterialModule {}

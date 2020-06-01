@@ -1,22 +1,20 @@
-<div id="leftside">
+<div class="leftside">
  <div id="videoList"> 
-    <mat-form-field id="matform">
-          <mat-label>Select test</mat-label>
-          <mat-select [formControl]="testsFormControl">
-            <mat-option *ngFor="let test of tests" [value]="test" (click) = "onSelectTest(test)">{{test.title}}</mat-option>
-          </mat-select>
-    </mat-form-field>
+
+    <h1 style="padding-top: 10%;">{{test.title}} videos:</h1>
     
     <mat-action-list>
       <button mat-list-item *ngFor="let video of videos" [value]="video" (click) = "onSelectVideo(video)"> {{video.user.firstName + " " + video.user.lastName}}</button>
     </mat-action-list>
 
+    <h2 style="color: #FF0000;">{{msg}}</h2>
+
+    <mat-paginator [length]="allVideos.length"
+              [pageSize]="10"
+              [hidePageSize]="true"
+              (page) = "OnPageChanged($event)">
+    </mat-paginator>
   </div>
 </div>
 
-<div id="rightside">
-  
-    <video id="videoView" controls></video>
-
-</div>
-<div style="clear: both;"></div>
+<video class="rightside" id="videoView" controls></video>

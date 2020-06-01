@@ -11,6 +11,10 @@ export class TestService {
 
   constructor(private http :HttpClient) {}
 
+  getTest(id){
+    return this.http.get(this.url + "\\" + id);
+  }
+
   getTests(){
     return this.http.get(this.url);
   }
