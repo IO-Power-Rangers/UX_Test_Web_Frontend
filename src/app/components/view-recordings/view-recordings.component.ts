@@ -23,12 +23,15 @@ export class ViewRecordingsComponent implements OnInit {
   videos = [];
   allVideos = [];
 
+  msg = "";
+
   ngOnInit(){
     var testId = parseInt(this.router.snapshot.paramMap.get('testId'));
 
     this.recordingService.getVideosInfoByTest(testId).subscribe((data) =>{
       this.allVideos = <[]>data;
       this.videos = this.allVideos.slice(0,10);
+      if(this.allVideos.length == 0) this.msg = "There are no videos available for this test";
     });
 
     this.testsService.getTest(testId).subscribe((data) =>{

@@ -7,6 +7,8 @@
       <button mat-list-item *ngFor="let video of videos" [value]="video" (click) = "onSelectVideo(video)"> {{video.user.firstName + " " + video.user.lastName}}</button>
     </mat-action-list>
 
+    <h2 style="color: #FF0000;">{{msg}}</h2>
+
     <mat-paginator [length]="allVideos.length"
               [pageSize]="10"
               [hidePageSize]="true"
