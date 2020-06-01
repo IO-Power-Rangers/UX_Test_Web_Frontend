@@ -10,7 +10,7 @@ import { saveAs } from 'file-saver';
 })
 export class ExportButtonComponent implements OnInit {
 
-  private questionnaireId : number;
+  private questionnaireId: number;
   private readonly URL = environment.local + environment.export;
 
   constructor(private http: HttpClient) { }
@@ -18,22 +18,23 @@ export class ExportButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setQuestionnaireId(questionnaireId : number) : void{
-      this.questionnaireId = questionnaireId;
+  setQuestionnaireId(questionnaireId: number): void {
+    this.questionnaireId = questionnaireId;
   }
 
-  downloadExport(): void{
-    if (this.questionnaireId != undefined){
-    this.http.get(this.URL + '/' + this.questionnaireId).subscribe((data:ExcelExport) =>{ const blob = new Blob([this.stringToArrayBuffer(atob(data.base64StringFile))], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    saveAs(blob,data.fileName);
-  })
-  }
+  downloadExport(): void {
+    if (this.questionnaireId != undefined) {
+      this.http.get(this.URL + '/' + this.questionnaireId).subscribe((data: ExcelExport) => {
+        const blob = new Blob([this.stringToArrayBuffer(atob(data.base64StringFile))], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        saveAs(blob, data.fileName);
+      })
+    }
   }
 
   stringToArrayBuffer(s) {
     var buf = new ArrayBuffer(s.length);
     var view = new Uint8Array(buf);
-    for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+    for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
     return buf;
   }
 

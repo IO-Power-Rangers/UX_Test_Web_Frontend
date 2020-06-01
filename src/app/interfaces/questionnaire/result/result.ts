@@ -25,5 +25,5 @@ export enum QuestionType {
 
 export interface ExcelExport {
     base64StringFile: string
-    fileName: string,
+    fileName: string
 }
