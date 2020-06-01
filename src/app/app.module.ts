@@ -33,6 +33,7 @@ import { MultipleChoiceVisualizationComponent } from './components/results-visua
 import { MultipleAnswerVisualizationComponent } from './components/results-visualization/specific/multiple-answer-visualization/multiple-answer-visualization.component';
 import { TextVisualizationComponent } from './components/results-visualization/specific/text-visualization/text-visualization.component';
 import { ChartsModule } from 'ng2-charts';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const config = new AuthServiceConfig([
   {
@@ -68,6 +69,7 @@ export function provideConfig() {
     MultipleChoiceVisualizationComponent,
     MultipleAnswerVisualizationComponent,
     TextVisualizationComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     ChartsModule,

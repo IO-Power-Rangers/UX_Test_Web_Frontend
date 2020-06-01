@@ -5,7 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { TestService } from 'src/app/services/test.service';
 import { Recording } from 'src/interfaces/recording';
 import { Test } from 'src/interfaces/test';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -18,7 +18,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class ViewRecordingsComponent implements OnInit {
 
   testsFormControl = new FormControl();
-  test;
+  test = {title: ""};
 
   videos = [];
   allVideos = [];
@@ -26,7 +26,12 @@ export class ViewRecordingsComponent implements OnInit {
   msg = "";
 
   ngOnInit(){
-    var testId = parseInt(this.router.snapshot.paramMap.get('testId'));
+    var testId = parseInt(this.activatedRouter.snapshot.paramMap.get('testId'));
+
+    this.testsService.getTest(testId).subscribe((data) =>{
+      this.test = <Test>data;
+      console.log(this.test);
+    }, (error) => { this.router.navigate(['/notFound']); });
 
     this.recordingService.getVideosInfoByTest(testId).subscribe((data) =>{
       this.allVideos = <[]>data;
@@ -34,12 +39,9 @@ export class ViewRecordingsComponent implements OnInit {
       if(this.allVideos.length == 0) this.msg = "There are no videos available for this test";
     });
 
-    this.testsService.getTest(testId).subscribe((data) =>{
-      this.test = <Test>data;
-    });
   }
 
-  constructor(private recordingService: RecordingService, private testsService:TestService, private router: ActivatedRoute) {   
+  constructor(private recordingService: RecordingService, private testsService:TestService, private activatedRouter: ActivatedRoute, private router: Router) {   
   }
 
   onSelectVideo(video){

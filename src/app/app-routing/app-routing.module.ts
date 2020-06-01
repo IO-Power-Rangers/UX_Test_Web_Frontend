@@ -14,6 +14,7 @@ import { CreateCardSortingTestComponent } from "../components/create-card-sortin
 import { PerformCardSortingTestComponent} from "../components/perform-card-sorting-test/perform-card-sorting-test.component";
 import { ViewResultsOfTestComponent } from "../components/view-results-of-test/view-results-of-test.component";
 import { ResultsVisualizationComponent } from '../components/results-visualization/results-visualization.component';
+import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {path:'',
@@ -73,6 +74,10 @@ const routes: Routes = [
 
     path: 'results',
     component: ResultsVisualizationComponent
+  },
+  {
+    path: 'notFound',
+    component: PageNotFoundComponent
   }
 ];
 
