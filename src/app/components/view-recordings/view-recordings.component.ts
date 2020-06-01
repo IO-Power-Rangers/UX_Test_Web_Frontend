@@ -30,7 +30,6 @@ export class ViewRecordingsComponent implements OnInit {
 
     this.testsService.getTest(testId).subscribe((data) =>{
       this.test = <Test>data;
-      console.log(this.test);
     }, (error) => { this.router.navigate(['/notFound']); });
 
     this.recordingService.getVideosInfoByTest(testId).subscribe((data) =>{

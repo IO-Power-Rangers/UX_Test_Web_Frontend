@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewTestsComponent } from './view-tests.component';
+import { ExportButtonComponent } from './export-button.component';
 import { CommonTestModule } from 'src/app/common-test/common-test.module';
 
-describe('ViewTestsComponent', () => {
-  let component: ViewTestsComponent;
-  let fixture: ComponentFixture<ViewTestsComponent>;
+describe('ExportButtonComponent', () => {
+  let component: ExportButtonComponent;
+  let fixture: ComponentFixture<ExportButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CommonTestModule],
-      declarations: [ ViewTestsComponent ]
+      declarations: [ ExportButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewTestsComponent);
+    fixture = TestBed.createComponent(ExportButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
