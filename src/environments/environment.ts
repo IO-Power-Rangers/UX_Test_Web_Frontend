@@ -8,7 +8,8 @@ export const environment = {
   local : 'http://localhost:8099',
   users : '/api/users',
   tests : '/api/tests',
-  results: "/api/results"
+  results: "/api/results",
+  export: "/api/export"
 };
 
 /*
