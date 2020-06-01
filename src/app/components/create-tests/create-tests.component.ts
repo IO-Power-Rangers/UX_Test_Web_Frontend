@@ -87,19 +87,7 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
   }
 
   submitTest() {
-
-    // const test: Test = {
-    //   title: this.testTitle,
-    //   axLink: this.urlToEmbed,
-    //   tasks: this.rawTasks,
-    // };
-    //
-    // this.http.post(this.host + this.testsEndpoint, JSON.stringify(test), {headers: {'Content-Type': 'application/json'}})
-    //   .toPromise()
-    //   .then(data => {
-    //     console.log(data);
-    // });
-
+    // TODO posting test
     this.isSaved = true;
   }
 
