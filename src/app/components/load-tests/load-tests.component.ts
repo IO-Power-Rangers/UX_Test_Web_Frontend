@@ -30,8 +30,9 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
     // example data
     this.test = {
+      creator: undefined,
       title: 'Szkoła językowa',
-      axLink: 'https://8bx5e9.axshare.com/#g=1&p=strona_glowna',
+      uxModel: {axLink: 'https://8bx5e9.axshare.com/#g=1&p=strona_glowna', tests:[]},
       tasks: [
         {
           id: 1,
@@ -148,7 +149,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
       const newIframe = document.createElement('iframe');
       newIframe.id = 'websiteIframe';
-      newIframe.src = this.test.axLink;
+      newIframe.src = this.test.uxModel.axLink;
       newIframe.style.cssText = '  border: none;\n' +
         '  padding: 0;\n' +
         '  -webkit-transform:scale(1);\n' +

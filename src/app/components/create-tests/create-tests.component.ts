@@ -6,6 +6,8 @@ import {Observable} from 'rxjs';
 import {ComponentCanDeactivate} from '../../pending-changes';
 import {environment} from '../../../environments/environment';
 import {UxModel} from '../../../interfaces/uxModel';
+import {TestService} from "../../services/test.service";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -15,7 +17,7 @@ import {UxModel} from '../../../interfaces/uxModel';
 })
 export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
-  constructor(private titleService: Title, private http: HttpClient) {
+  constructor(private titleService: Title, private http: HttpClient, private testService: TestService, private userService: UserService) {
     this.titleService.setTitle('Create tests');
     this.isSaved = false;
   }
@@ -87,7 +89,11 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
   }
 
   submitTest() {
-    // TODO posting test
+    // TODO add questionnaire to body
+    const test: Test = {
+      uxModel: {axLink: this.urlToEmbed, tests: []}, questionnaire: undefined, creator: this.userService.getUser(), tasks: this.rawTasks, title: this.testTitle
+    };
+    this.testService.postTest(test);
     this.isSaved = true;
   }
 
