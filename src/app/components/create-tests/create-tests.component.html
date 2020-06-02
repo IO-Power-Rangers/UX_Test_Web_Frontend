@@ -80,7 +80,113 @@
         </form>
       </mat-tab>
       <mat-tab label="Questionnaire" class="tab">
-        <app-create-questionnaire></app-create-questionnaire>
+        <section *ngFor="let rawQuestion of rawQuestions; let i = index;">
+
+          <div id="question">
+        
+        
+            <div class="questionText" style="display: inline" *ngIf="rawQuestion.type === 'text'">
+        
+              <mat-form-field class="inputField" appearance="standard" [style.fontSize.px]=14>
+        
+                <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="Question"/>
+        
+              </mat-form-field>
+        
+            </div>
+        
+            <div class="questionText" style="display: inline" *ngIf="rawQuestion.type === 'likert'">
+        
+              <mat-form-field class="inputField" appearance="standard" [style.fontSize.px]=14>
+                <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="Question" class="input"/>
+        
+              </mat-form-field>
+        
+              <mat-form-field class="inputField" appearance="standard" [style.fontSize.px]=14>
+        
+                <input matInput type="number" [(ngModel)]="rawQuestion.question.possibleStepsNo" placeholder="Number of possible steps" class="input"/>
+        
+              </mat-form-field>
+        
+            </div>
+        
+            <div class="questionText" style="display: inline" *ngIf="rawQuestion.type === 'multipleChoice'">
+        
+              <mat-form-field  class="inputField" appearance="standard" [style.fontSize.px]=14>
+        
+                <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="Question" class="input"/>
+        
+              </mat-form-field>
+        
+              <section *ngFor="let option of rawQuestion.question.options">
+        
+                <mat-form-field  class="option" appearance="standard" [style.fontSize.px]=12>
+        
+                  <input matInput type="text" [(ngModel)]="option.content" placeholder="option"/>
+        
+                </mat-form-field>
+        
+              </section>
+        
+              <a class="button" mat-flat-button color="primary" (click)="addOptionToMultipleChoiceQuestion(i)"> Add an Option </a>
+        
+              <a class="button" mat-flat-button color="primary" *ngIf="rawQuestion.question.options.length != 0" (click)="removeOptionFromMultipleChoiceQuestion(i)"> Remove an Option </a>
+        
+            </div>
+        
+            <div class="questionText" style="display: inline" *ngIf="rawQuestion.type === 'multipleAnswer'">
+        
+        
+              <mat-form-field  class="inputField" appearance="standard" [style.fontSize.px]=14>
+        
+                <input matInput type="text" [(ngModel)]="rawQuestion.question.content" placeholder="Question" class="input"/>
+        
+              </mat-form-field>
+        
+              <section *ngFor="let option of rawQuestion.question.options">
+        
+                <mat-form-field  class="option" appearance="standard" [style.fontSize.px]=12>
+        
+                  <input matInput type="text" [(ngModel)]="option.content" placeholder="Option"/>
+        
+                </mat-form-field>
+        
+              </section>
+        
+              <a class="button" mat-flat-button color="primary" (click)="addOptionToMultipleAnswerQuestion(i)"> Add an Option </a>
+        
+              <a class="button" mat-flat-button color="primary" *ngIf="rawQuestion.question.options.length != 0" (click)="removeOptionFromMultipleAnswerQuestion(i)"> Remove an Option </a>
+        
+            </div>
+        
+            <div id="removeQuestionWrapper">
+              <a id="removeQuestionButton" mat-mini-fab color="warn" (click)="removeQuestion(i)">
+                <mat-icon>clear</mat-icon>
+              </a>
+            </div>
+          </div>
+        
+        
+          <mat-divider *ngIf="i != rawQuestions.length - 1"></mat-divider>
+        
+        </section>
+        
+        
+        <br/>
+        
+        <div id="buttonWrapper">
+          <div class="buttonRow">
+            <a class="button" mat-flat-button color="primary" (click)="addTextQuestion()"> Add a Text Question </a>
+        
+            <a class="button" mat-flat-button color="primary" (click)="addLikertScaleQuestion()"> Add a Likert Scale Question </a>
+          </div>
+        
+          <div class="buttonRow">
+            <a class="button" mat-flat-button color="primary" (click)="addMultipleChoiceQuestion()"> Add a Multiple Choice Question </a>
+        
+            <a class="button" mat-flat-button color="primary" (click)="addMultipleAnswerQuestion()"> Add a Multiple Answer Question </a>
+          </div>
+        </div>
       </mat-tab>
     </mat-tab-group>
 

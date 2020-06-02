@@ -14,7 +14,6 @@ import { HomePageComponent } from '../components/home-page/home-page.component';
 import { CreateTestsComponent } from '../components/create-tests/create-tests.component';
 import { SignInOutComponent } from '../components/sign-in-out/sign-in-out.component';
 import { RecordingPermissionViewComponent } from '../components/recording-permission-view/recording-permission-view.component';
-import { CreateQuestionnaireComponent } from '../components/create-questionnaire/create-questionnaire.component';
 import { ScreenRecordingComponent } from '../components/screen-recording/screen-recording.component';
 import { LoginPageComponent } from '../components/login-page/login-page.component';
 
@@ -32,7 +31,6 @@ export function provideConfig() {
     CreateTestsComponent,
     SignInOutComponent,
     RecordingPermissionViewComponent,
-    CreateQuestionnaireComponent,
     ScreenRecordingComponent,
     LoginPageComponent],
   imports: [
