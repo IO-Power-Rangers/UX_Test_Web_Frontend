@@ -5,6 +5,7 @@ import { LikertScaleQuestion } from './question/likert-scale-question';
 
 export interface Questionnaire {
     id?: number;
+    testId?: number;
     textQuestions: TextQuestion[];
     multipleChoiceQuestions: MultipleChoiceQuestion[];
     multipleAnswerQuestions: MultipleAnswerQuestion[];

@@ -10,7 +10,7 @@ export const environment = {
   tests : '/api/tests',
   results: '/api/results',
   export: '/api/export',
-  questionnaire: 'api/questionnaire'
+  questionnaire: '/api/questionnaire'
 };
 
 /*

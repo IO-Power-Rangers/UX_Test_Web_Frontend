@@ -15,6 +15,7 @@ import { MultipleChoiceQuestion } from 'src/interfaces/questionnaire/question/mu
 import { MultipleAnswerQuestionOption } from 'src/interfaces/questionnaire/question/multiple-answer-question-option';
 import { MultipleAnswerQuestion } from 'src/interfaces/questionnaire/question/multiple-answer-question';
 import { Questionnaire } from 'src/interfaces/questionnaire/questionnaire';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,13 @@ import { Questionnaire } from 'src/interfaces/questionnaire/questionnaire';
 })
 export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
-  constructor(private titleService: Title, private http: HttpClient, private testService: TestService, private userService: UserService) {
+  constructor(
+    private titleService: Title, 
+    private http: HttpClient, 
+    private testService: TestService,
+    private userService: UserService,
+    private router: Router) {
+
     this.titleService.setTitle('Create tests');
     this.isSaved = false;
   }
@@ -97,7 +104,7 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   submitTest() {
 
-    const questionnaire: Questionnaire = {
+    var questionnaire: Questionnaire = {
       textQuestions: this.rawQuestions
         .filter(raw => raw.type === 'text')
         .map(raw => raw.question),

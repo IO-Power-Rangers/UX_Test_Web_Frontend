@@ -29,11 +29,18 @@ export class TestService {
     var questionnaire = test.questionnaire
     test.questionnaire = undefined;
 
-    this.http.post(this.urlTest, test)
+    return this.http.post(this.urlTest, test)
       .toPromise()
-      .then(data => {
-        console.log(data);
+      .then(testId => {
+        
+        questionnaire.testId = Number(testId)
+        console.log(questionnaire);
+        this.postQuestionnaire(questionnaire)
       })
-      .then(() => this.http.post(this.urlQuestionnaire, questionnaire).toPromise);
+  }
+
+  postQuestionnaire(questionnaire) {
+    this.http.post(this.urlQuestionnaire, questionnaire)
+      .toPromise()
   }
 }

@@ -4,7 +4,6 @@ import {HomePageComponent} from '../components/home-page/home-page.component';
 import {CreateTestsComponent} from '../components/create-tests/create-tests.component';
 import {SignInOutComponent} from '../components/sign-in-out/sign-in-out.component';
 // import {ViewTestsComponent} from '../components/view-tests/view-tests.component';
-import {CreateQuestionnaireComponent} from '../components/create-questionnaire/create-questionnaire.component';
 import {ScreenRecordingComponent} from '../components/screen-recording/screen-recording.component';
 import {RecordingPermissionViewComponent} from '../components/recording-permission-view/recording-permission-view.component';
 import { LoginPageComponent } from '../components/login-page/login-page.component';
@@ -49,10 +48,6 @@ const routes: Routes = [
   {
     path: 'loadTests',
     component: LoadTestsComponent,
-  },
-  {
-    path: 'createQuestionnaire',
-    component: CreateQuestionnaireComponent,
   },
   {
     path: 'cardsorting/createTest',

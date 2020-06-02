@@ -14,7 +14,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {DoTestComponent} from './components/doTest/do-test.component';
 import { RecordingPermissionViewComponent } from './components/recording-permission-view/recording-permission-view.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
 import { ScreenRecordingComponent } from './components/screen-recording/screen-recording.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -56,7 +55,6 @@ export function provideConfig() {
     SignInOutComponent,
     DoTestComponent,
     RecordingPermissionViewComponent,
-    CreateQuestionnaireComponent,
     ScreenRecordingComponent,
     LoginPageComponent,
     ViewRecordingsComponent,
