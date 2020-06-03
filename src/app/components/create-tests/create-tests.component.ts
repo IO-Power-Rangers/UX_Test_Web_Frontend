@@ -38,9 +38,8 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   urlToEmbed: string;
   isSaved: boolean;
-  private readonly URL = environment.local + environment.tests;
+  private readonly URL = environment.apiUrl + environment.tests;
 
-  host = 'http://localhost:9090';
   testsEndpoint = '/api/tests';
 
   public testTitle = '';

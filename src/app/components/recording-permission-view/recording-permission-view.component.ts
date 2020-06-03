@@ -14,7 +14,7 @@ import {RecordingPermittedService} from '../../services/recording-permitted.serv
 
 export class RecordingPermissionViewComponent implements OnInit {
 
-  private readonly URL = environment.local + environment.users;
+  private readonly URL = environment.apiUrl + environment.users;
   isChecked = false;
   constructor(private http: HttpClient, private userService: UserService,
               private recordingPermittedService: RecordingPermittedService) { }

@@ -13,8 +13,8 @@ export class ViewTestsService {
 
   constructor(private http: HttpClient) {}
 
-  private readonly testURL =  environment.local + environment.tests;
-  private readonly groupURL = environment.local + environment.groups;
+  private readonly testURL =  environment.apiUrl + environment.tests;
+  private readonly groupURL = environment.apiUrl + environment.groups;
 
   private test: Test;
   private message = new BehaviorSubject<Test>(this.test);

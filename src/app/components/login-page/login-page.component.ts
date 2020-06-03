@@ -15,7 +15,7 @@ export class LoginPageComponent implements OnInit {
   public disabled: boolean;
   public roleSelected;
   user: User;
-  private readonly URL = environment.local + environment.users;
+  private readonly URL = environment.apiUrl + environment.users;
 
 
   public roles = [

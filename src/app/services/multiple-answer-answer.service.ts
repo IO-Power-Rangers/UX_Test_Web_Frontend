@@ -10,7 +10,7 @@ export class MultipleAnswerAnswerService {
 
   constructor(private http: HttpClient) { }
 
-  url = environment.local + environment.multipleAnswerAnswer;
+  url = environment.apiUrl + environment.multipleAnswerAnswer;
 
   postMultipleAnswerAnswer(answer: MultipleAnswerAnswer) {
     this.http.post(this.url, answer)
