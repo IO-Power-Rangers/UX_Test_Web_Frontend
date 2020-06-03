@@ -44,6 +44,7 @@ export class ScreenRecordingComponent implements OnInit {
 
     this.screenRecorder.onstop = (event) => {
 
+      stream.getTracks().forEach(track => track.stop());
       let blob = new Blob(this.chunks, {'type' : 'video/mp4;'});
 
       var reader = new FileReader();
