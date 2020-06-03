@@ -24,15 +24,15 @@ export class TestService {
 
   postTest(test : Test) {
 
-    // need to separate test and questionnaire since 
-    // there are 2 separate REST endpoints created at backend 
+    // need to separate test and questionnaire since
+    // there are 2 separate REST endpoints created at backend
     var questionnaire = test.questionnaire
     test.questionnaire = undefined;
 
     return this.http.post(this.urlTest, test)
       .toPromise()
       .then(testId => {
-        
+
         questionnaire.testId = Number(testId)
         console.log(questionnaire);
         this.postQuestionnaire(questionnaire)
