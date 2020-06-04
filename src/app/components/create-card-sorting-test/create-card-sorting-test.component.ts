@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {CardSortingTest} from "./cardSortingTest";
 import {CardSortingService} from "../../services/cardsorting.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-create-card-sorting-test',
@@ -10,7 +11,7 @@ import {CardSortingService} from "../../services/cardsorting.service";
 })
 export class CreateCardSortingTestComponent implements OnInit {
 
-  constructor(private titleService: Title, private cardSortingService: CardSortingService) {
+  constructor(private titleService: Title, private cardSortingService: CardSortingService, private userService: UserService) {
     this.titleService.setTitle('Create Card Sorting Tests');
   }
 
@@ -48,6 +49,7 @@ export class CreateCardSortingTestComponent implements OnInit {
   submitTest() {
 
     const test: CardSortingTest = {
+      creator: this.userService.getUser(),
       categories : this.rawCategories,
       subjects: this.rawSubjects,
       results: []
