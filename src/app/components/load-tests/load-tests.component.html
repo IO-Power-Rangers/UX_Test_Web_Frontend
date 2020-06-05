@@ -79,13 +79,13 @@
             <div class="question">
               <div class="questionContent">
                 <label>
-                  {{q.content}}
+                  {{q.question.content}}
                 </label>
               </div>
 
               <mat-form-field class="answerT" appearance="standard">
 
-                <input matInput type="text"  placeholder="Your answer"/>
+                <input matInput type="text" [(ngModel)]="q.answer.answer" placeholder="Your answer" name="text_answer_{{i}}"/>
 
               </mat-form-field>
             </div>
@@ -98,11 +98,11 @@
             <div class="question">
               <div class="questionContent">
                 <label>
-                  {{q.content}}
+                  {{q.question.content}}
                 </label>
               </div>
 
-              <section *ngFor="let o of q.options;" fxLayout="column">
+              <section *ngFor="let o of q.question.options;" fxLayout="column">
                   <mat-checkbox>{{o.content}}</mat-checkbox>
               </section>
             </div>
@@ -115,11 +115,11 @@
             <div class="question">
               <div class="questionContent">
                 <label>
-                  {{q.content}}
+                  {{q.question.content}}
                 </label>
               </div>
 
-              <section *ngFor="let o of q.options;" fxLayout="column">
+              <section *ngFor="let o of q.question.options;" fxLayout="column">
                 <mat-radio-button class="answerMC" name="MC_{{i}}">{{o.content}}</mat-radio-button>
               </section>
 
@@ -133,11 +133,11 @@
             <div class="question">
               <div class="questionContent">
                 <label>
-                  {{q.content}}
+                  {{q.question.content}}
                 </label>
               </div>
 
-              <section *ngFor="let o of likertScaleArray(q.possibleStepsNo); let a = index;" fxLayout="column">
+              <section *ngFor="let o of likertScaleArray(q.question.possibleStepsNo); let a = index;" fxLayout="column">
                 <mat-radio-button class="answerMC" name="LS_{{i}}">{{(a+1)}}</mat-radio-button>
               </section>
 
