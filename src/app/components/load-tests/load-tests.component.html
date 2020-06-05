@@ -85,7 +85,7 @@
 
               <mat-form-field class="answerT" appearance="standard">
 
-                <input matInput type="text" [(ngModel)]="q.answer.answer" placeholder="Your answer" name="text_answer_{{i}}"/>
+                <input matInput type="text" [(ngModel)]="q.answer.answer" placeholder="Your answer" name="T_{{i}}"/>
 
               </mat-form-field>
             </div>
@@ -102,8 +102,8 @@
                 </label>
               </div>
 
-              <section *ngFor="let o of q.question.options;" fxLayout="column">
-                  <mat-checkbox>{{o.content}}</mat-checkbox>
+              <section *ngFor="let o of q.question.options; let j = index;" fxLayout="column">
+                  <mat-checkbox [(ngModel)]="q.selection[j]" name="MA_{{j}}">{{o.content}} </mat-checkbox>
               </section>
             </div>
 
@@ -119,9 +119,14 @@
                 </label>
               </div>
 
-              <section *ngFor="let o of q.question.options;" fxLayout="column">
-                <mat-radio-button class="answerMC" name="MC_{{i}}">{{o.content}}</mat-radio-button>
-              </section>
+              <mat-radio-group [(ngModel)]="q.answer.selectedOptionId" name="MC_group">
+
+                <section *ngFor="let o of q.question.options; let j = index;" fxLayout="column">
+                  <mat-radio-button [value]="o.id" class="answerMC" name="MC_{{j}}">{{o.content}}</mat-radio-button>
+                </section>
+
+              </mat-radio-group>
+              
 
 
             </div>
@@ -137,9 +142,13 @@
                 </label>
               </div>
 
-              <section *ngFor="let o of likertScaleArray(q.question.possibleStepsNo); let a = index;" fxLayout="column">
-                <mat-radio-button class="answerMC" name="LS_{{i}}">{{(a+1)}}</mat-radio-button>
-              </section>
+              <mat-radio-group [(ngModel)]="q.answer.answer" name="LS_group">
+
+                <section *ngFor="let o of likertScaleArray(q.question.possibleStepsNo); let j = index;" fxLayout="column">
+                  <mat-radio-button [value]="j+1" class="answerMC" name="LS_{{j}}">{{(j+1)}}</mat-radio-button>
+                </section>
+
+              </mat-radio-group>
 
             </div>
 

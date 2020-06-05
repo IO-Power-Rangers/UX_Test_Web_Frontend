@@ -20,6 +20,11 @@ import { LikertScaleQuestion } from 'src/interfaces/questionnaire/question/liker
 import { MultipleChoiceQuestion } from 'src/interfaces/questionnaire/question/multiple-choice-question';
 import { MultipleAnswerQuestion } from 'src/interfaces/questionnaire/question/multiple-answer-question';
 import { TextAnswerService } from 'src/app/services/text-answer.service';
+import { MultipleChoiceQuestionOption } from 'src/interfaces/questionnaire/question/multiple-choice-question-option';
+import { MultipleAnswerAnswerService } from 'src/app/services/multiple-answer-answer.service';
+import { MultipleChoiceAnswerService } from 'src/app/services/multiple-choice-answer.service';
+import { LikertScaleAnswerService } from 'src/app/services/likert-scale-answer.service';
+import { Router } from '@angular/router';
 
 @Component({
   providers: [ScreenRecordingComponent],
@@ -33,7 +38,11 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
               private userService: UserService, private http: HttpClient,
               private screenRecordingComponent: ScreenRecordingComponent,
               private testService: TestService,
-              private textAnswerService: TextAnswerService) {
+              private textAnswerService: TextAnswerService,
+              private multipleAnswerAnswerService: MultipleAnswerAnswerService,
+              private multipleChoiceAnswerService: MultipleChoiceAnswerService,
+              private likertScaleAnswerService: LikertScaleAnswerService,
+              private router: Router) {
 
     this.titleService.setTitle('Create tests');
     this.isSaved = false;
@@ -180,11 +189,30 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       document.getElementById('websiteIframe').replaceWith(newIframe);
 
       this.testTitle = this.test.title;
+
       this.test.tasks.forEach(task => this.rawTasks.push(task));
-      this.test.questionnaire.textQuestions.forEach(q => this.rawQuestionsT.push({question: q, answer: this.prepareTextAnswer(q)}));
-      this.test.questionnaire.multipleChoiceQuestions.forEach(q => this.rawQuestionsMC.push({question: q, answer: this.prepareMultipleChoiceAnswer(q)}));
-      this.test.questionnaire.multipleAnswerQuestions.forEach(q => this.rawQuestionsMA.push({question: q, answer: this.prepareMultipleAnswerAnswer(q)}));
-      this.test.questionnaire.likertScaleQuestions.forEach(q => this.rawQuestionsLS.push({question: q, answer: this.prepareLikertScaleAnswer(q)}));
+
+      this.test.questionnaire.textQuestions.forEach(q => this.rawQuestionsT.push({
+        question: q, 
+        answer: this.prepareTextAnswer(q)
+      }));
+
+      this.test.questionnaire.multipleChoiceQuestions.forEach(q => this.rawQuestionsMC.push({
+        question: q,
+        answer: this.prepareMultipleChoiceAnswer(q)
+      }));
+
+      this.test.questionnaire.multipleAnswerQuestions.forEach(q => this.rawQuestionsMA.push({
+        question: q, 
+        answer: this.prepareMultipleAnswerAnswer(q),
+        selection: this.prepareSelectedOptionsArray(q)
+      }));
+
+      this.test.questionnaire.likertScaleQuestions.forEach(q => this.rawQuestionsLS.push({
+        question: q, 
+        answer: this.prepareLikertScaleAnswer(q)
+      }));
+
       this.isLoaded = true;
 
     } else {
@@ -205,7 +233,15 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
     // should save to the database here
     // TODO MAYBE check if all questions are answered
     this.isSaved = true;
+
+    this.rawQuestionsMA.forEach(q => this.mapSelectionToMultipleAnswerAnswer(q))
+
     this.rawQuestionsT.forEach(raw => this.textAnswerService.postTextAnswer(raw.answer))
+    this.rawQuestionsMC.forEach(raw => this.multipleChoiceAnswerService.postMultipleChoiceAnswer(raw.answer))
+    this.rawQuestionsMA.forEach(raw => this.multipleAnswerAnswerService.postMultipleAnswerAnswer(raw.answer))
+    this.rawQuestionsLS.forEach(raw => this.likertScaleAnswerService.postLikertScaleAnswer(raw.answer))
+
+    this.router.navigate(['/home'])
   }
 
   logValue() {
@@ -236,7 +272,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
     return {
       userId: this.userService.getUser().id,
       questionId: question.id,
-      selectedOptionId: question.options[0].id
+      selectedOptionId: null
     }
   }
 
@@ -245,6 +281,29 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       userId: this.userService.getUser().id,
       questionId: question.id,
       selectedOptionsIds: []
+    }
+  }
+
+  prepareSelectedOptionsArray(question) {
+    var array = []
+    question.options.forEach(o => array.push(false))
+    return array
+  }
+
+  prepareLikertArray(question: LikertScaleQuestion) {
+    var array = []
+    for (var i = 0; i < question.possibleStepsNo; i++) {
+      array.push(false)
+    }
+    return array
+  }
+
+  mapSelectionToMultipleAnswerAnswer(raw) {
+    
+    for (var i = 0; i < raw.selection.length; i++) {
+      if (raw.selection[i]) {
+        raw.answer.selectedOptionsIds.push(raw.question.options[i].id)
+      }
     }
   }
 

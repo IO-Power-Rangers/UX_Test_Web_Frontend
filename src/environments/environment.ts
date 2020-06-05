@@ -12,6 +12,10 @@ export const environment = {
   export: '/api/export',
   questionnaire: '/api/questionnaire',
   textAnswer: '/api/answer/text',
+  likertScaleAnswer: '/api/answer/likert',
+  multipleAnswerAnswer: '/api/answer/multipleAnswer',
+  multipleChoiceAnswer: '/api/answer/multipleChoice'
+
 };
 
 /*
