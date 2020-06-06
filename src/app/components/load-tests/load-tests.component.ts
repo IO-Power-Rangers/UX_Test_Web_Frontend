@@ -1,4 +1,5 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Test } from '../../../interfaces/test';
@@ -8,6 +9,22 @@ import {environment} from '../../../environments/environment';
 import {RecordingPermittedService} from '../../services/recording-permitted.service';
 import {ScreenRecordingComponent} from '../screen-recording/screen-recording.component';
 import {UserService} from '../../services/user.service';
+import { TestService } from 'src/app/services/test.service';
+import { TextAnswer } from 'src/interfaces/questionnaire/answer/text-answer';
+import { MultipleChoiceAnswer } from 'src/interfaces/questionnaire/answer/multiple-choice-answer';
+import { MultipleAnswerAnswer } from 'src/interfaces/questionnaire/answer/multiple-answer-answer';
+import { LikertScaleAnswer } from 'src/interfaces/questionnaire/answer/likert-scale-answer';
+import { Questionnaire } from 'src/interfaces/questionnaire/questionnaire';
+import { TextQuestion } from 'src/interfaces/questionnaire/question/text-question';
+import { LikertScaleQuestion } from 'src/interfaces/questionnaire/question/likert-scale-question';
+import { MultipleChoiceQuestion } from 'src/interfaces/questionnaire/question/multiple-choice-question';
+import { MultipleAnswerQuestion } from 'src/interfaces/questionnaire/question/multiple-answer-question';
+import { TextAnswerService } from 'src/app/services/text-answer.service';
+import { MultipleChoiceQuestionOption } from 'src/interfaces/questionnaire/question/multiple-choice-question-option';
+import { MultipleAnswerAnswerService } from 'src/app/services/multiple-answer-answer.service';
+import { MultipleChoiceAnswerService } from 'src/app/services/multiple-choice-answer.service';
+import { LikertScaleAnswerService } from 'src/app/services/likert-scale-answer.service';
+import { Router } from '@angular/router';
 
 @Component({
   providers: [ScreenRecordingComponent],
@@ -19,7 +36,13 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
   constructor(private titleService: Title, private recordingPermittedService: RecordingPermittedService,
               private userService: UserService, private http: HttpClient,
-              private screenRecordingComponent: ScreenRecordingComponent) {
+              private screenRecordingComponent: ScreenRecordingComponent,
+              private testService: TestService,
+              private textAnswerService: TextAnswerService,
+              private multipleAnswerAnswerService: MultipleAnswerAnswerService,
+              private multipleChoiceAnswerService: MultipleChoiceAnswerService,
+              private likertScaleAnswerService: LikertScaleAnswerService,
+              private router: Router) {
 
     this.titleService.setTitle('Create tests');
     this.isSaved = false;
@@ -130,14 +153,18 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
   loadTest() {
     this.showRecordingPermissionView = true;
 
-    this.recordingPermittedService.permitted$.subscribe(() => {
+    this.testService.getTest(this.testId).subscribe((data) => {
+      this.test = <Test>data;
+
+      this.recordingPermittedService.permitted$.subscribe(() => {
         this.showRecordingPermissionView = false;
         this.embedWebsite();
         this.isLoaded = true;
         // example test
         this.screenRecordingComponent.startRecording(this.userService.getUser(), this.test);
-      }
-    );
+      });
+    
+    });
   }
 
 
@@ -162,11 +189,30 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       document.getElementById('websiteIframe').replaceWith(newIframe);
 
       this.testTitle = this.test.title;
+
       this.test.tasks.forEach(task => this.rawTasks.push(task));
-      this.test.questionnaire.textQuestions.forEach(q => this.rawQuestionsT.push(q));
-      this.test.questionnaire.multipleChoiceQuestions.forEach(q => this.rawQuestionsMC.push(q));
-      this.test.questionnaire.multipleAnswerQuestions.forEach(q => this.rawQuestionsMA.push(q));
-      this.test.questionnaire.likertScaleQuestions.forEach(q => this.rawQuestionsLS.push(q));
+
+      this.test.questionnaire.textQuestions.forEach(q => this.rawQuestionsT.push({
+        question: q, 
+        answer: this.prepareTextAnswer(q)
+      }));
+
+      this.test.questionnaire.multipleChoiceQuestions.forEach(q => this.rawQuestionsMC.push({
+        question: q,
+        answer: this.prepareMultipleChoiceAnswer(q)
+      }));
+
+      this.test.questionnaire.multipleAnswerQuestions.forEach(q => this.rawQuestionsMA.push({
+        question: q, 
+        answer: this.prepareMultipleAnswerAnswer(q),
+        selection: this.prepareSelectedOptionsArray(q)
+      }));
+
+      this.test.questionnaire.likertScaleQuestions.forEach(q => this.rawQuestionsLS.push({
+        question: q, 
+        answer: this.prepareLikertScaleAnswer(q)
+      }));
+
       this.isLoaded = true;
 
     } else {
@@ -187,6 +233,15 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
     // should save to the database here
     // TODO MAYBE check if all questions are answered
     this.isSaved = true;
+
+    this.rawQuestionsMA.forEach(q => this.mapSelectionToMultipleAnswerAnswer(q))
+
+    this.rawQuestionsT.forEach(raw => this.textAnswerService.postTextAnswer(raw.answer))
+    this.rawQuestionsMC.forEach(raw => this.multipleChoiceAnswerService.postMultipleChoiceAnswer(raw.answer))
+    this.rawQuestionsMA.forEach(raw => this.multipleAnswerAnswerService.postMultipleAnswerAnswer(raw.answer))
+    this.rawQuestionsLS.forEach(raw => this.likertScaleAnswerService.postLikertScaleAnswer(raw.answer))
+
+    this.router.navigate(['/home'])
   }
 
   logValue() {
@@ -195,6 +250,61 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
 
   likertScaleArray(possibleStepsNo) {
     return new Array(possibleStepsNo);
+  }
+
+  prepareTextAnswer(question: TextQuestion): TextAnswer {
+    return {
+      userId: this.userService.getUser().id,
+      questionId: question.id,
+      answer: null
+    }
+  }
+
+  prepareLikertScaleAnswer(question: LikertScaleQuestion): LikertScaleAnswer {
+    return {
+      userId: this.userService.getUser().id,
+      questionId: question.id,
+      answer: null
+    }
+  }
+
+  prepareMultipleChoiceAnswer(question: MultipleChoiceQuestion): MultipleChoiceAnswer {
+    return {
+      userId: this.userService.getUser().id,
+      questionId: question.id,
+      selectedOptionId: null
+    }
+  }
+
+  prepareMultipleAnswerAnswer(question: MultipleAnswerQuestion): MultipleAnswerAnswer {
+    return {
+      userId: this.userService.getUser().id,
+      questionId: question.id,
+      selectedOptionsIds: []
+    }
+  }
+
+  prepareSelectedOptionsArray(question) {
+    var array = []
+    question.options.forEach(o => array.push(false))
+    return array
+  }
+
+  prepareLikertArray(question: LikertScaleQuestion) {
+    var array = []
+    for (var i = 0; i < question.possibleStepsNo; i++) {
+      array.push(false)
+    }
+    return array
+  }
+
+  mapSelectionToMultipleAnswerAnswer(raw) {
+    
+    for (var i = 0; i < raw.selection.length; i++) {
+      if (raw.selection[i]) {
+        raw.answer.selectedOptionsIds.push(raw.question.options[i].id)
+      }
+    }
   }
 
 }
