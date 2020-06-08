@@ -19,9 +19,9 @@
 </mat-toolbar>
 <mat-card class="mat-card">
     <mat-card-header class="text">Login</mat-card-header>
-   
+
         <mat-card-content class="content-position position">
-            
+
             <mat-form-field class="position">
                 <mat-label>You are</mat-label>
                 <mat-select [(ngModel)]="roleSelected">
@@ -32,11 +32,11 @@
             </mat-form-field>
             <br>
             <app-sign-in-out class="position"></app-sign-in-out>
-            <mat-label *ngIf="user">Logged as : {{user.firstName}} {{user.lastName}}</mat-label>
+            <mat-label *ngIf="user">Logged in as : {{user.firstName}} {{user.lastName}}</mat-label>
             <br>
             <button class="submit-btn position" color="primary" mat-raised-button type="submit" (click) = "login()" [disabled] = "!roleSelected || !user"
-             >Login</button>
+            ><mat-icon>forward</mat-icon></button>
 
-            
+
     </mat-card-content>
 </mat-card>

@@ -4,10 +4,10 @@ import { MultipleAnswerQuestion } from './question/multiple-answer-question';
 import { LikertScaleQuestion } from './question/likert-scale-question';
 
 export interface Questionnaire {
-    id?: number
-    name: string
-    textQuestions: TextQuestion[]
-    multipleChoiceQuestions: MultipleChoiceQuestion[]
-    multipleAnswerQuestions: MultipleAnswerQuestion[]
-    likertScaleQuestions: LikertScaleQuestion[]
+    id?: number;
+    testId?: number;
+    textQuestions: TextQuestion[];
+    multipleChoiceQuestions: MultipleChoiceQuestion[];
+    multipleAnswerQuestions: MultipleAnswerQuestion[];
+    likertScaleQuestions: LikertScaleQuestion[];
 }

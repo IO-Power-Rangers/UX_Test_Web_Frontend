@@ -46,7 +46,6 @@ export class PerformCardSortingTestComponent implements OnInit {
         }
         this.testLoaded = true;
         document.getElementById("test").style.visibility="visible";
-        console.log(data);
       });
   }
 

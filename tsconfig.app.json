@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "files": [
     "src/main.ts",
@@ -10,5 +12,8 @@
   ],
   "include": [
     "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "src/app/components/view-tests/*"
   ]
 }

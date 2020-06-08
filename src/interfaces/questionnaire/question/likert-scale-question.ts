@@ -1,5 +1,5 @@
 export interface LikertScaleQuestion {
-    id?: number
-    content: string
-    possibleStepsNo: number
+    id?: number;
+    content: string;
+    possibleStepsNo: number;
 }

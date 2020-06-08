@@ -1,4 +1,4 @@
 export interface TextQuestion {
-    id?: number
-    content: string
+    id?: number;
+    content: string;
 }

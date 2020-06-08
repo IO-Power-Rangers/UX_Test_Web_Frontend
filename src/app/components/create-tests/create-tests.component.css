@@ -1,12 +1,11 @@
 #bodyWrapper {
 
-  height: 94%;
+  height: 93.5%;
   display: flex;
   flex-direction:row;
   justify-content: space-between;
 
 }
-
 
 #leftSide {
 
@@ -19,17 +18,66 @@
 
 #rightSide {
 
+  flex: 3;
+  margin-top: 0.7%;
+  margin-left: 1%;
+  overflow: auto;
+
+}
+
+.tab {
+
+}
+
+#tabGroup {
+
+}
+
+#task {
+
   display: flex;
-  flex-direction:column;
-  flex: 7;
+  flex-direction: row;
   justify-content: space-between;
 
 }
 
+#taskText {
 
-#sidebar {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  flex: 3;
+}
+
+#removeTaskWrapper {
+
+  flex: 1;
+  text-align: center;
+  position: relative;
+
+}
+
+#removeTaskButton {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: none !important;
+
+}
+
+#inputName {
+
+  margin-bottom: -5%;
+  flex: 1;
+
+}
+
+#inputDescription {
+
+  flex: 1;
 
 }
 
@@ -48,12 +96,44 @@
 
 #import {
 
+  flex: 10;
+
 }
 
+#buttonUrl {
+
+}
+
+#inputUrl {
+
+  width: 40%;
+  margin-right: 1%;
+
+}
+
+#addTaskButton {
+
+  margin-bottom: 0.2%;
+  box-shadow: none !important;
+
+}
+
+#testTitle {
+
+  flex: 3;
+
+}
+
+#saveTestWrapper {
+
+  flex: 2;
+  text-align: right;
+
+}
 
 #saveTest {
 
-  right: 0;
+  text-align: right;
 
 }
 
@@ -71,11 +151,106 @@
 
   border: none;
   padding: 0;
-  -webkit-transform:scale(0.9);
+  -webkit-transform:scale(1);
   -webkit-transform-origin: top left;
   margin: 0 0 0 -4%;
   background-color: #EEEEEE;
-  width: 115.5%;
-  height: 111.2%;
+  width: 104%;
+  height: 100%;
 
 }
+
+.inputField {
+
+  margin: 5px 20px;
+
+}
+
+.input {
+
+    margin-top: 2px;
+    margin-bottom: 2px;
+
+}
+
+.option {
+
+    margin-left: 140px;
+
+}
+
+#question {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.questionText {
+
+  flex: 6;
+
+}
+
+#removeQuestionWrapper {
+
+  flex: 1;
+  text-align: center;
+  position: relative;
+
+}
+
+#removeQuestionButton {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: none !important;
+
+}
+
+#questionNo {
+
+  margin: 10px 20px;
+
+}
+
+#questionnaireName {
+
+  margin: 10px 20px 0px;
+
+}
+
+#questionsForm {
+
+  margin: 0px 20px 5px;
+}
+
+
+#buttonWrapper {
+
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+
+}
+
+.buttonRow {
+
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+
+.button {
+
+  flex: 1;
+  margin: 5px;
+
+}
+

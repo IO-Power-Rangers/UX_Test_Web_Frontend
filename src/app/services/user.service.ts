@@ -10,7 +10,7 @@ export class UserService {
   postUser$: Observable<any>;
   private postUserSubject = new Subject<any>();
 
-  constructor() { 
+  constructor() {
     this.postUser$ = this.postUserSubject.asObservable();
   }
 
@@ -18,5 +18,9 @@ export class UserService {
   postUser(userData:User){
     this.user= userData;
     this.postUserSubject.next(userData);
+  }
+
+  getUser() {
+    return this.user;
   }
 }

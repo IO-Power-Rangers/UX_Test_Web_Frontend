@@ -6,11 +6,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSelectModule} from '@angular/material/select'
-import {MatMenuModule} from '@angular/material/menu'
+import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatListModule } from '@angular/material/list';
-
+import { MatPaginatorModule } from '@angular/material/paginator'
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -23,7 +26,11 @@ import { MatListModule } from '@angular/material/list';
     MatCheckboxModule,
     MatSliderModule,
     MatCardModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatRadioModule,
     MatListModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatToolbarModule,
@@ -35,7 +42,11 @@ import { MatListModule } from '@angular/material/list';
     MatCheckboxModule,
     MatSliderModule,
     MatCardModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatRadioModule,
     MatListModule,
+    MatPaginatorModule,
   ]
 })
 export class MaterialModule {}

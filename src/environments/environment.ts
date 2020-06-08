@@ -8,7 +8,14 @@ export const environment = {
   local : 'http://localhost:8099',
   users : '/api/users',
   tests : '/api/tests',
-  results: "/api/results"
+  results: '/api/results',
+  export: '/api/export',
+  questionnaire: '/api/questionnaire',
+  textAnswer: '/api/answer/text',
+  likertScaleAnswer: '/api/answer/likert',
+  multipleAnswerAnswer: '/api/answer/multipleAnswer',
+  multipleChoiceAnswer: '/api/answer/multipleChoice'
+
 };
 
 /*
