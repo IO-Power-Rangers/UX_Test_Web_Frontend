@@ -6,6 +6,7 @@ import {Task} from '../../../interfaces/task';
 import {Router, Routes} from '@angular/router';
 import {RecordingPermissionViewComponent} from '../recording-permission-view/recording-permission-view.component';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {UserService} from '../../services/user.service';
 
 const routes: Routes = [
   {path: 'screenRecording', component: RecordingPermissionViewComponent},
@@ -19,18 +20,12 @@ const routes: Routes = [
 
 export class ViewTestsComponent implements OnInit {
 
-  // tests: Test[];
+  tests: Test[];
   message: Task[];
   modelMessage: string;
-  tests = [
-    'Test I',
-    'Test II',
-    'School test',
-    'Medicare test',
-    'Mockup',
-  ];
 
-  constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router) {
+  constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router,
+              private userService: UserService) {
     this.titleService.setTitle('View your tests');
     this.showTest();
   }
@@ -44,7 +39,7 @@ export class ViewTestsComponent implements OnInit {
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        // this.tests = data;
+        this.tests = data.filter(test => test.creator.id === this.userService.getUser().id);
       });
   }
 
