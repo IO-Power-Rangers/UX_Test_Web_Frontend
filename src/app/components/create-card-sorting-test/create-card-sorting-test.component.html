@@ -1,26 +1,28 @@
 <a id="submitButton" mat-flat-button color="primary" (click)="submitTest()"> Create Test </a>
 
-<form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+<form id="categoriesForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
     <section *ngFor="let category of rawCategories; let i = index;">
       <mat-form-field id="inputName1" appearance="standard" [style.fontSize.px]=14>
-        <input matInput type="text" [(ngModel)]="category.name" name="content_{{category.name}}" placeholder="Category {{i + 1}} name"/>
+        <input matInput type="text" [(ngModel)]="category.name" [name]="category.name+'_'+i" placeholder="Category {{i + 1}} name"/>
       </mat-form-field>
 
     </section>
     <br/>
     <a id="buttonC1" mat-flat-button color="primary" (click)="addCategory()"> Add Category </a>
     <br/> <br/>
-    <a id="buttonC2" mat-flat-button color="primary" (click)="removeRecentlyAddedCategory()"> Remove Category </a>
-    <section *ngFor="let subject of rawSubjects; let j = index;">
+    <a id="buttonC2" mat-flat-button color="primary" (click)="removeRecentlyAddedCategory()"> Remove Last Category </a>
+</form>
+<form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+  <section *ngFor="let subject of rawSubjects; let j = index;">
       <mat-form-field id="inputName2" appearance="standard" [style.fontSize.px]=14>
-        <input matInput type="text" [(ngModel)]="subject.name" name="content_{{subject.name}}" placeholder="Subject {{j + 1}} name"/>
+        <input matInput type="text" [(ngModel)]="subject.name" [name]="subject.name+'_'+j" placeholder="Subject {{j + 1}} name"/>
       </mat-form-field>
 
     </section>
     <br/>
     <a id="buttonS1" mat-flat-button color="primary" (click)="addSubject()"> Add Subject </a>
     <br/> <br/>
-    <a id="buttonS2" mat-flat-button color="primary" (click)="removeRecentlyAddedSubject()"> Remove Subject </a>
+    <a id="buttonS2" mat-flat-button color="primary" (click)="removeRecentlyAddedSubject()"> Remove Last Subject </a>
 
 
   </form>
