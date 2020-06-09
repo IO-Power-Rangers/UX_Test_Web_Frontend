@@ -22,7 +22,6 @@ export class ResultsVisualizationComponent implements OnInit {
                 .subscribe( (params) => {
                      if(params && params['id']){
                       this.loadResults(params['id'])
-                      console.log("Im here")
                      } else {
                       this.noParam = true;
                      }
