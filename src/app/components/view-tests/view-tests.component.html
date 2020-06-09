@@ -6,10 +6,10 @@
   <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of tests" cdkDrag>
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
       {{test.title}}
-      <button id="startButton" (click)="startTest(test)">Start test</button>
-      <button>
-
-      </button>
+      <button class="submit-btn position" color="primary" mat-raised-button type="submit"
+              (click)="startTest(test)">Start test</button>
+      <button class="submit-btn position" color="primary" mat-raised-button type="submit"
+            (click)="this.exportButton.setQuestionnaireId(test.questionnaire.id); this.exportButton.downloadExport()">Export</button>
       <button>
 
       </button>

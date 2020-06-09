@@ -94,7 +94,8 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    ExportButtonComponent,
   ],
   bootstrap: [AppComponent]
 })

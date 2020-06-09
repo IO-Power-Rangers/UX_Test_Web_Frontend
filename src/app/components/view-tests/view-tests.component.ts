@@ -4,13 +4,9 @@ import {ViewTestsService} from '../../services/view-tests.service';
 import {Test} from '../../../interfaces/test';
 import {Task} from '../../../interfaces/task';
 import {Router, Routes} from '@angular/router';
-import {RecordingPermissionViewComponent} from '../recording-permission-view/recording-permission-view.component';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {UserService} from '../../services/user.service';
-
-const routes: Routes = [
-  {path: 'screenRecording', component: RecordingPermissionViewComponent},
-];
+import {ExportButtonComponent} from '../export-button/export-button.component';
 
 @Component({
   selector: 'app-view-tests',
@@ -25,7 +21,7 @@ export class ViewTestsComponent implements OnInit {
   modelMessage: string;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router,
-              private userService: UserService) {
+              private userService: UserService, public exportButton: ExportButtonComponent) {
     this.titleService.setTitle('View your tests');
     this.showTest();
   }
