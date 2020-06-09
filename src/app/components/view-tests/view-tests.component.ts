@@ -39,7 +39,7 @@ export class ViewTestsComponent implements OnInit {
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data.filter(test => test.creator.id === this.userService.getUser().id);
+        this.tests = data.filter(test => test.creator.id === 1); // this.userService.getUser().id);
       });
   }
 
@@ -48,22 +48,11 @@ export class ViewTestsComponent implements OnInit {
   }
 
 
-  startTest() {
-    const selected = 'MOCK!!!!!!';
-
-    const titleArr = [];
-    const iterator = this.tests.values();
-    // for (const test of iterator) {
-    //  titleArr.push(test.title);
-   // }
-
-    if (selected in titleArr) {
-      // const test = this.tests.find(i => i.title === selected);
-      // this.message = test.tasks;
-      // this.modelMessage = test.uxModel.axLink;
-      this.viewTestsService.nextMessage(this.message, this.modelMessage);
-      this.router.navigate(['/screenRecording']);
-    }
+  startTest(test) {
+    this.message = test.tasks;
+    this.modelMessage = test.uxModel.axLink;
+    this.viewTestsService.nextMessage(this.message, this.modelMessage);
+    this.router.navigate(['/doTest']);
   }
 
 

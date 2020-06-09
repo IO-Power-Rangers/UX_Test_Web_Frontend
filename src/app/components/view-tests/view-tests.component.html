@@ -5,10 +5,14 @@
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of tests" cdkDrag>
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-    {{test.title}}
+      {{test.title}}
+      <button id="startButton" (click)="startTest(test)">Start test</button>
+      <button>
+
+      </button>
+      <button>
+
+      </button>
   </div>
 </div>
 
-<p>
-  <button id="startButton" (click)="startTest()">Start test</button>
-</p>
