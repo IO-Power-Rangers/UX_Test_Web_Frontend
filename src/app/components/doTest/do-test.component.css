@@ -1,10 +1,35 @@
 #websiteIframe{
+  position: relative;
+  left: 20%;
   border: none;
   padding: 0;
-  -webkit-transform:scale(0.9);
+  -webkit-transform:scale(1);
   -webkit-transform-origin: top left;
-  margin: 0 0 0 -4%;
+  margin: 0 0 0 -24.8%;
   background-color: #EEEEEE;
-  width: 115.5%;
-  height: 111.2%;
+  width: 124.8%;
+  height: 100%;
+}
+
+#task {
+  position: absolute;
+  left: 3%;
+}
+
+#description {
+  position: absolute;
+  left: 10%;
+  bottom: 81%;
+}
+
+#buttonDiv {
+  position: absolute;
+  bottom: 85%;
+  left: 40%;
+}
+
+#toolbar {
+  position: absolute;
+  bottom: 46%;
+  left: 3%;
 }

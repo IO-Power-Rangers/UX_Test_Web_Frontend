@@ -15,18 +15,16 @@ export class DoTestComponent implements OnInit, AfterViewInit {
 
   message: Task[];
   modelMessage: string;
-  currTask: Task = {id: -1, name: "test", description:"test"};
+  currTask: Task = {id: -1, name: 'test', description: 'test'};
   @ViewChild('nextBtn') nextButton: ElementRef;
 
-  constructor(private titleService: Title, private viewTestsService: ViewTestsService,
-              private screenRecordingComponent: ScreenRecordingComponent) {
+  constructor(private titleService: Title, private viewTestsService: ViewTestsService) {
     this.titleService.setTitle('Do the test');
   }
 
   ngOnInit(): void {
-    this.viewTestsService.sharedMessage.subscribe(message => this.message = message,null, () => this.currTask = this.message[0]);
+    this.viewTestsService.sharedMessage.subscribe(message => this.message = message, null, () => this.currTask = this.message[0]);
     this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
-    //this.currTask = this.message[0];
   }
 
   ngAfterViewInit() {
@@ -50,7 +48,4 @@ export class DoTestComponent implements OnInit, AfterViewInit {
     document.getElementById('websiteIframe').replaceWith(newIframe);
   }
 
-  finishRecording() {
-    this.screenRecordingComponent.finishRecording();
-  }
 }

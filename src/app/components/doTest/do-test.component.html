@@ -1,22 +1,26 @@
-<p>
-  Task:
-  <br>
-  {{currTask.name}}
-</p>
+<div>
+  <div id="task">
+    <h1>
+      Task:
+      <br>
+      {{currTask.name}}
+    </h1>
+  </div>
 
-<p>
-  Description:
-  <br>
-  {{currTask.description}}
-</p>
+  <div id="description">
+    <h2>
+      Description:
+      <br>
+      {{currTask.description}}
+    </h2>
+  </div>
 
-<p>
-  <button #nextBtn id="nextTaskButton" (click)="nextTask()">Next task</button>
-</p>
+  <div id="buttonDiv">
+    <button #nextBtn id="nextTaskButton" class="submit-btn" color="primary" mat-raised-button type="submit"
+               (click)="nextTask()">Next task</button>
+  </div>
 
-<p>
-  <button id="finishRecBtn" (click) = "finishRecording()">Finish recording</button>
-</p>>
+</div>
 
 <div id="toolbar">
   <div id="import">
@@ -37,6 +41,6 @@
 
   <div id="websiteContainer">
     <iframe id="websiteIframe"></iframe>
-
   </div>
+
 </div>
