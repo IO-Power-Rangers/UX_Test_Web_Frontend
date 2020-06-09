@@ -34,6 +34,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PendingChangesGuard } from './pending-changes';
 import { LoadTestsComponent } from './components/load-tests/load-tests.component';
 import { ExportButtonComponent } from './components/export-button/export-button.component';
+import { ViewTestsComponent} from './components/view-tests/view-tests.component';
 
 const config = new AuthServiceConfig([
   {
@@ -71,6 +72,7 @@ export function provideConfig() {
     LoadTestsComponent,
     ViewResultsOfTestComponent,
     ExportButtonComponent,
+    ViewTestsComponent,
   ],
   imports: [
     ChartsModule,
@@ -92,7 +94,8 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    ExportButtonComponent,
   ],
   bootstrap: [AppComponent]
 })

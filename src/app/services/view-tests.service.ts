@@ -12,7 +12,7 @@ export class ViewTestsService {
 
   constructor(private http: HttpClient) {}
 
-  private readonly URL =  environment.local + environment.tests;
+  private readonly URL =  environment.apiUrl + environment.tests;
 
   private message = new BehaviorSubject([]);
   private modelMessage = new BehaviorSubject('');
