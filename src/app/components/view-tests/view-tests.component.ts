@@ -51,6 +51,10 @@ export class ViewTestsComponent implements OnInit {
     this.router.navigate(['/doTest']);
   }
 
+  viewRecordings(test) {
+    this.router.navigate(['/recordingsView/', test.id]);
+  }
+
 
 }
 

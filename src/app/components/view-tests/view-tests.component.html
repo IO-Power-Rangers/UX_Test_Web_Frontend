@@ -7,12 +7,11 @@
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
       {{test.title}}
       <button class="submit-btn position" color="primary" mat-raised-button type="submit"
-              (click)="startTest(test)">Start test</button>
+              (click)="startTest(test)">Start Test</button>
       <button class="submit-btn position" color="primary" mat-raised-button type="submit"
             (click)="this.exportButton.setQuestionnaireId(test.questionnaire.id); this.exportButton.downloadExport()">Export</button>
-      <button>
-
-      </button>
+      <button class="submit-btn position" color="primary" mat-raised-button type="submit"
+            (click)="this.viewRecordings(test)">Show Recordings</button>
   </div>
 </div>
 
