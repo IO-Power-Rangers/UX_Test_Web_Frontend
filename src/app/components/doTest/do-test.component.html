@@ -1,46 +1,65 @@
-<div>
-  <div id="task">
-    <h1>
-      Task:
-      <br>
-      {{currTask.name}}
-    </h1>
-  </div>
+<div id="bodyWrapper">
 
-  <div id="description">
-    <h2>
-      Description:
-      <br>
-      {{currTask.description}}
-    </h2>
-  </div>
+  <div id="leftSide">
 
-  <div id="buttonDiv">
-    <button #nextBtn id="nextTaskButton" class="submit-btn" color="primary" mat-raised-button type="submit"
-               (click)="nextTask()">Next task</button>
-  </div>
+    <div id="toolbar">
 
-</div>
+      <mat-form-field id="testTitle" appearance="standard" *ngIf="isLoaded" [style.fontSize.px]=18>
 
-<div id="toolbar">
-  <div id="import">
+        <input matInput type="text" [(ngModel)]="this.test.title" readonly/>
 
-    <mat-form-field appearance="standard" [style.fontSize.px]=18>
+      </mat-form-field>
 
-      <label>
+    </div>
 
-        <input matInput type="url" [(ngModel)]="modelMessage" id="urlInput"/>
+    <div id="websiteContainer">
 
-      </label>
+      <iframe id="websiteIframe"></iframe>
 
-    </mat-form-field>
-
-    <a mat-flat-button color="primary" (click)="embedWebsite()"> Import a mockup </a>
+    </div>
 
   </div>
 
-  <div id="websiteContainer">
-    <iframe id="websiteIframe"></iframe>
+
+  <div id="rightSide">
+
+    <mat-tab-group id="tabGroup" animationDuration="0ms" mat-stretch-tabs>
+      <mat-tab class="tab" *ngIf="! isTasksDone" label="Tasks">
+
+        <form class="container mt-3" >
+          <section *ngFor="let task of rawTasks; let i = index;" fxLayout="column">
+            <div class="task">
+              <div class="taskText">
+                <label class="taskName">
+                  {{'Task ' + (i+1) + ': ' + task.name}}
+                </label>
+
+                <label class="taskDescription">
+                  {{task.description}}
+                </label>
+
+              </div>
+
+              <div class="doneCheckWrapper">
+                <mat-checkbox class="doneCheck">
+                  Done
+                </mat-checkbox>
+              </div>
+
+            </div>
+            <mat-divider *ngIf="i != rawTasks.length - 1"></mat-divider>
+          </section>
+
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+
+    <div id="proceedSaveWrapper" *ngIf="isLoaded">
+      <a mat-flat-button color="accent" *ngIf="! isTasksDone" (click)="checkTasksAndProceed()">
+        End test
+      </a>
+    </div>
+
   </div>
 
 </div>

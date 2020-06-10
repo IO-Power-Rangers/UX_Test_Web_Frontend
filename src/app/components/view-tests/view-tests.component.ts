@@ -17,8 +17,7 @@ import {ExportButtonComponent} from '../export-button/export-button.component';
 export class ViewTestsComponent implements OnInit {
 
   tests: Test[];
-  message: Task[];
-  modelMessage: string;
+  message: Test;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router,
               private userService: UserService, public exportButton: ExportButtonComponent) {
@@ -28,14 +27,13 @@ export class ViewTestsComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewTestsService.sharedMessage.subscribe(message => this.message = message);
-    this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
   }
 
 
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data.filter(test => test.creator.id === this.userService.getUser().id);
+        this.tests = data.filter(test => test.creator.id === 1); // this.userService.getUser().id);
       });
   }
 
@@ -45,9 +43,8 @@ export class ViewTestsComponent implements OnInit {
 
 
   startTest(test) {
-    this.message = test.tasks;
-    this.modelMessage = test.uxModel.axLink;
-    this.viewTestsService.nextMessage(this.message, this.modelMessage);
+    this.message = test;
+    this.viewTestsService.nextMessage(this.message);
     this.router.navigate(['/doTest']);
   }
 

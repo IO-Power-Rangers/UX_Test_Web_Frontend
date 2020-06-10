@@ -1,35 +1,130 @@
-#websiteIframe{
+#bodyWrapper {
+
+  height: 93.5%;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+
+}
+
+#leftSide {
+
+  display: flex;
+  flex-direction:column;
+  flex: 5;
+  justify-content: space-between;
+
+}
+
+#rightSide {
+
+  display: flex;
+  flex-direction:column;
+  justify-content: space-between;
+  flex: 3;
+  margin-top: 0.7%;
+  overflow: auto;
+
+}
+
+.tab {
+
+}
+
+#tabGroup {
+
+  overflow: hidden;
+
+}
+
+#proceedSaveWrapper {
+
+  flex: auto;
+  text-align: center;
   position: relative;
-  left: 20%;
+
+}
+
+.task {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 2%;
+
+}
+
+.taskText {
+
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  font-size: 16px;
+
+}
+
+.doneCheckWrapper {
+
+  flex: 1;
+  text-align: center;
+  position: relative;
+
+}
+
+.doneCheck {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: none !important;
+
+}
+
+
+.taskName {
+
+  flex: 1;
+
+}
+
+.taskDescription {
+
+  margin-top: 2%;
+  flex: 1;
+
+}
+
+
+#toolbar {
+
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1%;
+  margin-right: 1%;
+
+}
+
+
+#testTitle {
+
+}
+
+
+#websiteIframe {
+
   border: none;
   padding: 0;
   -webkit-transform:scale(1);
   -webkit-transform-origin: top left;
-  margin: 0 0 0 -24.8%;
+  margin: 0 0 0 -22.1%;
   background-color: #EEEEEE;
-  width: 124.8%;
+  width: 122.1%;
   height: 100%;
-}
 
-#task {
-  position: absolute;
-  left: 3%;
-}
-
-#description {
-  position: absolute;
-  left: 10%;
-  bottom: 81%;
-}
-
-#buttonDiv {
-  position: absolute;
-  bottom: 85%;
-  left: 40%;
-}
-
-#toolbar {
-  position: absolute;
-  bottom: 46%;
-  left: 3%;
 }

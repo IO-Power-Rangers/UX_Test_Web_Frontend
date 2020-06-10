@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {Task} from '../../../interfaces/task';
 import {ViewTestsService} from '../../services/view-tests.service';
 import {ScreenRecordingComponent} from '../screen-recording/screen-recording.component';
+import {Test} from '../../../interfaces/test';
 
 @Component({
   selector: 'app-do-test',
@@ -11,41 +11,46 @@ import {ScreenRecordingComponent} from '../screen-recording/screen-recording.com
   styleUrls: ['./do-test.component.css']
 })
 
-export class DoTestComponent implements OnInit, AfterViewInit {
+export class DoTestComponent implements OnInit {
 
-  message: Task[];
-  modelMessage: string;
-  currTask: Task = {id: -1, name: 'test', description: 'test'};
-  @ViewChild('nextBtn') nextButton: ElementRef;
+  test: Test;
+  isLoaded: boolean;
+  isTasksDone: boolean;
+  public rawTasks: any[] = [];
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService) {
     this.titleService.setTitle('Do the test');
+    this.isLoaded = false;
+    this.isTasksDone = false;
+    this.test = {id: -1, title: '', tasks: [], uxModel: null, questionnaire: null, creator: null};
   }
 
   ngOnInit(): void {
-    this.viewTestsService.sharedMessage.subscribe(message => this.message = message, null, () => this.currTask = this.message[0]);
-    this.viewTestsService.sharedModelMessage.subscribe(modelMessage => this.modelMessage = modelMessage);
+    this.viewTestsService.sharedMessage.subscribe(message => this.test = message, null);
+    this.test.tasks.forEach(task => this.rawTasks.push(task));
+    this.embedWebsite();
+    this.isLoaded = true;
   }
 
-  ngAfterViewInit() {
-    this.nextButton.nativeElement.focus();
-  }
-
-  nextTask() {
-    const index = this.message.indexOf(this.currTask);
-    this.currTask = this.message[index + 1];
-
-    if (!this.currTask) {
-      this.nextButton.nativeElement.disabled = true;
-    }
-  }
 
   embedWebsite() {
     const newIframe = document.createElement('iframe');
     newIframe.id = 'websiteIframe';
-    newIframe.src = this.modelMessage;
+    newIframe.src = this.test.uxModel.axLink;
+    newIframe.style.cssText = '  border: none;\n' +
+      '  padding: 0;\n' +
+      '  -webkit-transform:scale(1);\n' +
+      '  -webkit-transform-origin: top left;\n' +
+      '  margin: 0 0 0 -24.8%;\n' +
+      '  background-color: #EEEEEE;\n' +
+      '  width: 124.8%;\n' +
+      '  height: 100%;';
 
     document.getElementById('websiteIframe').replaceWith(newIframe);
+    this.isLoaded = true;
   }
 
+  checkTasksAndProceed() {
+    this.isTasksDone = true;
+  }
 }
