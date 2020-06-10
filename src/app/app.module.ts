@@ -31,7 +31,7 @@ import { MultipleAnswerVisualizationComponent } from './components/results-visua
 import { TextVisualizationComponent } from './components/results-visualization/specific/text-visualization/text-visualization.component';
 import { ChartsModule } from 'ng2-charts';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { PendingChangesGuard } from './pending-changes';
+import { PendingChangesGuard } from './dialogs/pending-changes';
 import { LoadTestsComponent } from './components/load-tests/load-tests.component';
 import { ExportButtonComponent } from './components/export-button/export-button.component';
 

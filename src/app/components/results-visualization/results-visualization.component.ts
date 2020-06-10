@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResultsService } from 'src/app/services/results.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map } from 'rxjs/operators'
-import { Result } from 'src/app/interfaces/questionnaire/result/result';
+import { Result } from 'src/interfaces/questionnaire/result/result';
 
 @Component({
   selector: 'app-results-visualization',

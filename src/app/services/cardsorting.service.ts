@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import {Observable} from "rxjs";
-import {CardSortingResult} from "../components/perform-card-sorting-test/cardSortingResult";
-import {CardSortingTest} from "../components/create-card-sorting-test/cardSortingTest";
+import {CardSortingResult} from "../../interfaces/cardsorting/cardSortingResult";
+import {CardSortingTest} from "../../interfaces/cardsorting/cardSortingTest";
 
 @Injectable({
   providedIn: 'root'

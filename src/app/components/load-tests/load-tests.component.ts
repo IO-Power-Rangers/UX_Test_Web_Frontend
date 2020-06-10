@@ -4,7 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Test } from '../../../interfaces/test';
 import {Observable} from 'rxjs';
-import {ComponentCanDeactivate} from '../../pending-changes';
+import {ComponentCanDeactivate} from '../../dialogs/pending-changes';
 import {environment} from '../../../environments/environment';
 import {RecordingPermittedService} from '../../services/recording-permitted.service';
 import {ScreenRecordingComponent} from '../screen-recording/screen-recording.component';
@@ -163,7 +163,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
         // example test
         this.screenRecordingComponent.startRecording(this.userService.getUser(), this.test);
       });
-    
+
     });
   }
 
@@ -193,7 +193,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       this.test.tasks.forEach(task => this.rawTasks.push(task));
 
       this.test.questionnaire.textQuestions.forEach(q => this.rawQuestionsT.push({
-        question: q, 
+        question: q,
         answer: this.prepareTextAnswer(q)
       }));
 
@@ -203,13 +203,13 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       }));
 
       this.test.questionnaire.multipleAnswerQuestions.forEach(q => this.rawQuestionsMA.push({
-        question: q, 
+        question: q,
         answer: this.prepareMultipleAnswerAnswer(q),
         selection: this.prepareSelectedOptionsArray(q)
       }));
 
       this.test.questionnaire.likertScaleQuestions.forEach(q => this.rawQuestionsLS.push({
-        question: q, 
+        question: q,
         answer: this.prepareLikertScaleAnswer(q)
       }));
 
@@ -299,7 +299,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
   }
 
   mapSelectionToMultipleAnswerAnswer(raw) {
-    
+
     for (var i = 0; i < raw.selection.length; i++) {
       if (raw.selection[i]) {
         raw.answer.selectedOptionsIds.push(raw.question.options[i].id)

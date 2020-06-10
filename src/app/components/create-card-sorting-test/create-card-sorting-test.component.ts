@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {CardSortingTest} from "./cardSortingTest";
+import {CardSortingTest} from "../../../interfaces/cardsorting/cardSortingTest";
 import {CardSortingService} from "../../services/cardsorting.service";
 import {UserService} from "../../services/user.service";
 
@@ -38,13 +38,21 @@ export class CreateCardSortingTestComponent implements OnInit {
     })
   }
 
-  removeRecentlyAddedCategory() {
-    this.rawCategories.pop();
+  removeCategory(i) {
+    this.rawCategories.splice(i, 1);
   }
 
-  removeRecentlyAddedSubject() {
-    this.rawSubjects.pop();
+  removeSubject(i) {
+    this.rawSubjects.splice(i, 1);
   }
+
+  // removeRecentlyAddedCategory() {
+  //   this.rawCategories.pop();
+  // }
+  //
+  // removeRecentlyAddedSubject() {
+  //   this.rawSubjects.pop();
+  // }
 
   submitTest() {
 

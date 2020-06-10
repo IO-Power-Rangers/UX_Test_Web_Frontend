@@ -1,7 +1,7 @@
 import {Category} from './category'
 import {Subject} from "./subject";
-import {CardSortingResult} from "../perform-card-sorting-test/cardSortingResult";
-import {User} from "../../../interfaces/user";
+import {CardSortingResult} from "./cardSortingResult";
+import {User} from "../user";
 
 export interface CardSortingTest {
   categories : Category[]

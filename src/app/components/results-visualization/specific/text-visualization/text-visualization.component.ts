@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { TextResult } from 'src/app/interfaces/questionnaire/result/result';
+import { TextResult } from 'src/interfaces/questionnaire/result/result';
 
 @Component({
   selector: 'app-text-visualization',

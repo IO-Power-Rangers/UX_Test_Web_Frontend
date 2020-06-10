@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Title} from "@angular/platform-browser";
-import {HttpClient} from "@angular/common/http";
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
-import {CategoryWithSubjects} from "./categoryWithSubjects";
-import {Subject} from "../create-card-sorting-test/subject";
-import {CardSortingResult} from "./cardSortingResult";
-import {CardSortingService} from "../../services/cardsorting.service";
+import {Title} from '@angular/platform-browser';
+import {HttpClient} from '@angular/common/http';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CategoryWithSubjects} from '../../../interfaces/cardsorting/categoryWithSubjects';
+import {Subject} from '../../../interfaces/cardsorting/subject';
+import {CardSortingResult} from '../../../interfaces/cardsorting/cardSortingResult';
+import {CardSortingService} from '../../services/cardsorting.service';
 
 @Component({
   selector: 'app-perform-card-sorting-test',
@@ -18,43 +18,43 @@ export class PerformCardSortingTestComponent implements OnInit {
     this.titleService.setTitle('Perform Card Sorting Test');
   }
 
-  ngOnInit(): void {
-    document.getElementById("test").style.visibility="hidden";
-  }
-
-  testID : bigint;
-  test : Object;
+  testID: bigint;
+  test: any;
   subjects = [];
-  categoriesWithSubjects : CategoryWithSubjects[] = [];
+  categoriesWithSubjects: CategoryWithSubjects[] = [];
   categoriesIdList = [];
   testLoaded = false;
+
+  ngOnInit(): void {
+    document.getElementById('test').style.visibility = 'hidden';
+  }
 
 
   getTest() {
     this.cardSortingService.getTest(this.testID)
       .subscribe(data => {
         this.test = data;
-        this.subjects = JSON.parse(JSON.stringify(data['subjects']));
-        const categories = data['categories'];
-        for(let i = 0; i < categories.length; i++){
-          let current = categories[i];
+        this.subjects = JSON.parse(JSON.stringify(this.test.subjects));
+        const categories = this.test.categories;
+        for (let i = 0; i < categories.length; i++) {
+          const current = categories[i];
           this.categoriesWithSubjects.push({
             subjects: [],
-            category : {id : current['id'], name : current['name']}
+            category : {id : current.id, name : current.name}
           });
-          this.categoriesIdList.push("categoryList"+current['id'])
+          this.categoriesIdList.push('categoryList' + current.id);
         }
         this.testLoaded = true;
-        document.getElementById("test").style.visibility="visible";
+        document.getElementById('test').style.visibility = 'visible';
       });
   }
 
-  submit(){
+  submit() {
     const result: CardSortingResult = {
       test: this.test,
       categoriesWithSubjects: this.categoriesWithSubjects
     };
-    this.cardSortingService.postResult(result)
+    this.cardSortingService.postResult(result);
   }
 
   drop(event: CdkDragDrop<Subject[], any>) {

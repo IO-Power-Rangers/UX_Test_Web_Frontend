@@ -1,27 +1,70 @@
-<a id="submitButton" mat-flat-button color="primary" (click)="submitTest()"> Create Test </a>
+<div id="bodyWrapper">
 
-<form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
-    <section *ngFor="let category of rawCategories; let i = index;">
-      <mat-form-field id="inputName1" appearance="standard" [style.fontSize.px]=14>
-        <input matInput type="text" [(ngModel)]="category.name" name="content_{{category.name}}" placeholder="Category {{i + 1}} name"/>
-      </mat-form-field>
+  <form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
 
-    </section>
-    <br/>
-    <a id="buttonC1" mat-flat-button color="primary" (click)="addCategory()"> Add Category </a>
-    <br/> <br/>
-    <a id="buttonC2" mat-flat-button color="primary" (click)="removeRecentlyAddedCategory()"> Remove Category </a>
-    <section *ngFor="let subject of rawSubjects; let j = index;">
-      <mat-form-field id="inputName2" appearance="standard" [style.fontSize.px]=14>
-        <input matInput type="text" [(ngModel)]="subject.name" name="content_{{subject.name}}" placeholder="Subject {{j + 1}} name"/>
-      </mat-form-field>
+    <div class="spacer">
 
-    </section>
-    <br/>
-    <a id="buttonS1" mat-flat-button color="primary" (click)="addSubject()"> Add Subject </a>
-    <br/> <br/>
-    <a id="buttonS2" mat-flat-button color="primary" (click)="removeRecentlyAddedSubject()"> Remove Subject </a>
+    </div>
 
+    <div class="csWrapper">
+
+      <section *ngFor="let category of rawCategories; let i = index;">
+
+        <div class="categorySubject">
+          <mat-form-field class="inputName" appearance="standard" [style.fontSize.px]=14>
+            <input matInput type="text" [(ngModel)]="category.name" name="content_{{category.name}}" placeholder="Category"/>
+          </mat-form-field>
+
+          <div class="removeWrapper">
+            <a class="removeButton" mat-mini-fab color="warn" (click)="removeCategory(i)">
+              <mat-icon>clear</mat-icon>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+      <br/>
+      <a id="buttonC1" mat-flat-button color="primary" (click)="addCategory()"> Add a Category </a>
+
+    </div>
+
+    <div class="spacer">
+
+    </div>
+
+
+<!--    <a id="buttonC2" mat-flat-button color="primary" (click)="removeRecentlyAddedCategory()"> Remove Category </a>-->
+
+    <div class="csWrapper">
+
+      <section *ngFor="let subject of rawSubjects; let j = index;">
+
+        <div class="categorySubject">
+          <mat-form-field class="inputName" appearance="standard" [style.fontSize.px]=14>
+            <input matInput type="text" [(ngModel)]="subject.name" name="content_{{subject.name}}" placeholder="Subject"/>
+          </mat-form-field>
+
+          <div class="removeWrapper">
+            <a class="removeButton" mat-mini-fab color="warn" (click)="removeSubject(j)">
+              <mat-icon>clear</mat-icon>
+            </a>
+          </div>
+        </div>
+
+      </section>
+      <br/>
+      <a id="buttonS1" mat-flat-button color="primary" (click)="addSubject()"> Add a Subject </a>
+
+    </div>
+
+    <div class="spacer">
+
+    </div>
+
+<!--    <a id="buttonS2" mat-flat-button color="primary" (click)="removeRecentlyAddedSubject()"> Remove Subject </a>-->
 
   </form>
 
+  <a id="submitButton" mat-flat-button color="accent" (click)="submitTest()"> Save this test </a>
+</div>

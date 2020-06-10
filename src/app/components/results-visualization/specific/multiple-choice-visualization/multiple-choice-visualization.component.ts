@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MultipleChoiceResult } from 'src/app/interfaces/questionnaire/result/result';
+import { MultipleChoiceResult } from 'src/interfaces/questionnaire/result/result';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 
