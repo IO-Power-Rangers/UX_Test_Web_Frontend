@@ -26,9 +26,11 @@ export class DoTestComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewTestsService.sharedMessage.subscribe(message => this.test = message, null, () => '');
-    this.test.tasks.forEach(task => this.rawTasks.push(task));
-    this.embedWebsite();
-    this.isLoaded = true;
+    if (this.test !== undefined) {
+      this.test.tasks.forEach(task => this.rawTasks.push(task));
+      this.embedWebsite();
+      this.isLoaded = true;
+    }
   }
 
 
