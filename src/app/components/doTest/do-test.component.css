@@ -66,6 +66,7 @@
 
 }
 
+
 .doneCheckWrapper {
 
   flex: 1;
@@ -115,6 +116,27 @@
 
 }
 
+#saveTestWrapper {
+
+  flex: 2;
+  text-align: right;
+
+}
+
+#saveTest {
+
+  text-align: right;
+
+}
+
+
+#websiteContainer {
+
+  flex: 11;
+  border-top: 2px solid #AAAAAA;
+  border-right: 2px solid #AAAAAA;
+
+}
 
 #websiteIframe {
 

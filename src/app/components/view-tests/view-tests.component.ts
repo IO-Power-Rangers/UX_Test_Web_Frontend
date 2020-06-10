@@ -33,7 +33,7 @@ export class ViewTestsComponent implements OnInit {
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data.filter(test => test.creator.id === 1); // this.userService.getUser().id);
+        this.tests = data.filter(test => test.creator.id === this.userService.getUser().id);
       });
   }
 
