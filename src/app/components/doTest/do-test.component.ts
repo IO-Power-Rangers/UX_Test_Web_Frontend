@@ -22,11 +22,10 @@ export class DoTestComponent implements OnInit {
     this.titleService.setTitle('Do the test');
     this.isLoaded = false;
     this.isTasksDone = false;
-    this.test = {id: -1, title: '', tasks: [], uxModel: null, questionnaire: null, creator: null};
   }
 
   ngOnInit(): void {
-    this.viewTestsService.sharedMessage.subscribe(message => this.test = message, null);
+    this.viewTestsService.sharedMessage.subscribe(message => this.test = message, null, () => '');
     this.test.tasks.forEach(task => this.rawTasks.push(task));
     this.embedWebsite();
     this.isLoaded = true;
