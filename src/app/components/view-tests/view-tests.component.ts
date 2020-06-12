@@ -7,6 +7,7 @@ import {Router, Routes} from '@angular/router';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {UserService} from '../../services/user.service';
 import {ExportButtonComponent} from '../export-button/export-button.component';
+import {TestGroup} from '../../../interfaces/testGroup';
 
 @Component({
   selector: 'app-view-tests',
@@ -17,6 +18,8 @@ import {ExportButtonComponent} from '../export-button/export-button.component';
 export class ViewTestsComponent implements OnInit {
 
   tests: Test[];
+  testIDs: number[];
+  groups: TestGroup[];
   message: Test;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router,
@@ -33,7 +36,21 @@ export class ViewTestsComponent implements OnInit {
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data.filter(test => test.creator.id === this.userService.getUser().id);
+        this.tests = data.filter(test => test.creator.id === 1); // this.userService.getUser().id);
+      },
+        (err) =>  console.error(err),
+        () => {
+        this.testIDs = [];
+        for (const test of this.tests) {
+          this.testIDs.push(test.id);
+        }
+        this.showGroup(); });
+  }
+
+  showGroup() {
+    this.viewTestsService.getGroup()
+      .subscribe((data: TestGroup[]) => {
+        this.groups = data.filter(group => group.id in this.testIDs);
       });
   }
 
