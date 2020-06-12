@@ -128,6 +128,8 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
     };
     this.testService.postTest(test);
     this.isSaved = true;
+
+    this.router.navigate(['/home']);
   }
 
   public questionnaireName = '';
