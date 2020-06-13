@@ -104,7 +104,7 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   submitTest() {
 
-    if(confirm('Please confirm that you want to save this test. You won\'t be able to make any changes to it later.')) {
+    if (confirm('Please confirm that you want to save this test. You won\'t be able to make any changes to it later.')) {
 
       const questionnaire: Questionnaire = {
         textQuestions: this.rawQuestions
@@ -132,7 +132,7 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
       this.testService.postTest(test);
       this.isSaved = true;
 
-      // this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
 
     }
   }
