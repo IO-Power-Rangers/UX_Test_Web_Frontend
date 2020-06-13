@@ -74,3 +74,16 @@
   bottom: -2%;
   color: silver;
 }
+
+.groupName {
+  position: relative;
+  width: 150px;
+  left: 450px;
+  bottom: -2%;
+}
+
+#addGroup {
+  position: relative;
+  left: 750px;
+  bottom: -5%;
+}
