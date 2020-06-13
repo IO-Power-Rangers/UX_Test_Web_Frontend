@@ -6,6 +6,7 @@ import {CategoryWithSubjects} from '../../../interfaces/cardsorting/categoryWith
 import {Subject} from '../../../interfaces/cardsorting/subject';
 import {CardSortingResult} from '../../../interfaces/cardsorting/cardSortingResult';
 import {CardSortingService} from '../../services/cardsorting.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-perform-card-sorting-test',
@@ -14,7 +15,10 @@ import {CardSortingService} from '../../services/cardsorting.service';
 })
 export class PerformCardSortingTestComponent implements OnInit {
 
-  constructor(private titleService: Title, private cardSortingService: CardSortingService) {
+  constructor(private titleService: Title,
+              private cardSortingService: CardSortingService,
+              private router: Router
+  ) {
     this.titleService.setTitle('Perform Card Sorting Test');
   }
 
@@ -50,11 +54,17 @@ export class PerformCardSortingTestComponent implements OnInit {
   }
 
   submit() {
-    const result: CardSortingResult = {
-      test: this.test,
-      categoriesWithSubjects: this.categoriesWithSubjects
-    };
-    this.cardSortingService.postResult(result);
+    if (confirm('Please confirm that you want to save this solution.')) {
+
+      const result: CardSortingResult = {
+        test: this.test,
+        categoriesWithSubjects: this.categoriesWithSubjects
+      };
+      this.cardSortingService.postResult(result);
+
+      this.router.navigate(['/home']);
+
+    }
   }
 
   drop(event: CdkDragDrop<Subject[], any>) {

@@ -1,5 +1,7 @@
 <div id="bodyWrapper">
 
+  <a id="submitButton" mat-flat-button color="accent" (click)="submitTest()"> Save this test </a>
+
   <form id="testsForm" #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
 
     <div class="spacer">
@@ -25,7 +27,7 @@
       </section>
 
       <br/>
-      <a id="buttonC1" mat-flat-button color="primary" (click)="addCategory()"> Add a Category </a>
+      <a class="addCSButton" mat-flat-button color="primary" (click)="addCategory()"> Add a Category </a>
 
     </div>
 
@@ -54,7 +56,7 @@
 
       </section>
       <br/>
-      <a id="buttonS1" mat-flat-button color="primary" (click)="addSubject()"> Add a Subject </a>
+      <a class="addCSButton" mat-flat-button color="primary" (click)="addSubject()"> Add a Subject </a>
 
     </div>
 
@@ -62,9 +64,6 @@
 
     </div>
 
-<!--    <a id="buttonS2" mat-flat-button color="primary" (click)="removeRecentlyAddedSubject()"> Remove Subject </a>-->
-
   </form>
 
-  <a id="submitButton" mat-flat-button color="accent" (click)="submitTest()"> Save this test </a>
 </div>
