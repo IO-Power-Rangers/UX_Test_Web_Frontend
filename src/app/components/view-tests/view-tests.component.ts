@@ -108,6 +108,9 @@ export class ViewTestsComponent implements OnInit {
     this.counter += 1;
   }
 
+  submitGroups() {
+
+  }
 
   startTest(test) {
     this.message = test;

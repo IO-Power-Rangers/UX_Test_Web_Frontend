@@ -71,7 +71,6 @@
 #title {
   position: relative;
   left: 450px;
-  bottom: -2%;
   color: silver;
 }
 
@@ -86,4 +85,10 @@
   position: relative;
   left: 750px;
   bottom: -5%;
+}
+
+#submitBtn {
+  position: absolute;
+  left: 1220px;
+  bottom: 84%;
 }
