@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Test} from '../../interfaces/test';
-import {TestGroup} from "../../interfaces/testGroup";
+import {TestGroup} from '../../interfaces/testGroup';
 
 
 @Injectable({
@@ -33,7 +33,7 @@ export class ViewTestsService {
   }
 
   putGroup(group: TestGroup) {
-    const url = this.groupURL + '/' + group.id;
+    const url = this.groupURL + '/' + group.test_id;
     return this.http.put(url, group);
   }
 

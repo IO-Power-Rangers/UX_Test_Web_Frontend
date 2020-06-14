@@ -3,7 +3,7 @@ import {Title} from '@angular/platform-browser';
 import {ViewTestsService} from '../../services/view-tests.service';
 import {Test} from '../../../interfaces/test';
 import {Router} from '@angular/router';
-import {CdkDragDrop, CdkDropList, DragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {UserService} from '../../services/user.service';
 import {ExportButtonComponent} from '../export-button/export-button.component';
 import {TestGroup} from '../../../interfaces/testGroup';
@@ -58,7 +58,8 @@ export class ViewTestsComponent implements OnInit {
   showGroup() {
     this.viewTestsService.getGroup()
       .subscribe((data: TestGroup[]) => {
-        this.groups = data.filter(group => group.id in this.testIDs);
+        this.groups = data.filter(group => group.test_id in this.testIDs);
+        console.log(this.groups);
       },
         (err) => console.error(err),
         () => {
@@ -74,8 +75,6 @@ export class ViewTestsComponent implements OnInit {
 
   groupTests() {
     let added = false;
-    this.groups = [{id: 1, name: 'name1'}, {id: 2, name: 'name2'}, {id: 3, name: 'name1'}];
-    this.names = ['name1', 'name2'];
     let index = 0;
     for (const name of this.names) {
       this.groupedTests.push([]);
@@ -83,7 +82,7 @@ export class ViewTestsComponent implements OnInit {
 
         if (group.name === name) {
           for (const test1 of this.tests) {
-            if (group.id === test1.id) {
+            if (group.test_id === test1.id) {
               const newGropedTest = {test: test1, name: group.name};
               this.groupedTests[index].push(newGropedTest);
             }
@@ -97,7 +96,7 @@ export class ViewTestsComponent implements OnInit {
     for (const test1 of this.tests) {
       for (const group of this.groups) {
 
-        if (test1.id === group.id) {
+        if (test1.id === group.test_id) {
           added = true;
         }
 
@@ -120,31 +119,51 @@ export class ViewTestsComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
-    console.log(this.groupedTests);
-    console.log(this.newTests);
-    console.log('  ');
   }
 
   addGroup() {
     const name1 = 'new group ' + this.counter;
     this.names.push(name1);
     this.counter += 1;
+    this.groupedTests.push([]);
   }
 
   submitGroups() {
-    /*// TODO: update names
+    const newNames = [];
     for (const name of this.names) {
-      for (const test of this.groupedTests) {
-        if (test.name === name) {
-          this.viewTestsService.putGroup({id: test.test.id, name: test.name});
+      const newName = document.getElementById(name) as HTMLInputElement;
+      if (newName.value !== '') {
+        newNames.push(newName.value);
+      } else {
+        newNames.push(newName.placeholder);
+      }
+    }
+
+    for (let i = 0; i < this.groupedTests.length; i++) {
+      if (this.groupedTests[i].length > 0) {
+        for (const test of this.groupedTests[i]) {
+          if (test.name === '') {
+            this.viewTestsService.postGroup({test_id: test.test.id, name: newNames[i]});
+          } else {
+            this.viewTestsService.putGroup({test_id: test.test.id, name: newNames[i]});
+          }
         }
       }
-      for (const test of this.newTests) {
-        if (test.name === name) {
-          this.viewTestsService.postGroup({id: test.test.id, name: test.name});
-        }
+    }
+
+    const lastNameInput = document.getElementById('new') as HTMLInputElement;
+    let lastName = lastNameInput.value;
+    if (lastName === '') {
+      lastName = lastNameInput.placeholder;
+    }
+    for (const test of this.newTests[0]) {
+      if (test.name === '') {
+        this.viewTestsService.postGroup({test_id: test.test.id, name: lastName});
+      } else {
+        this.viewTestsService.putGroup({test_id: test.test.id, name: lastName});
       }
-    }*/
+    }
+
   }
 
   startTest(test) {

@@ -1,5 +1,5 @@
 
 export interface TestGroup {
-  id?: number;
+  test_id: number;
   name: string;
 }
