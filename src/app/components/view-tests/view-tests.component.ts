@@ -44,7 +44,7 @@ export class ViewTestsComponent implements OnInit {
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data.filter(test => test.creator.id === 1); // this.userService.getUser().id);
+        this.tests = data.filter(test => test.creator.id === this.userService.getUser().id);
       },
         (err) =>  console.error(err),
         () => {
@@ -59,7 +59,6 @@ export class ViewTestsComponent implements OnInit {
     this.viewTestsService.getGroup()
       .subscribe((data: TestGroup[]) => {
         this.groups = data.filter(group => group.test_id in this.testIDs);
-        console.log(this.groups);
       },
         (err) => console.error(err),
         () => {
