@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Title} from "@angular/platform-browser";
-import {CardSortingService} from "../../services/cardsorting.service";
+import {Title} from '@angular/platform-browser';
+import {CardSortingService} from '../../services/cardsorting.service';
 
 @Component({
   selector: 'app-view-results-of-test',
@@ -13,55 +13,66 @@ export class ViewResultsOfTestComponent implements OnInit {
     this.titleService.setTitle('View Results of Card Sorting Test');
   }
 
+  testID: bigint;
+  displayedColumns: string[] = ['category', 'subject'];
+  processedResults: any[] = [];
+  isLoaded: boolean;
+
   ngOnInit(): void {
-    document.getElementById("results-view").style.visibility="hidden";
   }
 
-  testID : bigint;
-  processedResults = [];
-
-  getResults(){
+  getResults() {
     this.cardSortingService.getResultsOfTest(this.testID)
       .subscribe(results => {
-        this.processResults(results)})
+        this.processResults(results); });
   }
 
-  processResults(results){
-    if(results.length === 0) return;
-    let categoriesNames = [];
-    let subjectNames = [];
+  processResults(results) {
+    this.isLoaded = false;
+    this.processedResults.length = 0;
+
+    if (results.length === 0) {
+      return;
+    }
+    const categoriesNames = [];
+    const subjectNames = [];
+
     const categories = results[0].test.categories;
-    for(let i = 0; i < categories.length; i++){
+    for (let i = 0; i < categories.length; i++) {
       categoriesNames.push(categories[i].name);
     }
+
     const subjects = results[0].test.subjects;
-    for(let i = 0; i < subjects.length; i++){
+    for (let i = 0; i < subjects.length; i++) {
       subjectNames.push(subjects[i].name);
     }
-    for(let categoryName of categoriesNames){
-      let occurrenceCounter = {};
-      for(let subjectName of subjectNames){
+
+    for (const categoryName of categoriesNames) {
+      const occurrenceCounter = {};
+      for (const subjectName of subjectNames) {
         occurrenceCounter[subjectName] = 0;
       }
-      for(let result of results){
-          for(let categoryWithSubject of result.categoriesWithSubjects){
-              if(categoryWithSubject.category.name === categoryName){
-                for(let subject of categoryWithSubject.subjects){
-                  occurrenceCounter[subject['name']]++;
+      for (const result of results) {
+          for (const categoryWithSubject of result.categoriesWithSubjects) {
+              if (categoryWithSubject.category.name === categoryName) {
+                for (const subject of categoryWithSubject.subjects) {
+                  occurrenceCounter[subject.name]++;
                 }
               }
           }
       }
-      let sortedOccurrenceCounter = Object.keys(occurrenceCounter).map(function(key) {
+      const sortedOccurrenceCounter = Object.keys(occurrenceCounter).map(function(key) {
         return [key, occurrenceCounter[key]];
       });
 
       sortedOccurrenceCounter.sort(function(first, second) {
         return second[1] - first[1];
       });
-      this.processedResults.push([categoryName, sortedOccurrenceCounter]);
+
+      this.processedResults.push({category: categoryName, subject: sortedOccurrenceCounter});
     }
-    document.getElementById("results-view").style.visibility="visible";
+
+    this.isLoaded = true;
   }
 
 }

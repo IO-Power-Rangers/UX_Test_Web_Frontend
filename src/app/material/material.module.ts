@@ -14,6 +14,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
+import {MatTable, MatTableModule} from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {MatListModule} from '@angular/material/list';
     MatRadioModule,
     MatListModule,
     MatPaginatorModule,
+    MatTableModule,
   ],
   exports: [
     MatToolbarModule,
@@ -47,6 +49,7 @@ import {MatListModule} from '@angular/material/list';
     MatRadioModule,
     MatListModule,
     MatPaginatorModule,
+    MatTableModule,
   ]
 })
 export class MaterialModule {}

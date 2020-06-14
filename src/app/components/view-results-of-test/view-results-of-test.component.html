@@ -2,25 +2,50 @@
 
   <mat-form-field appearance="standard" [style.fontSize.px]=18>
     <label>
-      <input matInput type="bigint" [(ngModel)]="testID" id="intInput" placeholder="TEST ID"/>
+      <input matInput type="bigint" [(ngModel)]="testID" id="intInput" placeholder="Card Sorting Test id"/>
     </label>
   </mat-form-field>
   <a id="getButton" mat-flat-button color="primary" (click)="getResults()"> Get Results </a>
 
 </div>
-<div id="results-view">
-  <table>
-    <thead>
-      <th>Category Name</th>
-      <th [attr.colspan]="processedResults.length">Subjects</th>
-    </thead>
-    <tbody>
-    <tr *ngFor="let curResult of processedResults">
-      <th><i>{{curResult[0]}}</i></th>
-      <td *ngFor="let subject of curResult[1]">
-        {{subject[0]}} (<b>{{subject[1]}}</b>)
+<div id="results-view" *ngIf="isLoaded">
+  <table id="table" mat-table [dataSource]="processedResults" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="category">
+      <th class="tableHeader" mat-header-cell *matHeaderCellDef> Categories </th>
+      <td id="categoryCell" mat-cell *matCellDef="let element">
+        <a [ngStyle]="{'color':	'#f14382', 'font-weight': 'bold'}">
+          {{element.category}}
+        </a>
       </td>
-    </tr>
-    </tbody>
+    </ng-container>
+
+    <ng-container matColumnDef="subject">
+      <th class="tableHeader" mat-header-cell *matHeaderCellDef> Subjects </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngFor="let subject of element.subject">
+          <div>
+            <ng-container *ngFor="let a of subject; let i=index">
+              <a *ngIf="i % 2 == 0; else elseBlock">
+                {{a}}
+              </a>
+              <ng-template #elseBlock>
+                (
+                <a [ngStyle]="{'font-weight': 'bold'}">
+                  {{a}}
+                </a>
+                )
+              </ng-template>
+            </ng-container>
+          </div>
+
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
+
 </div>

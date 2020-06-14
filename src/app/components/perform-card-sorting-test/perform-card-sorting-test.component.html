@@ -3,14 +3,14 @@
 
     <mat-form-field appearance="standard" [style.fontSize.px]=18>
       <label>
-        <input matInput type="bigint" [(ngModel)]="testID" id="intInput" placeholder="TEST ID"/>
+        <input matInput type="bigint" [(ngModel)]="testID" id="intInput" placeholder="Card Sorting test id"/>
       </label>
     </mat-form-field>
     <a id="getButton" [disabled]="testLoaded" mat-flat-button color="primary" (click)="getTest()"> Load a cardsorting test </a>
 
   </div>
   <div id="test">
-    <p class="description">Please assign each subject to the appropriate <em>category</em>.</p>
+    <p class="description">Please assign each subject to the appropriate <a style="color:	#f14382">category</a>.</p>
     <br>
     <div class="container" id="subjectsWrapper">
       <h2>SUBJECTS</h2>
@@ -27,7 +27,7 @@
 
     <div class="container" id="categoriesWrapper" *ngFor="let categoryWithSubjects of categoriesWithSubjects">
 
-      <h2 style="color:#ff0a1e">{{categoryWithSubjects.category.name}}</h2>
+      <h2 style="color:	#f14382">{{categoryWithSubjects.category.name}}</h2>
       <div
         cdkDropList
         id = "categoryList{{categoryWithSubjects.category.id}}"

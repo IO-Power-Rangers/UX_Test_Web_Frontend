@@ -1,3 +1,28 @@
+#import {
+  margin-left: 0.5%;
+}
+
+#results-view {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#table {
+  box-shadow: none !important;
+  text-align: center;
+  width: 30%;
+  height: 100%;
+  flex: 1;
+}
+
+.tableHeader {
+  font-size: 100%;
+  text-align: center;
+}
+
 table, th , td  {
   border: 1px solid grey;
   border-collapse: collapse;
