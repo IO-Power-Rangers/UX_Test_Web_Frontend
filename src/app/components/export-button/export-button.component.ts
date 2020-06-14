@@ -11,7 +11,7 @@ import { saveAs } from 'file-saver';
 export class ExportButtonComponent implements OnInit {
 
   private questionnaireId: number;
-  private readonly URL = environment.local + environment.export;
+  private readonly URL = environment.apiUrl + environment.export;
 
   constructor(private http: HttpClient) { }
 
@@ -23,11 +23,11 @@ export class ExportButtonComponent implements OnInit {
   }
 
   downloadExport(): void {
-    if (this.questionnaireId != undefined) {
+    if (this.questionnaireId !== undefined) {
       this.http.get(this.URL + '/' + this.questionnaireId).subscribe((data: ExcelExport) => {
         const blob = new Blob([this.stringToArrayBuffer(atob(data.base64StringFile))], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
         saveAs(blob, data.fileName);
-      })
+      });
     }
   }
 

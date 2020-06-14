@@ -1,0 +1,17 @@
+<h1 id="title">
+  Your tests:
+</h1>
+
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of tests" cdkDrag>
+    <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      {{test.title}}
+      <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
+              (click)="startTest(test)">Start Test</button>
+      <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
+            (click)="this.exportButton.setQuestionnaireId(test.questionnaire.id); this.exportButton.downloadExport()">Export</button>
+      <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
+            (click)="this.viewRecordings(test)">Show Recordings</button>
+  </div>
+</div>
+

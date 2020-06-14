@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {BehaviorSubject} from 'rxjs';
-import {Task} from '../../interfaces/task';
+import {Test} from '../../interfaces/test';
 
 
 @Injectable({
@@ -12,16 +12,14 @@ export class ViewTestsService {
 
   constructor(private http: HttpClient) {}
 
-  private readonly URL =  environment.local + environment.tests;
+  private readonly URL =  environment.apiUrl + environment.tests;
 
-  private message = new BehaviorSubject([]);
-  private modelMessage = new BehaviorSubject('');
+  private test: Test;
+  private message = new BehaviorSubject<Test>(this.test);
   sharedMessage = this.message.asObservable();
-  sharedModelMessage = this.modelMessage.asObservable();
 
-  nextMessage(message: Task[], modelMessage: string) {
+  nextMessage(message: Test) {
     this.message.next(message);
-    this.modelMessage.next(modelMessage);
   }
 
   getTest() {
