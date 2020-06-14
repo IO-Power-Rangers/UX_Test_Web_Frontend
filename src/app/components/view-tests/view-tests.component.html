@@ -10,15 +10,16 @@
 
     <form class="container mt-3" >
       <div cdkDropListGroup>
-        <section *ngFor="let name of names" fxLayout="column">
+        <section *ngFor="let group of groupedTests; let i = index" fxLayout="column">
 
-          <mat-form-field class="groupName" id="{{name}}" apperance="standard" [style.fontSize.px]=18>
-            <input matInput type="text"  placeholder="{{name}}"/>
+          <mat-form-field class="groupName" id="{{names[i]}}" apperance="standard" [style.fontSize.px]=18>
+            <input matInput type="text"  placeholder="{{names[i]}}"/>
           </mat-form-field>
 
           <div class="container">
-            <div cdkDropList class="example-list" [cdkDropListData]="groupedTests" id="list-{{name}}" (cdkDropListDropped)="drop($event)">
-              <section *ngFor="let test of groupedTests">
+            <div cdkDropList class="example-list" [cdkDropListData]="group" id="list-{{names[i]}}"
+                 (cdkDropListDropped)="drop($event)">
+              <section *ngFor="let test of group">
 
                 <div class="example-box" cdkDragLockAxis="y"  cdkDrag>
 
@@ -29,7 +30,8 @@
                     <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
                             (click)="startTest(test)">Start Test</button>
                     <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
-                            (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id); this.exportButton.downloadExport()">Export</button>
+                            (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id);
+                            this.exportButton.downloadExport()">Export</button>
                     <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
                             (click)="this.viewRecordings(test)">Show Recordings</button>
 
@@ -44,8 +46,8 @@
         </mat-form-field>
 
         <div class="container">
-          <div cdkDropList class="example-list" [cdkDropListData]="newTests" id="list-new" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of newTests" cdkDrag>
+          <div cdkDropList class="example-list" [cdkDropListData]="newTests[0]" id="list-new" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of newTests[0]" cdkDrag>
 
               <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
               <label id="test-new-{{test.test.id}}">
@@ -54,7 +56,8 @@
               <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
                       (click)="startTest(test)">Start Test</button>
               <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
-                      (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id); this.exportButton.downloadExport()">Export</button>
+                      (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id);
+                      this.exportButton.downloadExport()">Export</button>
               <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
                       (click)="this.viewRecordings(test)">Show Recordings</button>
 

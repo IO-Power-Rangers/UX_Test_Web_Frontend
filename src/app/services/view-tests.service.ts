@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Test} from '../../interfaces/test';
+import {TestGroup} from "../../interfaces/testGroup";
 
 
 @Injectable({
@@ -29,5 +30,14 @@ export class ViewTestsService {
 
   getGroup() {
     return this.http.get(this.groupURL, {headers: {'Content-Type': 'application/json'}, responseType: 'json'});
+  }
+
+  putGroup(group: TestGroup) {
+    const url = this.groupURL + '/' + group.id;
+    return this.http.put(url, group);
+  }
+
+  postGroup(group: TestGroup) {
+    return this.http.post(this.groupURL, group);
   }
 }

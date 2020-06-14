@@ -22,8 +22,8 @@ export class ViewTestsComponent implements OnInit {
   names: string[];
   groups: TestGroup[];
   message: Test;
-  groupedTests: GroupedTest[];
-  newTests: GroupedTest[];
+  groupedTests: Array<Array<GroupedTest>>;
+  newTests: Array<Array<GroupedTest>>;
   counter: number;
 
   constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router,
@@ -31,6 +31,8 @@ export class ViewTestsComponent implements OnInit {
     this.titleService.setTitle('View your tests');
     this.groups = [];
     this.counter = 0;
+    this.groupedTests = [];
+    this.newTests = [[]];
     this.showTest();
   }
 
@@ -71,20 +73,38 @@ export class ViewTestsComponent implements OnInit {
   }
 
   groupTests() {
-    this.groupedTests = [];
-    this.newTests = [];
     let added = false;
+    this.groups = [{id: 1, name: 'name1'}, {id: 2, name: 'name2'}, {id: 3, name: 'name1'}];
+    this.names = ['name1', 'name2'];
+    let index = 0;
+    for (const name of this.names) {
+      this.groupedTests.push([]);
+      for (const group of this.groups) {
+
+        if (group.name === name) {
+          for (const test1 of this.tests) {
+            if (group.id === test1.id) {
+              const newGropedTest = {test: test1, name: group.name};
+              this.groupedTests[index].push(newGropedTest);
+            }
+          }
+        }
+
+      }
+      index += 1;
+    }
+
     for (const test1 of this.tests) {
       for (const group of this.groups) {
-        if (group.id === test1.id) {
-          const newGropedTest = {test: test1, name: group.name};
-          this.groupedTests.push(newGropedTest);
+
+        if (test1.id === group.id) {
           added = true;
         }
+
       }
-      if (added === false) {
-        const newGropedTest = {test: test1, name: ''};
-        this.newTests.push(newGropedTest);
+
+      if (!added) {
+        this.newTests[0].push({test: test1, name: ''});
       }
       added = false;
     }
@@ -100,6 +120,9 @@ export class ViewTestsComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+    console.log(this.groupedTests);
+    console.log(this.newTests);
+    console.log('  ');
   }
 
   addGroup() {
@@ -109,7 +132,19 @@ export class ViewTestsComponent implements OnInit {
   }
 
   submitGroups() {
-
+    /*// TODO: update names
+    for (const name of this.names) {
+      for (const test of this.groupedTests) {
+        if (test.name === name) {
+          this.viewTestsService.putGroup({id: test.test.id, name: test.name});
+        }
+      }
+      for (const test of this.newTests) {
+        if (test.name === name) {
+          this.viewTestsService.postGroup({id: test.test.id, name: test.name});
+        }
+      }
+    }*/
   }
 
   startTest(test) {
