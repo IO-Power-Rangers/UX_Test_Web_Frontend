@@ -194,6 +194,19 @@
 
 }
 
+.imageButton {
+  align-self: center;
+}
+
+#imageButtonWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 4;
+  text-align: center;
+  position: relative;
+  margin-right: 10px;
+}
+
 #removeQuestionWrapper {
 
   flex: 1;
