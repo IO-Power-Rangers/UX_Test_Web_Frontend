@@ -9,8 +9,8 @@ import {Test} from "../../interfaces/test";
 })
 export class TestService {
 
-  urlTest = environment.local + environment.tests;
-  urlQuestionnaire = environment.local + environment.questionnaire;
+  urlTest = environment.apiUrl + environment.tests;
+  urlQuestionnaire = environment.apiUrl + environment.questionnaire;
 
   constructor(private http : HttpClient) {}
 

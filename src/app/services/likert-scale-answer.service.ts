@@ -10,7 +10,7 @@ export class LikertScaleAnswerService {
 
   constructor(private http: HttpClient) { }
 
-  url = environment.local + environment.likertScaleAnswer;
+  url = environment.apiUrl + environment.likertScaleAnswer;
 
   postLikertScaleAnswer(answer: LikertScaleAnswer) {
     this.http.post(this.url, answer)

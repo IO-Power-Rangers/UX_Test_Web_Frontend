@@ -8,7 +8,7 @@ import { Recording } from 'src/interfaces/recording';
 })
 export class RecordingService {
 
-  url = environment.local + '//api/recordings'; 
+  url = environment.apiUrl + '//api/recordings'; 
 
   constructor(private http: HttpClient) { }
 

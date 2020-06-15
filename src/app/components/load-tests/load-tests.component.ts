@@ -126,7 +126,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
   isLoaded: boolean;
   isTasksDone: boolean;
   showRecordingPermissionView: boolean;
-  private readonly URL = environment.local + environment.tests;
+  private readonly URL = environment.apiUrl + environment.tests;
   test: Test;
 
   host = 'http://localhost:9090';

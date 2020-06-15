@@ -81,6 +81,7 @@
                 <label>
                   {{q.question.content}}
                 </label>
+                <img style="max-width:100%; max-height:100%;" src="{{q.question.image}}" *ngIf="q.question.image">
               </div>
 
               <mat-form-field class="answerT" appearance="standard">

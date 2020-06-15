@@ -15,6 +15,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatTable, MatTableModule} from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {MatTable, MatTableModule} from '@angular/material/table';
     MatListModule,
     MatPaginatorModule,
     MatTableModule,
+    MatTooltipModule
   ],
   exports: [
     MatToolbarModule,
@@ -50,6 +52,7 @@ import {MatTable, MatTableModule} from '@angular/material/table';
     MatListModule,
     MatPaginatorModule,
     MatTableModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule {}

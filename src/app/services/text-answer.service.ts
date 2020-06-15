@@ -10,7 +10,7 @@ export class TextAnswerService {
 
   constructor(private http: HttpClient) { }
 
-  url = environment.local + environment.textAnswer;
+  url = environment.apiUrl + environment.textAnswer;
 
   postTextAnswer(answer: TextAnswer) {
     this.http.post(this.url, answer)

@@ -10,7 +10,7 @@ export class MultipleChoiceAnswerService {
 
   constructor(private http: HttpClient) { }
 
-  url = environment.local + environment.multipleChoiceAnswer;
+  url = environment.apiUrl + environment.multipleChoiceAnswer;
 
   postMultipleChoiceAnswer(answer: MultipleChoiceAnswer) {
     this.http.post(this.url, answer)

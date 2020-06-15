@@ -1,9 +1,8 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild, Input} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Test } from '../../../interfaces/test';
-import {Observable} from 'rxjs';
-import {ComponentCanDeactivate} from '../../dialogs/pending-changes';
+import {Observable, BehaviorSubject} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {UxModel} from '../../../interfaces/uxModel';
 import {TestService} from "../../services/test.service";
@@ -16,6 +15,7 @@ import { MultipleAnswerQuestionOption } from 'src/interfaces/questionnaire/quest
 import { MultipleAnswerQuestion } from 'src/interfaces/questionnaire/question/multiple-answer-question';
 import { Questionnaire } from 'src/interfaces/questionnaire/questionnaire';
 import { Router } from '@angular/router';
+import { ComponentCanDeactivate } from 'src/app/dialogs/pending-changes';
 
 
 @Component({
@@ -38,10 +38,11 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   urlToEmbed: string;
   isSaved: boolean;
-  private readonly URL = environment.local + environment.tests;
+  private readonly URL = environment.apiUrl + environment.tests;
+  @ViewChild("filedialog") input : HTMLInputElement;
 
-  host = 'http://localhost:9090';
   testsEndpoint = '/api/tests';
+  imageSource = BehaviorSubject.create(null)
 
   public testTitle = '';
 
@@ -143,6 +144,26 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   public questionnaires: any;
 
+  attachFile(question) {
+    let input = document.createElement('input')
+    let imagePath = null
+    input.type = "file"
+    input.accept = "image/*"
+    input.multiple = false
+    let imageSource = this.imageSource
+    input.onchange = function(event) { 
+      let image = input.files[0];
+      let reader = new FileReader();
+      let base64 = null;
+      
+      reader.addEventListener("load", function() {base64 = reader.result; question.question.image = reader.result; question.imageName = image.name})
+      reader.readAsDataURL(image)
+      
+    }
+    input.click();
+  }
+
+
 
   addTextQuestion() {
 
@@ -238,4 +259,6 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
   removeQuestion(i) {
     this.rawQuestions.splice(i, 1);
   }
+
+
 }

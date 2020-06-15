@@ -10,7 +10,7 @@ import {CardSortingTest} from "../../interfaces/cardsorting/cardSortingTest";
 })
 export class CardSortingService {
 
-  host = environment.local;
+  host = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
   testsEndpoint = '/api/cardsorting/tests/';
