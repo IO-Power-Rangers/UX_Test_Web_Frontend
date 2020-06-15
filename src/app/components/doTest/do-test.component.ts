@@ -3,6 +3,7 @@ import {Title} from '@angular/platform-browser';
 import {ViewTestsService} from '../../services/view-tests.service';
 import {ScreenRecordingComponent} from '../screen-recording/screen-recording.component';
 import {Test} from '../../../interfaces/test';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-do-test',
@@ -18,7 +19,7 @@ export class DoTestComponent implements OnInit {
   isTasksDone: boolean;
   public rawTasks: any[] = [];
 
-  constructor(private titleService: Title, private viewTestsService: ViewTestsService) {
+  constructor(private titleService: Title, private viewTestsService: ViewTestsService, private router: Router) {
     this.titleService.setTitle('Do the test');
     this.isLoaded = false;
     this.isTasksDone = false;
@@ -53,5 +54,6 @@ export class DoTestComponent implements OnInit {
 
   checkTasksAndProceed() {
     this.isTasksDone = true;
+    this.router.navigate(['/viewTests']);
   }
 }

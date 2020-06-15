@@ -24,16 +24,18 @@
                 <div class="example-box" cdkDragLockAxis="y"  cdkDrag>
 
                   <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                    <label id="test-{{test.test.id}}">
-                      {{test.test.title}}
-                    </label>
-                    <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
-                            (click)="startTest(test.test)">Start Test</button>
-                    <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
-                            (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id);
-                            this.exportButton.downloadExport()">Export</button>
-                    <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
-                            (click)="this.viewRecordings(test.test)">Show Recordings</button>
+
+                  <label class="testTitle">
+                    {{test.test.title}} <b>(ID: {{test.test.id}})</b>
+                  </label>
+
+                  <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
+                          (click)="startTest(test.test)">Start Test</button>
+                  <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
+                          (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id);
+                           this.exportButton.downloadExport()">Export</button>
+                  <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
+                          (click)="this.viewRecordings(test.test)">Show Recordings</button>
 
                 </div>
               </section>
@@ -51,9 +53,11 @@
             <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of newTests[0]" cdkDrag>
 
               <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-              <label id="test-new-{{test.test.id}}">
-                {{test.test.title}}
+
+              <label class="testTitle">
+                {{test.test.title}} <b>(ID: {{test.test.id}})</b>
               </label>
+
               <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
                       (click)="startTest(test.test)">Start Test</button>
               <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"

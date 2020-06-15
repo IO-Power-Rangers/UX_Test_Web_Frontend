@@ -1,5 +1,5 @@
 .example-list {
-  width: 700px;
+  width: 750px;
   max-width: 100%;
   position: relative;
   left: 450px;
@@ -55,17 +55,17 @@
 
 #stTest {
   position: absolute;
-  left: 250px;
+  left: 300px;
 }
 
 #export {
   position: absolute;
-  left: 410px;
+  left: 460px;
 }
 
 #record {
   position: absolute;
-  left: 550px;
+  left: 600px;
 }
 
 #title {
@@ -83,7 +83,7 @@
 
 #addGroup {
   position: relative;
-  left: 750px;
+  left: 770px;
   bottom: -5%;
 }
 
