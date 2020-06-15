@@ -41,6 +41,7 @@
           </div>
         </section>
 
+        <section *ngIf="newTests[0].length > 0">
         <mat-form-field class="groupName"  apperance="standard" [style.fontSize.px]=18>
           <input matInput type="text" id="new"  placeholder="new"/>
         </mat-form-field>
@@ -64,6 +65,7 @@
             </div>
           </div>
         </div>
+        </section>
       </div>
     </form>
   </div>

@@ -44,7 +44,7 @@ export class ViewTestsComponent implements OnInit {
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data.filter(test => test.creator.id === 1); // this.userService.getUser().id);
+        this.tests = data.filter(test => test.creator.id ===  this.userService.getUser().id);
       },
         (err) =>  console.error(err),
         () => {
@@ -58,7 +58,7 @@ export class ViewTestsComponent implements OnInit {
   showGroup() {
     this.viewTestsService.getGroup()
       .subscribe((data: TestGroup[]) => {
-        this.groups = data.filter(group => group.testId in this.testIDs);
+        this.groups = data.filter(group => this.testIDs.includes(group.testId));
       },
         (err) => console.error(err),
         () => {
@@ -155,11 +155,13 @@ export class ViewTestsComponent implements OnInit {
     if (lastName === '') {
       lastName = lastNameInput.placeholder;
     }
-    for (const test of this.newTests[0]) {
-      if (test.name === '') {
-        this.viewTestsService.postGroup({id: test.id, testId: test.test.id, name: lastName});
-      } else {
-        this.viewTestsService.putGroup({id: test.id, testId: test.test.id, name: lastName});
+    if (this.newTests[0].length > 0) {
+      for (const test of this.newTests[0]) {
+        if (test.id === -1) {
+          this.viewTestsService.postGroup({id: test.id, testId: test.test.id, name: lastName});
+        } else {
+          this.viewTestsService.putGroup({id: test.id, testId: test.test.id, name: lastName});
+        }
       }
     }
 
