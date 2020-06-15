@@ -36,6 +36,7 @@ export class TestService {
         questionnaire.testId = Number(testId)
         console.log(questionnaire);
         this.postQuestionnaire(questionnaire)
+        confirm("Created Test ID: "+ Number(testId))
       })
   }
 

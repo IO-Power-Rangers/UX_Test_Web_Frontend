@@ -130,11 +130,9 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
         title: this.testTitle
       };
 
-      this.testService.postTest(test);
+      this.testService.postTest(test)
       this.isSaved = true;
-
-      this.router.navigate(['/home']);
-
+      this.router.navigate(['/home'])
     }
   }
 
@@ -151,14 +149,14 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
     input.accept = "image/*"
     input.multiple = false
     let imageSource = this.imageSource
-    input.onchange = function(event) { 
+    input.onchange = function(event) {
       let image = input.files[0];
       let reader = new FileReader();
       let base64 = null;
-      
+
       reader.addEventListener("load", function() {base64 = reader.result; question.question.image = reader.result; question.imageName = image.name})
       reader.readAsDataURL(image)
-      
+
     }
     input.click();
   }
