@@ -8,6 +8,7 @@ export const environment = {
   local : 'http://localhost:8099',
   users : '/api/users',
   tests : '/api/tests',
+  groups : '/api/groups',
   results: '/api/results',
   export: '/api/export',
   questionnaire: '/api/questionnaire',

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {Test} from '../../interfaces/test';
+import {TestGroup} from '../../interfaces/testGroup';
 
 
 @Injectable({
@@ -12,7 +13,8 @@ export class ViewTestsService {
 
   constructor(private http: HttpClient) {}
 
-  private readonly URL =  environment.apiUrl + environment.tests;
+  private readonly testURL =  environment.local + environment.tests;
+  private readonly groupURL = environment.local + environment.groups;
 
   private test: Test;
   private message = new BehaviorSubject<Test>(this.test);
@@ -23,7 +25,19 @@ export class ViewTestsService {
   }
 
   getTest() {
-    return this.http.get(this.URL, {headers: {'Content-Type': 'application/json'}, responseType: 'json'});
+    return this.http.get(this.testURL);
   }
 
+  getGroup() {
+    return this.http.get(this.groupURL);
+  }
+
+  putGroup(group: TestGroup) {
+    const url = this.groupURL + '/' + group.id;
+    this.http.put(url, group).toPromise();
+  }
+
+  postGroup(group: TestGroup) {
+    this.http.post(this.groupURL, group).toPromise();
+  }
 }

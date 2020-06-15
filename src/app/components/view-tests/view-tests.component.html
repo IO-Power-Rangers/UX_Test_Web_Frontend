@@ -1,17 +1,83 @@
-<h1 id="title">
-  Your tests:
+<h1>
+  <label id="title">
+    Your tests:
+  </label>
 </h1>
 
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of tests" cdkDrag>
-    <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-      {{test.title}}
-      <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
-              (click)="startTest(test)">Start Test</button>
-      <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
-            (click)="this.exportButton.setQuestionnaireId(test.questionnaire.id); this.exportButton.downloadExport()">Export</button>
-      <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
-            (click)="this.viewRecordings(test)">Show Recordings</button>
+<div id="groups">
+
+  <div label="Your tests:">
+
+    <form class="container mt-3" >
+      <div cdkDropListGroup>
+        <section *ngFor="let group of groupedTests; let i = index" fxLayout="column">
+
+          <mat-form-field class="groupName"  apperance="standard" [style.fontSize.px]=18>
+            <input matInput type="text" id="{{names[i]}}" placeholder="{{names[i]}}"/>
+          </mat-form-field>
+
+          <div class="container">
+            <div cdkDropList class="example-list" [cdkDropListData]="group" id="list-{{names[i]}}"
+                 (cdkDropListDropped)="drop($event)">
+              <section *ngFor="let test of group">
+
+                <div class="example-box" cdkDragLockAxis="y"  cdkDrag>
+
+                  <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                    <label id="test-{{test.test.id}}">
+                      {{test.test.title}}
+                    </label>
+                    <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
+                            (click)="startTest(test.test)">Start Test</button>
+                    <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
+                            (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id);
+                            this.exportButton.downloadExport()">Export</button>
+                    <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
+                            (click)="this.viewRecordings(test.test)">Show Recordings</button>
+
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section *ngIf="newTests[0].length > 0">
+        <mat-form-field class="groupName"  apperance="standard" [style.fontSize.px]=18>
+          <input matInput type="text" id="new"  placeholder="new"/>
+        </mat-form-field>
+
+        <div class="container">
+          <div cdkDropList class="example-list" [cdkDropListData]="newTests[0]" id="list-new" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" cdkDragLockAxis="y" *ngFor="let test of newTests[0]" cdkDrag>
+
+              <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+              <label id="test-new-{{test.test.id}}">
+                {{test.test.title}}
+              </label>
+              <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
+                      (click)="startTest(test.test)">Start Test</button>
+              <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
+                      (click)="this.exportButton.setQuestionnaireId(test.test.questionnaire.id);
+                      this.exportButton.downloadExport()">Export</button>
+              <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
+                      (click)="this.viewRecordings(test.test)">Show Recordings</button>
+
+            </div>
+          </div>
+        </div>
+        </section>
+      </div>
+    </form>
   </div>
+
 </div>
 
+<div id="addGroup">
+  <button id="addNewGroup" class="submit-btn" color="primary" mat-raised-button type="submit"
+          (click)="addGroup()">Add Group</button>
+</div>
+
+<div id="submitBtn">
+  <button id="submitGroups" class="submit-btn" color="primary" mat-raised-button type="submit"
+          (click)="submitGroups()">Save Groups</button>
+</div>
