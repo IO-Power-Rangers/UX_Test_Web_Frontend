@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  user :User
+  user: User;
   postUser$: Observable<any>;
   private postUserSubject = new Subject<any>();
 
@@ -14,9 +14,8 @@ export class UserService {
     this.postUser$ = this.postUserSubject.asObservable();
   }
 
-
-  postUser(userData:User){
-    this.user= userData;
+  postUser(userData: User) {
+    this.user = userData;
     this.postUserSubject.next(userData);
   }
 

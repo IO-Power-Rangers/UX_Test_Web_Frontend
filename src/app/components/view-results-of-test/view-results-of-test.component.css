@@ -1,11 +1,33 @@
-table, th , td  {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
+#import {
+
+  margin-left: 0.5%;
+
 }
-table tr:nth-child(odd) {
-  background-color: #f1f1f1;
+
+#results-view {
+
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
 }
-table tr:nth-child(even) {
-  background-color: #ffffff;
+
+#table {
+
+  box-shadow: none !important;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  flex: 1;
+
+}
+
+.tableHeader {
+
+  font-size: 100%;
+  font-weight: bold;
+  text-align: center;
+
 }

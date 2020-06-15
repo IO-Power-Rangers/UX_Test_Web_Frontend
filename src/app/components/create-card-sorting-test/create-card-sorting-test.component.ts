@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {CardSortingTest} from "./cardSortingTest";
-import {CardSortingService} from "../../services/cardsorting.service";
-import {UserService} from "../../services/user.service";
+import {CardSortingTest} from '../../../interfaces/cardsorting/cardSortingTest';
+import {CardSortingService} from '../../services/cardsorting.service';
+import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-card-sorting-test',
@@ -11,54 +12,63 @@ import {UserService} from "../../services/user.service";
 })
 export class CreateCardSortingTestComponent implements OnInit {
 
-  constructor(private titleService: Title, private cardSortingService: CardSortingService, private userService: UserService) {
+  constructor(private titleService: Title,
+              private cardSortingService: CardSortingService,
+              private userService: UserService,
+              private router: Router) {
     this.titleService.setTitle('Create Card Sorting Tests');
   }
+
+  public rawCategories: any[] = [{
+    name: ''
+  }];
+
+  public rawSubjects: any[] = [{
+    name: ''
+  }];
 
   ngOnInit(): void {
   }
 
-  public rawCategories : any[] = [{
-    name: ''
-  }];
-
-  public rawSubjects : any[] = [{
-    name: ''
-  }];
-
   addCategory() {
     this.rawCategories.push({
       name : ''
-    })
+    });
   }
 
   addSubject() {
     this.rawSubjects.push({
       name : ''
-    })
+    });
   }
 
-  removeRecentlyAddedCategory() {
-    this.rawCategories.pop();
+  removeCategory(i) {
+    this.rawCategories.splice(i, 1);
   }
 
-  removeRecentlyAddedSubject() {
-    this.rawSubjects.pop();
+  removeSubject(i) {
+    this.rawSubjects.splice(i, 1);
   }
 
   submitTest() {
 
-    const test: CardSortingTest = {
-      creator: this.userService.getUser(),
-      categories : this.rawCategories,
-      subjects: this.rawSubjects,
-      results: []
-    };
+    if (confirm('Please confirm that you want to save this test. You won\'t be able to make any changes to it later.')) {
 
-    this.cardSortingService.postTest(test)
+      const test: CardSortingTest = {
+        creator: this.userService.getUser(),
+        categories: this.rawCategories,
+        subjects: this.rawSubjects,
+        results: []
+      };
+
+      this.cardSortingService.postTest(test);
+
+      this.router.navigate(['/home']);
+
+    }
   }
 
   logValue() {
-    console.log(this.rawCategories+' '+this.rawSubjects);
+    console.log(this.rawCategories + ' ' + this.rawSubjects);
   }
 }

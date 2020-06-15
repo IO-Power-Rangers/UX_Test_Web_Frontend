@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, ChangeDetectorRef } from '@angular/core';
-import { LikertScaleResult } from 'src/app/interfaces/questionnaire/result/result';
+import { LikertScaleResult } from 'src/interfaces/questionnaire/result/result';
 import { ResultsVisualizationComponent } from '../../results-visualization.component';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
@@ -40,7 +40,7 @@ export class LikertScaleVisualizationComponent implements OnInit, OnChanges {
     console.log(this.result)
     this.barChartLabels = Array.from(this.result.answers.keys()).map(p => p.toString())
     this.barChartData = [{
-      data: Array.from(this.result.answers.values()), 
+      data: Array.from(this.result.answers.values()),
       label: "Answer count"
     }]
     this.ready = true;

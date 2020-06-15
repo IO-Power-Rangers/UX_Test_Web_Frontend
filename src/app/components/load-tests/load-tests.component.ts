@@ -4,7 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Test } from '../../../interfaces/test';
 import {Observable} from 'rxjs';
-import {ComponentCanDeactivate} from '../../pending-changes';
+import {ComponentCanDeactivate} from '../../dialogs/pending-changes';
 import {environment} from '../../../environments/environment';
 import {RecordingPermittedService} from '../../services/recording-permitted.service';
 import {ScreenRecordingComponent} from '../screen-recording/screen-recording.component';
@@ -55,7 +55,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
     this.test = {
       creator: undefined,
       title: 'Szkoła językowa',
-      uxModel: {axLink: 'https://8bx5e9.axshare.com/#g=1&p=strona_glowna', tests:[]},
+      uxModel: {axLink: 'https://8bx5e9.axshare.com/#g=1&p=strona_glowna', tests: []},
       tasks: [
         {
           id: 1,
@@ -154,7 +154,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
     this.showRecordingPermissionView = true;
 
     this.testService.getTest(this.testId).subscribe((data) => {
-      this.test = <Test>data;
+      this.test = data as Test;
 
       this.recordingPermittedService.permitted$.subscribe(() => {
         this.showRecordingPermissionView = false;
@@ -163,7 +163,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
         // example test
         this.screenRecordingComponent.startRecording(this.userService.getUser(), this.test);
       });
-    
+
     });
   }
 
@@ -193,7 +193,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       this.test.tasks.forEach(task => this.rawTasks.push(task));
 
       this.test.questionnaire.textQuestions.forEach(q => this.rawQuestionsT.push({
-        question: q, 
+        question: q,
         answer: this.prepareTextAnswer(q)
       }));
 
@@ -203,13 +203,13 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       }));
 
       this.test.questionnaire.multipleAnswerQuestions.forEach(q => this.rawQuestionsMA.push({
-        question: q, 
+        question: q,
         answer: this.prepareMultipleAnswerAnswer(q),
         selection: this.prepareSelectedOptionsArray(q)
       }));
 
       this.test.questionnaire.likertScaleQuestions.forEach(q => this.rawQuestionsLS.push({
-        question: q, 
+        question: q,
         answer: this.prepareLikertScaleAnswer(q)
       }));
 
@@ -232,16 +232,21 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
   saveResults() {
     // should save to the database here
     // TODO MAYBE check if all questions are answered
-    this.isSaved = true;
 
-    this.rawQuestionsMA.forEach(q => this.mapSelectionToMultipleAnswerAnswer(q))
+    if (confirm('Please confirm that you want to save this solution.')) {
 
-    this.rawQuestionsT.forEach(raw => this.textAnswerService.postTextAnswer(raw.answer))
-    this.rawQuestionsMC.forEach(raw => this.multipleChoiceAnswerService.postMultipleChoiceAnswer(raw.answer))
-    this.rawQuestionsMA.forEach(raw => this.multipleAnswerAnswerService.postMultipleAnswerAnswer(raw.answer))
-    this.rawQuestionsLS.forEach(raw => this.likertScaleAnswerService.postLikertScaleAnswer(raw.answer))
+      this.isSaved = true;
 
-    this.router.navigate(['/home'])
+      this.rawQuestionsMA.forEach(q => this.mapSelectionToMultipleAnswerAnswer(q));
+
+      this.rawQuestionsT.forEach(raw => this.textAnswerService.postTextAnswer(raw.answer));
+      this.rawQuestionsMC.forEach(raw => this.multipleChoiceAnswerService.postMultipleChoiceAnswer(raw.answer));
+      this.rawQuestionsMA.forEach(raw => this.multipleAnswerAnswerService.postMultipleAnswerAnswer(raw.answer));
+      this.rawQuestionsLS.forEach(raw => this.likertScaleAnswerService.postLikertScaleAnswer(raw.answer));
+
+      this.router.navigate(['/home']);
+
+    }
   }
 
   logValue() {
@@ -257,7 +262,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       userId: this.userService.getUser().id,
       questionId: question.id,
       answer: null
-    }
+    };
   }
 
   prepareLikertScaleAnswer(question: LikertScaleQuestion): LikertScaleAnswer {
@@ -265,7 +270,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       userId: this.userService.getUser().id,
       questionId: question.id,
       answer: null
-    }
+    };
   }
 
   prepareMultipleChoiceAnswer(question: MultipleChoiceQuestion): MultipleChoiceAnswer {
@@ -273,7 +278,7 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       userId: this.userService.getUser().id,
       questionId: question.id,
       selectedOptionId: null
-    }
+    };
   }
 
   prepareMultipleAnswerAnswer(question: MultipleAnswerQuestion): MultipleAnswerAnswer {
@@ -281,28 +286,28 @@ export class LoadTestsComponent implements OnInit, ComponentCanDeactivate {
       userId: this.userService.getUser().id,
       questionId: question.id,
       selectedOptionsIds: []
-    }
+    };
   }
 
   prepareSelectedOptionsArray(question) {
-    var array = []
-    question.options.forEach(o => array.push(false))
-    return array
+    let array = [];
+    question.options.forEach(o => array.push(false));
+    return array;
   }
 
   prepareLikertArray(question: LikertScaleQuestion) {
-    var array = []
-    for (var i = 0; i < question.possibleStepsNo; i++) {
-      array.push(false)
+    let array = [];
+    for (let i = 0; i < question.possibleStepsNo; i++) {
+      array.push(false);
     }
-    return array
+    return array;
   }
 
   mapSelectionToMultipleAnswerAnswer(raw) {
-    
-    for (var i = 0; i < raw.selection.length; i++) {
+
+    for (let i = 0; i < raw.selection.length; i++) {
       if (raw.selection[i]) {
-        raw.answer.selectedOptionsIds.push(raw.question.options[i].id)
+        raw.answer.selectedOptionsIds.push(raw.question.options[i].id);
       }
     }
   }

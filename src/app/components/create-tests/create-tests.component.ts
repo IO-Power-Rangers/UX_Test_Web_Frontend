@@ -3,7 +3,7 @@ import {Title} from '@angular/platform-browser';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Test } from '../../../interfaces/test';
 import {Observable} from 'rxjs';
-import {ComponentCanDeactivate} from '../../pending-changes';
+import {ComponentCanDeactivate} from '../../dialogs/pending-changes';
 import {environment} from '../../../environments/environment';
 import {UxModel} from '../../../interfaces/uxModel';
 import {TestService} from "../../services/test.service";
@@ -26,8 +26,8 @@ import { Router } from '@angular/router';
 export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   constructor(
-    private titleService: Title, 
-    private http: HttpClient, 
+    private titleService: Title,
+    private http: HttpClient,
     private testService: TestService,
     private userService: UserService,
     private router: Router) {
@@ -104,32 +104,37 @@ export class CreateTestsComponent implements OnInit, ComponentCanDeactivate {
 
   submitTest() {
 
-    var questionnaire: Questionnaire = {
-      textQuestions: this.rawQuestions
-        .filter(raw => raw.type === 'text')
-        .map(raw => raw.question),
-      multipleChoiceQuestions: this.rawQuestions
-        .filter(raw => raw.type === 'multipleChoice')
-        .map(raw => raw.question),
-      multipleAnswerQuestions: this.rawQuestions
-        .filter(raw => raw.type === 'multipleAnswer')
-        .map(raw => raw.question),
-      likertScaleQuestions: this.rawQuestions
-      .filter(raw => raw.type === 'likert')
-      .map(raw => raw.question)
-    };
+    if (confirm('Please confirm that you want to save this test. You won\'t be able to make any changes to it later.')) {
 
-    const test: Test = {
-      uxModel: {axLink: this.urlToEmbed, tests: []},
-      questionnaire: questionnaire,
-      creator: this.userService.getUser(),
-      tasks: this.rawTasks,
-      title: this.testTitle
-    };
-    this.testService.postTest(test);
-    this.isSaved = true;
+      const questionnaire: Questionnaire = {
+        textQuestions: this.rawQuestions
+          .filter(raw => raw.type === 'text')
+          .map(raw => raw.question),
+        multipleChoiceQuestions: this.rawQuestions
+          .filter(raw => raw.type === 'multipleChoice')
+          .map(raw => raw.question),
+        multipleAnswerQuestions: this.rawQuestions
+          .filter(raw => raw.type === 'multipleAnswer')
+          .map(raw => raw.question),
+        likertScaleQuestions: this.rawQuestions
+          .filter(raw => raw.type === 'likert')
+          .map(raw => raw.question)
+      };
 
-    this.router.navigate(['/home']);
+      const test: Test = {
+        uxModel: {axLink: this.urlToEmbed, tests: []},
+        questionnaire: questionnaire,
+        creator: this.userService.getUser(),
+        tasks: this.rawTasks,
+        title: this.testTitle
+      };
+
+      this.testService.postTest(test);
+      this.isSaved = true;
+
+      this.router.navigate(['/home']);
+
+    }
   }
 
   public questionnaireName = '';

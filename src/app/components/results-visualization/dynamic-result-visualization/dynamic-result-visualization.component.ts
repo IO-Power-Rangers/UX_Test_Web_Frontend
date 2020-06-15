@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Result, QuestionType, LikertScaleResult, MultipleChoiceResult, MultipleAnswerResult, TextResult } from 'src/app/interfaces/questionnaire/result/result';
+import { Result, QuestionType, LikertScaleResult, MultipleChoiceResult, MultipleAnswerResult, TextResult } from 'src/interfaces/questionnaire/result/result';
 import { LikertScaleVisualizationComponent } from '../specific/likert-scale-visualization/likert-scale-visualization.component';
 import { MultipleChoiceVisualizationComponent } from '../specific/multiple-choice-visualization/multiple-choice-visualization.component';
 import { MultipleAnswerVisualizationComponent } from '../specific/multiple-answer-visualization/multiple-answer-visualization.component';

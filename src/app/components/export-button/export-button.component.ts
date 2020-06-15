@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ExcelExport } from 'src/app/interfaces/questionnaire/result/result';
+import { ExcelExport } from 'src/interfaces/questionnaire/result/result';
 import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-export-button',

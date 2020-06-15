@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, from } from 'rxjs';
-import { Result, QuestionType } from '../interfaces/questionnaire/result/result';
+import { Result, QuestionType } from '../../interfaces/questionnaire/result/result';
 
 @Injectable({
   providedIn: 'root'

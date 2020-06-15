@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MultipleAnswerResult } from 'src/app/interfaces/questionnaire/result/result';
+import { MultipleAnswerResult } from 'src/interfaces/questionnaire/result/result';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 
@@ -37,7 +37,7 @@ export class MultipleAnswerVisualizationComponent implements OnInit, OnChanges {
   private visualize() {
     this.barChartLabels = Array.from(this.result.answers.keys()).map(p => p.toString())
     this.barChartData = [{
-      data: Array.from(this.result.answers.values()), 
+      data: Array.from(this.result.answers.values()),
       label: "Answer count"
     }]
     this.ready = true;

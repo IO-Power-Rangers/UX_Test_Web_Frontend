@@ -24,15 +24,15 @@
 
   </a>
 
-  <a class="button" mat-button routerLink="viewResultsOfTest" *ngIf="user && user.role == 'UXER'">
+  <a class="button" mat-button routerLink="cardsorting/createTest" *ngIf="user && user.role == 'UXER'">
 
-    View test results
+    Create a card sorting test
 
   </a>
 
-  <a class="button" mat-button routerLink="cardsorting/createTest" *ngIf="user && user.role == 'UXER'">
+  <a class="button" mat-button routerLink="viewResultsOfTest" *ngIf="user && user.role == 'UXER'">
 
-   Create a card sorting test
+    View card sorting test results
 
   </a>
 
