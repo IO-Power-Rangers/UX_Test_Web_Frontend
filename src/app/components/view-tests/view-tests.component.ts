@@ -167,6 +167,10 @@ export class ViewTestsComponent implements OnInit {
 
   }
 
+  seeQuestionnaireResults(questionnaireId) {
+    this.router.navigate(['results'],{queryParams: {id: questionnaireId}})
+  }
+
   startTest(test) {
     this.message = test;
     this.viewTestsService.nextMessage(this.message);

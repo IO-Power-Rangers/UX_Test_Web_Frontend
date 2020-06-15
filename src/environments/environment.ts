@@ -8,7 +8,7 @@ export const environment = {
   users : '/api/users',
   tests : '/api/tests',
   groups : '/api/groups',
-  results: '/api/results',
+  results: '/api/questionnaire/results',
   export: '/api/export',
   questionnaire: '/api/questionnaire',
   textAnswer: '/api/answer/text',

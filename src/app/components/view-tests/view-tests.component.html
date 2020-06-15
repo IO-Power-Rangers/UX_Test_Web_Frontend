@@ -28,7 +28,6 @@
                   <label class="testTitle">
                     {{test.test.title}} <b>(ID: {{test.test.id}})</b>
                   </label>
-
                   <button id="stTest" class="submit-btn" color="primary" mat-raised-button type="submit"
                           (click)="startTest(test.test)">Start Test</button>
                   <button id="export" class="submit-btn" color="primary" mat-raised-button type="submit"
@@ -36,6 +35,8 @@
                            this.exportButton.downloadExport()">Export</button>
                   <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
                           (click)="this.viewRecordings(test.test)">Show Recordings</button>
+                  <button id="questionnaireResults" class="submit-btn" color="primary" mat-raised-button type="submit"
+                          (click)="seeQuestionnaireResults(test.test.questionnaire.id)">See questionnaire results</button>
 
                 </div>
               </section>
@@ -65,6 +66,8 @@
                       this.exportButton.downloadExport()">Export</button>
               <button id="record" class="submit-btn" color="primary" mat-raised-button type="submit"
                       (click)="this.viewRecordings(test.test)">Show Recordings</button>
+              <button id="questionnaireResults" class="submit-btn" color="primary" mat-raised-button type="submit"
+                      (click)="seeQuestionnaireResults(test.test.questionnaire.id)">See questionnaire results</button>
 
             </div>
           </div>
