@@ -20,7 +20,7 @@ export interface TextResult extends Result {
 }
 
 export enum QuestionType {
-    LIKERT_SCALE, MULTIPLE_CHOICE, MULTIPLE_ANSWER, TEXT
+    LIKERT_SCALE = "LIKERT_SCALE", MULTIPLE_CHOICE = "MULTIPLE_CHOICE", MULTIPLE_ANSWER = "MULTIPLE_ANSWER", TEXT = "TEXT"
 }
 
 export interface ExcelExport {
