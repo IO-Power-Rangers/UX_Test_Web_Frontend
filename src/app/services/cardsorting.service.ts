@@ -33,10 +33,10 @@ export class CardSortingService {
   }
 
   postTest(test : CardSortingTest) {
-    this.http.post(this.host + this.testsEndpoint, JSON.stringify(test), {headers: {'Content-Type': 'application/json'}})
+    this.http.post(this.host + this.testsEndpoint, test)
       .toPromise()
-      .then(data => {
-        console.log(data);
-      });
+      .then(testId => {
+        confirm("Created CardSorting Test ID: "+ Number(testId))
+      })
   }
 }
