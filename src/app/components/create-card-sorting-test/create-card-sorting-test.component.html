@@ -12,7 +12,7 @@
 
         <div class="categorySubject">
           <mat-form-field class="inputName" appearance="standard" [style.fontSize.px]=14>
-            <input matInput type="text" [(ngModel)]="category.name" name="content_{{category.name}}" placeholder="Category"/>
+            <input matInput type="text" [(ngModel)]="category.name" [name]="category.name+'_'+i" placeholder="Category"/>
           </mat-form-field>
 
           <div class="removeWrapper">
@@ -42,7 +42,7 @@
 
         <div class="categorySubject">
           <mat-form-field class="inputName" appearance="standard" [style.fontSize.px]=14>
-            <input matInput type="text" [(ngModel)]="subject.name" name="content_{{subject.name}}" placeholder="Subject"/>
+            <input matInput type="text" [(ngModel)]="subject.name" [name]="subject.name+'_'+j" placeholder="Subject"/>
           </mat-form-field>
 
           <div class="removeWrapper">
