@@ -44,7 +44,7 @@ export class ViewTestsComponent implements OnInit {
   showTest() {
     this.viewTestsService.getTest()
       .subscribe((data: Test[]) => {
-        this.tests = data.filter(test => test.creator.id === this.userService.getUser().id);
+        this.tests = data.filter(test => test.creator.id === 1); // this.userService.getUser().id);
       },
         (err) =>  console.error(err),
         () => {
@@ -58,13 +58,13 @@ export class ViewTestsComponent implements OnInit {
   showGroup() {
     this.viewTestsService.getGroup()
       .subscribe((data: TestGroup[]) => {
-        this.groups = data.filter(group => group.test_id in this.testIDs);
+        this.groups = data.filter(group => group.testId in this.testIDs);
       },
         (err) => console.error(err),
         () => {
           this.names = [];
           for (const group of this.groups) {
-            if (!(group.name in this.names)) {
+            if (! this.names.includes(group.name)) {
               this.names.push(group.name);
             }
           }
@@ -81,8 +81,8 @@ export class ViewTestsComponent implements OnInit {
 
         if (group.name === name) {
           for (const test1 of this.tests) {
-            if (group.test_id === test1.id) {
-              const newGropedTest = {test: test1, name: group.name};
+            if (group.testId === test1.id) {
+              const newGropedTest = {id: group.id, test: test1, name: group.name};
               this.groupedTests[index].push(newGropedTest);
             }
           }
@@ -95,14 +95,14 @@ export class ViewTestsComponent implements OnInit {
     for (const test1 of this.tests) {
       for (const group of this.groups) {
 
-        if (test1.id === group.test_id) {
+        if (test1.id === group.testId) {
           added = true;
         }
 
       }
 
       if (!added) {
-        this.newTests[0].push({test: test1, name: ''});
+        this.newTests[0].push({id: -1, test: test1, name: ''});
       }
       added = false;
     }
@@ -141,10 +141,10 @@ export class ViewTestsComponent implements OnInit {
     for (let i = 0; i < this.groupedTests.length; i++) {
       if (this.groupedTests[i].length > 0) {
         for (const test of this.groupedTests[i]) {
-          if (test.name === '') {
-            this.viewTestsService.postGroup({test_id: test.test.id, name: newNames[i]});
+          if (test.id === -1) {
+            this.viewTestsService.postGroup({id: test.id, testId: test.test.id, name: newNames[i]});
           } else {
-            this.viewTestsService.putGroup({test_id: test.test.id, name: newNames[i]});
+            this.viewTestsService.putGroup({id: test.id, testId: test.test.id, name: newNames[i]});
           }
         }
       }
@@ -157,9 +157,9 @@ export class ViewTestsComponent implements OnInit {
     }
     for (const test of this.newTests[0]) {
       if (test.name === '') {
-        this.viewTestsService.postGroup({test_id: test.test.id, name: lastName});
+        this.viewTestsService.postGroup({id: test.id, testId: test.test.id, name: lastName});
       } else {
-        this.viewTestsService.putGroup({test_id: test.test.id, name: lastName});
+        this.viewTestsService.putGroup({id: test.id, testId: test.test.id, name: lastName});
       }
     }
 

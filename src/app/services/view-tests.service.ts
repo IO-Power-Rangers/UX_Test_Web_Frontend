@@ -13,8 +13,8 @@ export class ViewTestsService {
 
   constructor(private http: HttpClient) {}
 
-  private readonly testURL =  environment.apiUrl + environment.tests;
-  private readonly groupURL = environment.apiUrl + environment.groups;
+  private readonly testURL =  environment.local + environment.tests;
+  private readonly groupURL = environment.local + environment.groups;
 
   private test: Test;
   private message = new BehaviorSubject<Test>(this.test);
@@ -25,19 +25,19 @@ export class ViewTestsService {
   }
 
   getTest() {
-    return this.http.get(this.testURL, {headers: {'Content-Type': 'application/json'}, responseType: 'json'});
+    return this.http.get(this.testURL);
   }
 
   getGroup() {
-    return this.http.get(this.groupURL, {headers: {'Content-Type': 'application/json'}, responseType: 'json'});
+    return this.http.get(this.groupURL);
   }
 
   putGroup(group: TestGroup) {
-    const url = this.groupURL + '/' + group.test_id;
-    return this.http.put(url, group);
+    const url = this.groupURL + '/' + group.id;
+    this.http.put(url, group).toPromise();
   }
 
   postGroup(group: TestGroup) {
-    return this.http.post(this.groupURL, group);
+    this.http.post(this.groupURL, group).toPromise();
   }
 }
