@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, from } from 'rxjs';
 import { Result, QuestionType } from '../../interfaces/questionnaire/result/result';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,16 @@ export class ResultsService {
   constructor(private client: HttpClient) { }
 
   getResultsByQuestionnaireId(id: Number): Observable<Array<Result>> {
-    return this.client.get<Array<Result>>(this.url + "/" + id)
+    return this.client.get<Array<Result>>(this.url + "/" + id).pipe(map(
+      p => {
+        return p.map(q => {
+        if(q.type != QuestionType.TEXT){
+          (q as any).answers = new Map(Object.entries((q as any).answers))
+          return q
+        } else q
+      })
+    }
+    ))
     // return from([[
     //   {
     //     type: QuestionType.LIKERT_SCALE,
