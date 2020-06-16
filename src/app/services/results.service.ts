@@ -21,7 +21,7 @@ export class ResultsService {
         if(q.type != QuestionType.TEXT){
           (q as any).answers = new Map(Object.entries((q as any).answers))
           return q
-        } else q
+        } else return q
       })
     }
     ))
